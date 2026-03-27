@@ -1,5 +1,0 @@
-# DocC output is generated — not committed to git.
-# Run on a Mac to generate: scripts/sync-ios-docs.sh (requires Xcode).
-# In CI, the sync-docs.yml workflow pulls from the eidkit-ios gh-pages branch.
-*
-!.gitignore

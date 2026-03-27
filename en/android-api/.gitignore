@@ -1,5 +1,0 @@
-# Dokka output is generated — not committed to git.
-# Run scripts/sync-android-docs.sh to populate this folder locally.
-# In CI, the sync-docs.yml workflow pulls from the eidkit-android gh-pages branch.
-*
-!.gitignore
