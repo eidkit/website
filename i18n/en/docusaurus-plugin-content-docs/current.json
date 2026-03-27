@@ -1,0 +1,14 @@
+{
+  "sidebar.docsSidebar.category.Quickstart": {
+    "message": "Quickstart",
+    "description": "Sidebar category"
+  },
+  "sidebar.docsSidebar.category.Features": {
+    "message": "Features",
+    "description": "Sidebar category"
+  },
+  "sidebar.docsSidebar.category.API Reference": {
+    "message": "API Reference",
+    "description": "Sidebar category"
+  }
+}

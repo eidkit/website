@@ -1,0 +1,14 @@
+{
+  "sidebar.docsSidebar.category.Quickstart": {
+    "message": "Ghid rapid",
+    "description": "Sidebar category"
+  },
+  "sidebar.docsSidebar.category.Features": {
+    "message": "Funcționalități",
+    "description": "Sidebar category"
+  },
+  "sidebar.docsSidebar.category.API Reference": {
+    "message": "Referință API",
+    "description": "Sidebar category"
+  }
+}

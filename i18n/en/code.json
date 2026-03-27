@@ -1,0 +1,42 @@
+{
+  "homepage.hero.title": {
+    "message": "Infrastructure for the Romanian Electronic Identity Card",
+    "description": "Landing page hero title"
+  },
+  "homepage.hero.subtitle": {
+    "message": "Verify identity, sign documents, and authenticate users with a single tap of the identity card on your phone.",
+    "description": "Landing page hero subtitle"
+  },
+  "homepage.hero.cta.docs": {
+    "message": "Read the Docs",
+    "description": "Hero primary CTA button"
+  },
+  "homepage.hero.cta.contact": {
+    "message": "Contact Us",
+    "description": "Hero secondary CTA button"
+  },
+  "homepage.feature.kyc.title": {
+    "message": "KYC — Read Card Data",
+    "description": "Feature card title"
+  },
+  "homepage.feature.kyc.description": {
+    "message": "Read identity fields (name, CNP, date of birth), face photo, handwritten signature image, and full address from the EDATA applet — all in one NFC tap.",
+    "description": "Feature card description"
+  },
+  "homepage.feature.signing.title": {
+    "message": "Document Signing",
+    "description": "Feature card title"
+  },
+  "homepage.feature.signing.description": {
+    "message": "Produce a qualified ECDSA-SHA384 signature using the nonRepudiation key on the card chip. Embed directly into a PAdES/eIDAS PDF or send to your signing service.",
+    "description": "Feature card description"
+  },
+  "homepage.feature.activeauth.title": {
+    "message": "Active Authentication",
+    "description": "Feature card title"
+  },
+  "homepage.feature.activeauth.description": {
+    "message": "Challenge-response verification that the chip is genuine and has not been cloned. Returns raw cryptographic proof material your backend can independently verify.",
+    "description": "Feature card description"
+  }
+}

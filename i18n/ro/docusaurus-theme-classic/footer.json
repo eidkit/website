@@ -1,0 +1,26 @@
+{
+  "link.item.label.Overview": {
+    "message": "Prezentare generală",
+    "description": "Footer link label"
+  },
+  "link.item.label.Ghid rapid": {
+    "message": "Ghid rapid",
+    "description": "Footer link label"
+  },
+  "link.item.label.sales@eidkit.ro": {
+    "message": "sales@eidkit.ro",
+    "description": "Footer link label"
+  },
+  "link.item.label.GitHub": {
+    "message": "GitHub",
+    "description": "Footer link label"
+  },
+  "link.title.Docs": {
+    "message": "Documentație",
+    "description": "Footer column title"
+  },
+  "link.title.Contact": {
+    "message": "Contact",
+    "description": "Footer column title"
+  }
+}
