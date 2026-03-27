@@ -27,7 +27,7 @@ const sidebars: SidebarsConfig = {
         {
           type: 'link',
           label: 'iOS',
-          href: 'https://eidkit.ro/ios-api/latest/index.html',
+          href: 'https://eidkit.ro/ios-api/latest/documentation/eidkit',
         },
       ],
     },
