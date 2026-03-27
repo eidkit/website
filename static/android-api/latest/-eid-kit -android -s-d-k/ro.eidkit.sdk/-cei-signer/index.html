@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html class="no-js">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>CeiSigner</title>
+    <link href="../../../images/logo-icon.svg" rel="icon" type="image/svg">
+    <script>var pathToRoot = "../../../";</script>
+    <script>document.documentElement.classList.replace("no-js","js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
+<script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async="async"></script>
+<link href="../../../styles/style.css" rel="Stylesheet">
+<link href="../../../styles/main.css" rel="Stylesheet">
+<link href="../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../../styles/font-jb-sans-auto.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../scripts/clipboard.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/navigation-loader.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/platform-content-handler.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/main.js" defer="defer"></script>
+<script type="text/javascript" src="../../../scripts/prism.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/symbol-parameters-wrapper_deferred.js" defer="defer"></script>
+</head>
+<body>
+    <div class="root">
+<nav class="navigation" id="navigation-wrapper">
+    <div class="navigation--inner">
+        <div class="navigation-title">
+            <button class="menu-toggle" id="menu-toggle" type="button">toggle menu</button>
+            <div class="library-name">
+                    <a class="library-name--link" href="../../../index.html">
+                            EidKit Android SDK
+                    </a>
+            </div>
+            <div class="library-version">
+            </div>
+        </div>
+        <div class="filter-section" id="filter-section">
+                <button class="platform-tag platform-selector jvm-like" data-active="" data-filter=":sdk:dokkaHtml/release">androidJvm</button>
+        </div>
+    </div>
+    <div class="navigation-controls">
+        <button class="navigation-controls--btn navigation-controls--theme" id="theme-toggle-button" type="button">switch theme</button>
+        <div class="navigation-controls--btn navigation-controls--search" id="searchBar" role="button">search in API</div>
+    </div>
+</nav>
+        <div id="container">
+            <div class="sidebar" id="leftColumn">
+                <div class="sidebar--inner" id="sideMenu"></div>
+            </div>
+            <div id="main">
+<div class="main-content" data-page-type="classlike" id="content" pageIds="EidKit Android SDK::ro.eidkit.sdk/CeiSigner///PointingToDeclaration//165651098">
+  <div class="breadcrumbs"><a href="../../../index.html">EidKit Android SDK</a><span class="delimiter">/</span><a href="../index.html">ro.eidkit.sdk</a><span class="delimiter">/</span><span class="current">CeiSigner</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span>Cei</span><wbr></wbr><span><span>Signer</span></span></h1>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">class </span><a href="index.html">CeiSigner</a></div><p class="paragraph">Builder for a document signing session against a Romanian CEI card.</p><p class="paragraph">Obtain an instance from <a href="../-eid-kit/signer.html">EidKit.signer</a>. The signing session is separate from a read session — it requires a dedicated card tap and the 6-digit signing PIN.</p><p class="paragraph">The chip produces a raw ECDSA-SHA384 signature over the provided 48-byte hash using the nonRepudiation key (key ref 0x8E) in the GenPKI applet.</p><h2 class="">Preparing the hash</h2><p class="paragraph">Compute a SHA-384 hash of the document content to be signed (e.g. the PDF byte range as defined by the PAdES signature field), then pass the 48 bytes here:</p><div class="sample-container"><pre><code class="block lang-kotlin" theme="idea">val hash = MessageDigest.getInstance(&quot;SHA-384&quot;).digest(documentBytes)<br>// hash.size == 48</code></pre><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><h2 class="">Embedding the signature</h2><p class="paragraph"><a href="../../ro.eidkit.sdk.model/-sign-result/signature.html">SignResult.signature</a> is a raw 96-byte r||s value. To embed it in a PDF (PAdES/eIDAS), it must be wrapped in a CMS/PKCS#7 SignedData structure. Use <a href="../../ro.eidkit.sdk.config/-eid-kit-config/signing-service-url.html">ro.eidkit.sdk.config.EidKitConfig.signingServiceUrl</a> to delegate this to the EidKit signing service, or handle it yourself with Apache PDFBox.</p><h2 class="">Example</h2><div class="sample-container"><pre><code class="block lang-kotlin" theme="idea">override fun onNewIntent(intent: Intent) {<br>    super.onNewIntent(intent)<br>    val isoDep = nfcManager.handleIntent(intent) ?: return<br>    lifecycleScope.launch {<br>        val result = EidKit.signer()<br>            .sign(documentHash, signingPin = userEnteredSigningPin)<br>            .execute(isoDep)<br>        // result.signature — 96-byte raw ECDSA-SHA384 r||s<br>        // result.certificate — DER X.509 CE8E cert for verification<br>    }<br>}</code></pre><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="FUNCTION">
+        <h2 class="">Functions</h2>
+        <div class="table"><a data-name="620016160%2FFunctions%2F165651098" anchor-label="execute" id="620016160%2FFunctions%2F165651098" data-filterable-set=":sdk:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":sdk:dokkaHtml/release" data-filterable-set=":sdk:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="execute.html"><span><span>execute</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="620016160%2FFunctions%2F165651098"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="execute.html"><span class="token function">execute</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">isoDep<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/android/nfc/tech/IsoDep.html">IsoDep</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../ro.eidkit.sdk.model/-sign-result/index.html">SignResult</a></div><div class="brief "><p class="paragraph">Execute the signing session on the given <a href="https://developer.android.com/reference/kotlin/android/nfc/tech/IsoDep.html">IsoDep</a> tag.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-346833426%2FFunctions%2F165651098" anchor-label="executeFlow" id="-346833426%2FFunctions%2F165651098" data-filterable-set=":sdk:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":sdk:dokkaHtml/release" data-filterable-set=":sdk:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="execute-flow.html"><span>execute</span><wbr></wbr><span><span>Flow</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-346833426%2FFunctions%2F165651098"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">fun </span><a href="execute-flow.html"><span class="token function">executeFlow</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">isoDep<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/android/nfc/tech/IsoDep.html">IsoDep</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><span data-unresolved-link="kotlinx.coroutines.flow/Flow///PointingToDeclaration/">Flow</span><span class="token operator">&lt;</span><a href="../../ro.eidkit.sdk.model/-sign-event/index.html">SignEvent</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Execute the signing session and emit <a href="../../ro.eidkit.sdk.model/-sign-event/index.html">SignEvent</a> progress events as the session advances.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-329755161%2FFunctions%2F165651098" anchor-label="sign" id="-329755161%2FFunctions%2F165651098" data-filterable-set=":sdk:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":sdk:dokkaHtml/release" data-filterable-set=":sdk:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="sign.html"><span><span>sign</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-329755161%2FFunctions%2F165651098"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">fun </span><a href="sign.html"><span class="token function">sign</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">hash<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-byte-array/index.html">ByteArray</a><span class="token punctuation">, </span></span><span class="parameter ">signingPin<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">CeiSigner</a></div><div class="brief "><p class="paragraph">Set the document hash and signing PIN for this session.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      <div class="footer">
+        <span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2026 Copyright</span><span
+                class="pull-right"><span>Generated by </span><a
+                href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
+      </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
