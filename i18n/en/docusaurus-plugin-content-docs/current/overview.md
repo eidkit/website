@@ -49,5 +49,4 @@ EidKit handles everything from NFC session management to cryptographic verificat
 
 ## Next steps
 
-- [Android Quickstart](/docs/android-quickstart)
-- [iOS Quickstart](/docs/ios-quickstart)
+- [Quickstart](/docs/quickstart)

@@ -227,5 +227,5 @@ The Romanian CEI allows only **3 incorrect PIN attempts** before the PIN is bloc
 - [KYC](/docs/features/kyc) — read identity data and photos
 - [Document Signing](/docs/features/signing) — sign PDFs with the card
 - [Active Authentication](/docs/features/active-auth) — verify chip authenticity
-- [Android API Reference ↗](/android-api/latest/index.html)
-- [iOS API Reference ↗](/ios-api/latest/index.html)
+- [Android API Reference ↗](https://eidkit.ro/android-api/latest/index.html)
+- [iOS API Reference ↗](https://eidkit.ro/ios-api/latest/index.html)

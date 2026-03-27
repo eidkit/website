@@ -227,5 +227,5 @@ CEI românesc permite doar **3 încercări incorecte de PIN** înainte de blocar
 - [KYC](/docs/features/kyc) — citire date de identitate și fotografii
 - [Semnare documente](/docs/features/signing) — semnare PDF-uri cu cardul
 - [Autentificare activă](/docs/features/active-auth) — verificarea autenticității cipului
-- [Referință API Android ↗](/android-api/latest/index.html)
-- [Referință API iOS ↗](/ios-api/latest/index.html)
+- [Referință API Android ↗](https://eidkit.ro/android-api/latest/index.html)
+- [Referință API iOS ↗](https://eidkit.ro/ios-api/latest/index.html)

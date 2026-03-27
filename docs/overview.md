@@ -49,5 +49,4 @@ EidKit gestionează tot procesul, de la managementul sesiunii NFC până la veri
 
 ## Pași următori
 
-- [Ghid rapid Android](/docs/android-quickstart)
-- [Ghid rapid iOS](/docs/ios-quickstart)
+- [Ghid rapid](/docs/quickstart)
