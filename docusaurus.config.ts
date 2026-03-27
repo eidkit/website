@@ -33,7 +33,7 @@ const config: Config = {
       {
         docs: {
           sidebarPath: './sidebars.ts',
-          editUrl: 'https://github.com/eidkit/eidkit-website/tree/main/',
+          editUrl: undefined,
         },
         blog: false,
         theme: {
