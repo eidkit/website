@@ -7,8 +7,8 @@
     "message": "Quickstart",
     "description": "Footer link label"
   },
-  "link.item.label.sales@eidkit.ro": {
-    "message": "sales@eidkit.ro",
+  "link.item.label.hello@eidkit.ro": {
+    "message": "hello@eidkit.ro",
     "description": "Footer link label"
   },
   "link.item.label.GitHub": {

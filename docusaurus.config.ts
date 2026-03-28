@@ -35,7 +35,10 @@ const config: Config = {
           sidebarPath: './sidebars.ts',
           editUrl: undefined,
         },
-        blog: false,
+        blog: {
+          showReadingTime: true,
+          postsPerPage: 10,
+        },
         theme: {
           customCss: './src/css/custom.css',
         },
@@ -58,6 +61,11 @@ const config: Config = {
           sidebarId: 'docsSidebar',
           position: 'left',
           label: 'Docs',
+        },
+        {
+          to: '/blog',
+          label: 'Blog',
+          position: 'left',
         },
         {
           type: 'localeDropdown',
@@ -84,8 +92,8 @@ const config: Config = {
           title: 'Contact',
           items: [
             {
-              label: 'sales@eidkit.ro',
-              href: 'mailto:sales@eidkit.ro',
+              label: 'hello@eidkit.ro',
+              href: 'mailto:hello@eidkit.ro',
             },
             {
               label: 'GitHub',
