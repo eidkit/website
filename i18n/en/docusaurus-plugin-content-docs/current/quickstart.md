@@ -32,34 +32,16 @@ Get EidKit running in a mobile app in minutes.
 
 ## 1. Install
 
+:::info Early access
+EidKit is currently available via **early access**. Email us at [hello@eidkit.ro](mailto:hello@eidkit.ro) to get SDK access.
+
+Once you have access, the dependency looks like this:
+
 <Tabs groupId="platform">
 <TabItem value="android" label="Android (Kotlin)">
 
-EidKit is distributed via GitHub Packages.
-
-**`settings.gradle.kts`** — add the Maven repository:
-
 ```kotlin
-dependencyResolutionManagement {
-    repositories {
-        google()
-        mavenCentral()
-        maven {
-            url = uri("https://maven.pkg.github.com/eidkit/eidkit-android")
-            credentials {
-                username = providers.gradleProperty("gpr.user").orNull
-                    ?: System.getenv("GITHUB_ACTOR")
-                password = providers.gradleProperty("gpr.token").orNull
-                    ?: System.getenv("GITHUB_TOKEN")
-            }
-        }
-    }
-}
-```
-
-**`app/build.gradle.kts`**:
-
-```kotlin
+// app/build.gradle.kts
 dependencies {
     implementation("ro.eidkit:sdk-android:0.1.0")
 }
@@ -68,15 +50,8 @@ dependencies {
 </TabItem>
 <TabItem value="ios" label="iOS (Swift)">
 
-In Xcode: **File → Add Package Dependencies** and enter:
-
-```
-https://github.com/eidkit/eidkit-ios
-```
-
-Or add directly to `Package.swift`:
-
 ```swift
+// Package.swift
 dependencies: [
     .package(url: "https://github.com/eidkit/eidkit-ios", from: "0.1.0"),
 ],
@@ -87,6 +62,7 @@ targets: [
 
 </TabItem>
 </Tabs>
+:::
 
 ## 2. NFC setup
 
@@ -140,7 +116,7 @@ class MyApp : Application() {
     override fun onCreate() {
         super.onCreate()
         EidKit.configure(this, EidKitConfig {
-            licenseToken = BuildConfig.EIDKIT_LICENSE_TOKEN   // optional
+            licenseToken = BuildConfig.EIDKIT_LICENSE_TOKEN
         })
     }
 }
@@ -156,7 +132,7 @@ Call `EidKit.configure()` once at app startup:
 struct MyApp: App {
     init() {
         EidKit.configure(EidKitConfig(
-            licenseToken: "your-token"   // optional
+            licenseToken: "your-token"
         ))
     }
     var body: some Scene {
@@ -167,6 +143,10 @@ struct MyApp: App {
 
 </TabItem>
 </Tabs>
+
+:::note Demo mode
+Without a valid `licenseToken`, the SDK runs in **demo mode** — data read from the card is automatically masked. Ideal for development and testing without exposing real personal data.
+:::
 
 ## 4. Read a card
 
@@ -216,6 +196,8 @@ func readCard() async throws {
 
 :::info CAN
 The CAN is the 6-digit number printed on the **front** of the card. The user must enter it in your app UI — never hardcode or store it.
+
+![Location of the CAN code on the Electronic Identity Card](/img/cei-can-sample.png)
 :::
 
 :::warning PIN attempts

@@ -32,34 +32,16 @@ Integrează EidKit într-o aplicație mobilă în câteva minute.
 
 ## 1. Instalare
 
+:::info Acces timpuriu
+EidKit este disponibil în prezent prin **acces timpuriu**. Scrie-ne la [hello@eidkit.ro](mailto:hello@eidkit.ro) pentru a primi acces la SDK.
+
+Odată ce ai acces, dependența arată astfel:
+
 <Tabs groupId="platform">
 <TabItem value="android" label="Android (Kotlin)">
 
-EidKit este distribuit prin GitHub Packages.
-
-**`settings.gradle.kts`** — adaugă repository-ul Maven:
-
 ```kotlin
-dependencyResolutionManagement {
-    repositories {
-        google()
-        mavenCentral()
-        maven {
-            url = uri("https://maven.pkg.github.com/eidkit/eidkit-android")
-            credentials {
-                username = providers.gradleProperty("gpr.user").orNull
-                    ?: System.getenv("GITHUB_ACTOR")
-                password = providers.gradleProperty("gpr.token").orNull
-                    ?: System.getenv("GITHUB_TOKEN")
-            }
-        }
-    }
-}
-```
-
-**`app/build.gradle.kts`**:
-
-```kotlin
+// app/build.gradle.kts
 dependencies {
     implementation("ro.eidkit:sdk-android:0.1.0")
 }
@@ -68,15 +50,8 @@ dependencies {
 </TabItem>
 <TabItem value="ios" label="iOS (Swift)">
 
-În Xcode: **File → Add Package Dependencies** și introdu:
-
-```
-https://github.com/eidkit/eidkit-ios
-```
-
-Sau adaugă direct în `Package.swift`:
-
 ```swift
+// Package.swift
 dependencies: [
     .package(url: "https://github.com/eidkit/eidkit-ios", from: "0.1.0"),
 ],
@@ -87,6 +62,7 @@ targets: [
 
 </TabItem>
 </Tabs>
+:::
 
 ## 2. Configurare NFC
 
@@ -140,7 +116,7 @@ class MyApp : Application() {
     override fun onCreate() {
         super.onCreate()
         EidKit.configure(this, EidKitConfig {
-            licenseToken = BuildConfig.EIDKIT_LICENSE_TOKEN   // opțional
+            licenseToken = BuildConfig.EIDKIT_LICENSE_TOKEN
         })
     }
 }
@@ -156,7 +132,7 @@ Apelează `EidKit.configure()` o singură dată la pornirea aplicației:
 struct MyApp: App {
     init() {
         EidKit.configure(EidKitConfig(
-            licenseToken: "your-token"   // opțional
+            licenseToken: "your-token"
         ))
     }
     var body: some Scene {
@@ -167,6 +143,10 @@ struct MyApp: App {
 
 </TabItem>
 </Tabs>
+
+:::note Mod demo
+Fără un `licenseToken` valid, SDK-ul rulează în **mod demo** — datele citite de pe card sunt anonimizate automat. Ideal pentru dezvoltare și testare fără a expune date reale.
+:::
 
 ## 4. Citește un card
 
@@ -216,6 +196,8 @@ func citesteCard() async throws {
 
 :::info CAN
 CAN-ul este numărul de 6 cifre tipărit pe **fața** cardului. Utilizatorul trebuie să îl introducă în interfața aplicației — nu îl stoca niciodată sau nu îl hardcoda în aplicație.
+
+![Localizarea codului CAN pe Cartea Electronică de Identitate](/img/cei-can-sample.png)
 :::
 
 :::warning Încercări PIN
