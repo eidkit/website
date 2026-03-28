@@ -32,11 +32,6 @@ Get EidKit running in a mobile app in minutes.
 
 ## 1. Install
 
-:::info Early access
-EidKit is currently available via **early access**. Email us at [hello@eidkit.ro](mailto:hello@eidkit.ro) to get SDK access.
-
-Once you have access, the dependency looks like this:
-
 <Tabs groupId="platform">
 <TabItem value="android" label="Android (Kotlin)">
 
@@ -53,7 +48,7 @@ dependencies {
 ```swift
 // Package.swift
 dependencies: [
-    .package(url: "https://github.com/eidkit/eidkit-ios", from: "0.1.0"),
+    .package(url: "https://github.com/eidkit/eidkit-ios-releases", from: "0.1.0"),
 ],
 targets: [
     .target(name: "MyApp", dependencies: ["EidKit"]),
@@ -62,6 +57,9 @@ targets: [
 
 </TabItem>
 </Tabs>
+
+:::info Early access
+EidKit is currently in **early access** — a license token is required for production use. Email us at [hello@eidkit.ro](mailto:hello@eidkit.ro) to get access.
 :::
 
 ## 2. NFC setup

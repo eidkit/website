@@ -16,6 +16,8 @@ keywords:
   - adeverinta domiciliu carte electronica identitate
 ---
 
+*Acesta este primul articol din seria noastră despre carta electronică de identitate. Al doilea acoperă [ce poate semna buletinul tău și ce nu poate semna încă](/blog/legea-214-2024-semnatura-electronica-cei).*
+
 Odată cu introducerea noii Cărții Electronice de Identitate, adresa de domiciliu a dispărut de pe suprafața fizică a documentului. Nu mai există stradă, număr, oraș, județ tipărite pe verso. Toate aceste informații sunt stocate exclusiv pe cipul din interiorul cărții, accesibile doar prin NFC sau printr-un cititor de carduri.
 
 În teorie, este un pas înainte. Adresa poate fi actualizată electronic atunci când te muți, fără să fie necesară emiterea unui nou document. În practică, tranziția a generat o criză care devine tot mai vizibilă.

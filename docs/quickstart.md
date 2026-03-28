@@ -32,11 +32,6 @@ Integrează EidKit într-o aplicație mobilă în câteva minute.
 
 ## 1. Instalare
 
-:::info Acces timpuriu
-EidKit este disponibil în prezent prin **acces timpuriu**. Scrie-ne la [hello@eidkit.ro](mailto:hello@eidkit.ro) pentru a primi acces la SDK.
-
-Odată ce ai acces, dependența arată astfel:
-
 <Tabs groupId="platform">
 <TabItem value="android" label="Android (Kotlin)">
 
@@ -53,7 +48,7 @@ dependencies {
 ```swift
 // Package.swift
 dependencies: [
-    .package(url: "https://github.com/eidkit/eidkit-ios", from: "0.1.0"),
+    .package(url: "https://github.com/eidkit/eidkit-ios-releases", from: "0.1.0"),
 ],
 targets: [
     .target(name: "MyApp", dependencies: ["EidKit"]),
@@ -62,6 +57,9 @@ targets: [
 
 </TabItem>
 </Tabs>
+
+:::info Acces timpuriu
+EidKit este disponibil în prezent prin **acces timpuriu** — un token de licență este necesar pentru utilizare în producție. Scrie-ne la [hello@eidkit.ro](mailto:hello@eidkit.ro) pentru acces.
 :::
 
 ## 2. Configurare NFC
