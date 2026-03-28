@@ -1,0 +1,1 @@
+"use strict";(globalThis.webpackChunkeidkit_website=globalThis.webpackChunkeidkit_website||[]).push([[472],{5513(e){e.exports=JSON.parse('{"title":"Recent posts","items":[{"title":"Your New Romanian ID Card Has Your Address. Your Bank Doesn\'t Know How to Read It.","permalink":"/en/blog/romanian-id-card-address-problem","unlisted":false,"date":"2026-03-27T00:00:00.000Z"}]}')}}]);

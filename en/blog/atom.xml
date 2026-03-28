@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://eidkit.ro/en/blog</id>
+    <title>EidKit Blog</title>
+    <updated>2026-03-27T00:00:00.000Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://eidkit.ro/en/blog"/>
+    <subtitle>EidKit Blog</subtitle>
+    <icon>https://eidkit.ro/en/img/favicon.svg</icon>
+    <entry>
+        <title type="html"><![CDATA[Your New Romanian ID Card Has Your Address. Your Bank Doesn't Know How to Read It.]]></title>
+        <id>https://eidkit.ro/en/blog/romanian-id-card-address-problem</id>
+        <link href="https://eidkit.ro/en/blog/romanian-id-card-address-problem"/>
+        <updated>2026-03-27T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Romania's new electronic identity card no longer prints your home address. The address is on the chip — but most banks, notaries, and institutions can't read it. Here's what's happening and what it means for the software being built around it.
+]]></summary>
+        <content type="html"><![CDATA[<p>Something quietly changed when Romania rolled out its new electronic identity card — the <em>Carte Electronică de Identitate</em>, or CEI. The home address disappeared from the physical card. No more printed street, number, city, county on the back. That information is now stored exclusively on the chip inside the card, readable only via NFC or a card reader.</p>
+<p>In theory, this is an upgrade. The address can be updated electronically when you move, without needing to reissue the card. In practice, it has created a slow-motion crisis that is now visibly breaking down.</p>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="the-problem-in-one-sentence">The Problem in One Sentence<a href="https://eidkit.ro/en/blog/romanian-id-card-address-problem#the-problem-in-one-sentence" class="hash-link" aria-label="Direct link to The Problem in One Sentence" title="Direct link to The Problem in One Sentence">​</a></h2>
+<p>Millions of Romanians now carry an ID card that legally contains their home address — but cannot hand it to a bank teller, notary, or civil servant in a way they can read it.</p>
+<p>As of this week, the Romanian government has logged <a href="https://www.digi24.ro/stiri/actualitate/social/guvernul-anunta-solutii-la-sesizarile-romanilor-privind-cartea-de-identitate-electronica-principala-problema-lipsa-adresei-3697043" target="_blank" rel="noopener noreferrer">over 300 formal complaints</a> in the "Passport and Identity Card" category alone on its fara-hartie.gov.ro platform. The most reported issue by far: the missing printed address. Banks, notaries, schools, ANAF offices, and local authorities are all asking for a separate <em>adeverință de domiciliu</em> — a paper certificate proving the address that is already, technically, on the document they are holding.</p>
+<p>One person described arriving at a notary for a property transaction and being turned away because the CEI "was not sufficient to prove domicile." Another went to open a bank account, same story. <a href="https://www.capital.ro/obligatoriu-pentru-romanii-cu-buletin-electronic-documentul-de-care-au-nevoie-cetatenii-care-au-carte-de-identitate-electronica.html" target="_blank" rel="noopener noreferrer">A 34-year-old recounted</a>: <em>"I got the electronic ID because I understood it was more modern and secure. Nobody told me I'd need a separate certificate every time I have to prove my address."</em></p>
+<p>This is what happens when infrastructure moves before institutions are ready to use it.</p>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="what-the-governments-fix-looks-like">What the Government's Fix Looks Like<a href="https://eidkit.ro/en/blog/romanian-id-card-address-problem#what-the-governments-fix-looks-like" class="hash-link" aria-label="Direct link to What the Government's Fix Looks Like" title="Direct link to What the Government's Fix Looks Like">​</a></h2>
+<p>To its credit, the government has moved quickly. On March 25, 2026 — two days ago — <a href="https://ziare.com/carte-electronica-identitate/probleme-banci-notari-2002776" target="_blank" rel="noopener noreferrer">civil registry offices were instructed</a> to look up applicants' addresses themselves in the national database, rather than conditioning service on a physical document.</p>
+<p>Banks have received direct database access to the population registry and, according to the government announcement, no longer need to ask for the certificate.</p>
+<p>For notaries, a similar mechanism is being tested.</p>
+<p>And for everyone else — citizens who need to show address proof somewhere that doesn't have database access yet — the Ministry of Internal Affairs has <a href="https://www.avocatnet.ro/articol_70442/Problema-adresei-de-pe-noile-buletine-rezolvat%C4%83-MAI-a-lansat-o-aplica%C8%9Bie-care-cite%C8%99te-informa%C8%9Biile-de-pe-c%C4%83r%C8%9Bile-electronice-de-identitate.html" target="_blank" rel="noopener noreferrer">launched a mobile app called <strong>RoCEIReader</strong></a>. You tap your card, enter the 6-digit CAN code and your 4-digit PIN, and the app reads the address off the chip and lets you save it as a PDF.</p>
+<p>It is available for Android. The iOS version is "coming soon."</p>
+<div class="theme-admonition theme-admonition-caution admonition_xJq3 alert alert--warning"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8.893 1.5c-.183-.31-.52-.5-.887-.5s-.703.19-.886.5L.138 13.499a.98.98 0 0 0 0 1.001c.193.31.53.501.886.501h13.964c.367 0 .704-.19.877-.5a1.03 1.03 0 0 0 .01-1.002L8.893 1.5zm.133 11.497H6.987v-2.003h2.039v2.003zm0-3.004H6.987V5.987h2.039v4.006z"></path></svg></span>The shape of this solution</div><div class="admonitionContent_BuS1"><p>The government's answer to "institutions can't read the chip" is a consumer app for citizens to read the chip themselves and produce a PDF. That PDF is then presented to the institution that couldn't read the chip.</p><p>The problem has been partially converted from a technical integration challenge into paperwork — digital paperwork, but paperwork. It works, and it is better than nothing. But it illustrates the gap between what the CEI <em>is</em> — a cryptographically secure NFC smart card with a verified, government-signed dataset — and what most systems are currently prepared to do with it.</p></div></div>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="the-options-for-reading-the-address">The Options for Reading the Address<a href="https://eidkit.ro/en/blog/romanian-id-card-address-problem#the-options-for-reading-the-address" class="hash-link" aria-label="Direct link to The Options for Reading the Address" title="Direct link to The Options for Reading the Address">​</a></h2>
+<p>For anyone building software that needs a verified home address in Romania, the transition has real consequences. The old workflow — ask the user for a scan of their ID card, OCR the address from the back — no longer works. The address is not on the back.</p>
+<p>The alternatives, roughly in order of robustness:</p>
+<p><strong>Government database lookup</strong>
+Banks have been given direct access to the DGEP population registry. Clean, no NFC required, no user interaction beyond a CNP. Access requires a formal agreement with the government authority and is not available to arbitrary private companies on request.</p>
+<p><strong>NFC chip read</strong>
+The card is read directly using the CAN code printed on its front face. This gives you the address as the government has it — cryptographically signed, verifiable against the Ministry's certificate chain, no dependency on a third-party database. The address lives in the card's EDATA applet, behind a PACE secure channel and a 4-digit PIN. Reading it correctly requires handling some Romanian-specific data formats that standard ICAO libraries do not cover out of the box.</p>
+<p><strong>User-produced certificate</strong>
+The workaround the government is now facilitating via RoCEIReader. Legally valid. Introduces a manual step for the user, a 6-month validity window on the certificate, and friction at exactly the point where onboarding flows tend to lose people.</p>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="the-larger-pattern">The Larger Pattern<a href="https://eidkit.ro/en/blog/romanian-id-card-address-problem#the-larger-pattern" class="hash-link" aria-label="Direct link to The Larger Pattern" title="Direct link to The Larger Pattern">​</a></h2>
+<p>The address issue is the most visible symptom, but the CEI is capable of considerably more than any institution has caught up to yet.</p>
+<p>The chip contains biometric data, a face photo, and two cryptographic keys backed by MAI-issued certificates. One key is for advanced electronic signatures — under Law 214/2024, a document signed with this certificate carries the same legal weight as a handwritten signature. The other is for active authentication: a challenge-response proof that the chip is genuine and not cloned.</p>
+<p>And yet <a href="https://validsoftware.ro/probleme-cu-cartea-electronica-de-identitate-ce-nu-functioneaza-si-ce-solutii-ofera-guvernul-martie-2026/" target="_blank" rel="noopener noreferrer">ANAF's own tax filing platform rejects the CEI's signature</a>. It only accepts signatures from separately purchased qualified certificates sold by commercial providers. The card grants you a legally valid signature. The government's own portal won't accept it.</p>
+<p>The card is ahead of the ecosystem. The ecosystem is catching up, institution by institution. Banks have caught up on address verification. Notaries are close. ANAF has not caught up on signatures. The same pattern will repeat for every institution that needs to interact with these cards over the next two to three years.</p>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="what-reading-the-chip-actually-involves">What Reading the Chip Actually Involves<a href="https://eidkit.ro/en/blog/romanian-id-card-address-problem#what-reading-the-chip-actually-involves" class="hash-link" aria-label="Direct link to What Reading the Chip Actually Involves" title="Direct link to What Reading the Chip Actually Involves">​</a></h2>
+<p>For the technically curious: the CEI chip runs the PACE protocol (Password Authenticated Connection Establishment) using AES-256 to establish a secure channel before anything is readable. After the channel is open, reading personal data requires selecting the correct applet, completing PIN verification, and parsing the response in a Romanian-specific ASN.1 format that is not the same as the ICAO MRZ format most libraries expect.</p>
+<p>Passive authentication — verifying that the data on the chip is signed by MAI and hasn't been tampered with — should always run before trusting anything read from the card. It chains from the data groups through the document signing certificate up to the Ministry's CSCA root.</p>
+<p>None of this is exotic. But it is specific, and the specifics matter. The card is not something you can integrate with by reading the standard ICAO documentation and adapting a passport reader. The Romanian implementation has its own applet structure, its own data formats, and its own sequence requirements that are not publicly documented in a complete way anywhere.</p>
+<hr>
+<p>From July 2025, the CEI became the only identity card model being issued nationally. Every identity document issued in Romania from here forward contains a chip the bearer cannot show to most institutions in a form they can read.</p>
+<p>That gap will close gradually. The question for anyone building in this space is how long they are willing to wait for it to close, and whether the interim solution — user-produced PDF certificates of what's already on the card — is acceptable friction for their product.</p>
+<hr>
+<hr>
+<p><em>We write about the Romanian CEI — its capabilities, its integration challenges, and the regulatory context around it. If a topic here is relevant to something you're building, feel free to <a href="mailto:hello@eidkit.ro" target="_blank" rel="noopener noreferrer">reach out</a>.</em></p>]]></content>
+        <author>
+            <name>Cătălin Toma</name>
+            <uri>https://linkedin.com/company/eidkit</uri>
+        </author>
+        <category label="cei" term="cei"/>
+        <category label="kyc" term="kyc"/>
+        <category label="identity" term="identity"/>
+        <category label="romania" term="romania"/>
+        <category label="nfc" term="nfc"/>
+        <category label="domicile" term="domicile"/>
+    </entry>
+</feed>

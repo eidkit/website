@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://eidkit.ro/blog</id>
+    <title>EidKit Blog</title>
+    <updated>2026-03-27T00:00:00.000Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://eidkit.ro/blog"/>
+    <subtitle>EidKit Blog</subtitle>
+    <icon>https://eidkit.ro/img/favicon.svg</icon>
+    <entry>
+        <title type="html"><![CDATA[Adresa ta e pe buletin. Banca nu știe cum să o citească.]]></title>
+        <id>https://eidkit.ro/blog/problema-adresei-carte-electronica-identitate</id>
+        <link href="https://eidkit.ro/blog/problema-adresei-carte-electronica-identitate"/>
+        <updated>2026-03-27T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Noua carte electronică de identitate nu mai tipărește adresa de domiciliu. Adresa există pe cip — dar băncile, notariatele și instituțiile publice nu știu cum să o acceseze. Ce se întâmplă, de ce contează și ce presupune o integrare corectă.
+]]></summary>
+        <content type="html"><![CDATA[<p>Odată cu introducerea noii Cărții Electronice de Identitate, adresa de domiciliu a dispărut de pe suprafața fizică a documentului. Nu mai există stradă, număr, oraș, județ tipărite pe verso. Toate aceste informații sunt stocate exclusiv pe cipul din interiorul cărții, accesibile doar prin NFC sau printr-un cititor de carduri.</p>
+<p>În teorie, este un pas înainte. Adresa poate fi actualizată electronic atunci când te muți, fără să fie necesară emiterea unui nou document. În practică, tranziția a generat o criză care devine tot mai vizibilă.</p>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="problema-pe-scurt">Problema, pe scurt<a href="https://eidkit.ro/blog/problema-adresei-carte-electronica-identitate#problema-pe-scurt" class="hash-link" aria-label="Direct link to Problema, pe scurt" title="Direct link to Problema, pe scurt">​</a></h2>
+<p>Milioane de români dețin acum un act de identitate care conține legal adresa lor de domiciliu — dar nu o pot prezenta unui funcționar bancar, notar sau angajat al statului într-un format pe care acesta să îl poată citi.</p>
+<p>Până în această săptămână, Guvernul a înregistrat <a href="https://www.digi24.ro/stiri/actualitate/social/guvernul-anunta-solutii-la-sesizarile-romanilor-privind-cartea-de-identitate-electronica-principala-problema-lipsa-adresei-3697043" target="_blank" rel="noopener noreferrer">peste 300 de sesizări</a> în categoria „Pașaport și Carte de Identitate" pe platforma fara-hartie.gov.ro. Cea mai frecventă problemă: lipsa adresei tipărite. Bănci, notariate, școli, birouri ANAF și autorități locale continuă să solicite o <em>adeverință de domiciliu</em> separată — un document care atestă adresa deja prezentă, tehnic vorbind, pe actul pe care îl țin în mână.</p>
+<p>O persoană a povestit că a ajuns la notar pentru un act de vânzare-cumpărare și a fost trimisă acasă pentru că CEI „nu este suficientă pentru dovada domiciliului." Alta a pățit același lucru la bancă. <a href="https://www.capital.ro/obligatoriu-pentru-romanii-cu-buletin-electronic-documentul-de-care-au-nevoie-cetatenii-care-au-carte-de-identitate-electronica.html" target="_blank" rel="noopener noreferrer">Un tânăr de 34 de ani</a>: <em>„Am făcut buletinul electronic pentru că am înțeles că e mai modern și mai sigur. Nimeni nu mi-a spus că voi avea nevoie de o adeverință de fiecare dată când trebuie să dovedesc adresa."</em></p>
+<p>Asta se întâmplă când infrastructura avansează înainte ca instituțiile să fie pregătite să o folosească.</p>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="ce-a-făcut-guvernul">Ce a făcut Guvernul<a href="https://eidkit.ro/blog/problema-adresei-carte-electronica-identitate#ce-a-f%C4%83cut-guvernul" class="hash-link" aria-label="Direct link to Ce a făcut Guvernul" title="Direct link to Ce a făcut Guvernul">​</a></h2>
+<p>Guvernul a reacționat rapid. Pe 25 martie 2026 — acum două zile — <a href="https://ziare.com/carte-electronica-identitate/probleme-banci-notari-2002776" target="_blank" rel="noopener noreferrer">serviciile de evidență a persoanelor au primit instrucțiunea</a> să verifice ele însele adresele în baza de date națională, fără să mai condiționeze preluarea dosarului de prezentarea unui document fizic.</p>
+<p>Băncile au primit acces tehnic direct la baza de date a evidenței persoanelor și, conform anunțului guvernamental, nu mai trebuie să solicite adeverința.</p>
+<p>Pentru notari, se testează un mecanism similar.</p>
+<p>Pentru toți ceilalți — cetățeni care trebuie să dovedească adresa într-un loc care nu are încă acces la baza de date — Ministerul Afacerilor Interne a <a href="https://www.avocatnet.ro/articol_70442/Problema-adresei-de-pe-noile-buletine-rezolvat%C4%83-MAI-a-lansat-o-aplica%C8%9Bie-care-cite%C8%99te-informa%C8%9Biile-de-pe-c%C4%83r%C8%9Bile-electronice-de-identitate.html" target="_blank" rel="noopener noreferrer">lansat aplicația mobilă <strong>RoCEIReader</strong></a>. Apropiați buletinul de telefon, introduceți codul CAN de 6 cifre și PIN-ul de 4 cifre, iar aplicația citește adresa de pe cip și permite salvarea ei ca PDF.</p>
+<p>Disponibilă momentan doar pentru Android. Versiunea iOS „urmează în curând."</p>
+<div class="theme-admonition theme-admonition-caution admonition_xJq3 alert alert--warning"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8.893 1.5c-.183-.31-.52-.5-.887-.5s-.703.19-.886.5L.138 13.499a.98.98 0 0 0 0 1.001c.193.31.53.501.886.501h13.964c.367 0 .704-.19.877-.5a1.03 1.03 0 0 0 .01-1.002L8.893 1.5zm.133 11.497H6.987v-2.003h2.039v2.003zm0-3.004H6.987V5.987h2.039v4.006z"></path></svg></span>Forma acestei soluții</div><div class="admonitionContent_BuS1"><p>Răspunsul Guvernului la „instituțiile nu pot citi cipul" este o aplicație pentru cetățeni, prin care aceștia citesc cipul ei înșiși și produc un PDF. Acel PDF este apoi prezentat instituției care nu putea citi cipul.</p><p>Problema a fost parțial convertită dintr-o provocare de integrare tehnică în birocrație — birocrație digitală, dar tot birocrație. Funcționează și e mai bine decât nimic. Dar ilustrează bine distanța dintre ce <em>este</em> CEI — un card inteligent NFC cu securitate criptografică și date semnate de stat — și ce sunt pregătite majoritatea sistemelor să facă cu el.</p></div></div>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="opțiunile-pentru-citirea-adresei">Opțiunile pentru citirea adresei<a href="https://eidkit.ro/blog/problema-adresei-carte-electronica-identitate#op%C8%9Biunile-pentru-citirea-adresei" class="hash-link" aria-label="Direct link to Opțiunile pentru citirea adresei" title="Direct link to Opțiunile pentru citirea adresei">​</a></h2>
+<p>Tranziția are consecințe reale pentru oricine construiește software care necesită o adresă de domiciliu verificată în România. Fluxul vechi — scanează actul, extrage adresa prin OCR de pe verso — nu mai funcționează. Adresa nu mai e pe verso.</p>
+<p>Alternativele, aproximativ în ordinea robusteții:</p>
+<p><strong>Acces direct la baza de date guvernamentală</strong>
+Băncile au primit acces direct la registrul DGEP. Curat, fără NFC, fără interacțiune suplimentară din partea utilizatorului dincolo de CNP. Accesul necesită un acord formal cu autoritatea guvernamentală și nu este disponibil oricărei companii private care îl solicită.</p>
+<p><strong>Citirea cipului prin NFC</strong>
+Cardul este citit direct folosind codul CAN tipărit pe fața documentului. Adresa este furnizată exact așa cum o deține statul — semnată criptografic, verificabilă față de lanțul de certificate al Ministerului, fără dependență de o bază de date externă. Adresa se află în applet-ul EDATA al cardului, în spatele unui canal securizat PACE și al unui PIN de 4 cifre. Citirea corectă implică gestionarea unor formate de date specifice implementării românești, pe care bibliotecile ICAO standard nu le acoperă din cutie.</p>
+<p><strong>Certificatul produs de utilizator</strong>
+Soluția de compromis facilitată acum prin RoCEIReader. Valabilă legal. Introduce un pas manual pentru utilizator, o fereastră de valabilitate de 6 luni și fricțiune tocmai acolo unde fluxurile de onboarding pierd cei mai mulți utilizatori.</p>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="imaginea-de-ansamblu">Imaginea de ansamblu<a href="https://eidkit.ro/blog/problema-adresei-carte-electronica-identitate#imaginea-de-ansamblu" class="hash-link" aria-label="Direct link to Imaginea de ansamblu" title="Direct link to Imaginea de ansamblu">​</a></h2>
+<p>Problema adresei este simptomul cel mai vizibil, dar CEI este capabilă de mult mai mult decât a reușit să asimileze orice instituție până acum.</p>
+<p>Cipul conține date biometrice, fotografia titularului și două chei criptografice susținute de certificate emise de MAI. Una este pentru semnătura electronică avansată — conform Legii 214/2024, un document semnat cu acest certificat are aceeași valoare juridică ca o semnătură olografă. Cealaltă este pentru autentificarea activă: o dovadă criptografică că cipul este autentic și nu clonat.</p>
+<p>Și totuși, <a href="https://validsoftware.ro/probleme-cu-cartea-electronica-de-identitate-ce-nu-functioneaza-si-ce-solutii-ofera-guvernul-martie-2026/" target="_blank" rel="noopener noreferrer">platforma SPV a ANAF respinge semnătura de pe CEI</a>. Acceptă doar semnături de pe certificate calificate achiziționate separat, de la furnizori comerciali autorizați. Cardul îți oferă o semnătură legal valabilă. Portalul propriu al Guvernului nu o acceptă.</p>
+<p>Cardul este înaintea ecosistemului. Ecosistemul recuperează decalajul, instituție cu instituție. Băncile au recuperat în privința adresei. Notarii sunt aproape. ANAF nu a recuperat în privința semnăturilor. Același tipar se va repeta pentru fiecare instituție care trebuie să interacționeze cu aceste carduri în următorii doi-trei ani.</p>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="ce-presupune-citirea-cipului">Ce presupune citirea cipului<a href="https://eidkit.ro/blog/problema-adresei-carte-electronica-identitate#ce-presupune-citirea-cipului" class="hash-link" aria-label="Direct link to Ce presupune citirea cipului" title="Direct link to Ce presupune citirea cipului">​</a></h2>
+<p>Pentru cei curioși din punct de vedere tehnic: cipul CEI rulează protocolul PACE (Password Authenticated Connection Establishment) cu AES-256 pentru a stabili un canal securizat înainte ca orice să poată fi citit. După deschiderea canalului, citirea datelor personale necesită selectarea applet-ului corect, verificarea PIN-ului și parsarea răspunsului într-un format ASN.1 specific implementării românești — diferit de formatul MRZ ICAO pe care îl așteaptă majoritatea bibliotecilor.</p>
+<p>Autentificarea pasivă — verificarea că datele de pe cip sunt semnate de MAI și nu au fost alterate — trebuie să ruleze întotdeauna înainte de a folosi orice date citite de pe card. Lanțul merge de la grupele de date prin certificatul semnatarului documentului până la certificatul rădăcină CSCA al Ministerului.</p>
+<p>Nimic din toate astea nu este exotic. Dar este specific, iar specificul contează. Nu poți integra CEI citind documentația ICAO standard și adaptând un cititor de pașapoarte. Implementarea românească are propria structură de applet-uri, propriile formate de date și propriile cerințe de secvențiere care nu sunt documentate complet nicăieri în mod public.</p>
+<hr>
+<p>Din iulie 2025, CEI este singurul model de carte de identitate emis la nivel național. Fiecare act de identitate eliberat în România de acum înainte conține un cip pe care titularul nu îl poate prezenta majorității instituțiilor într-un format pe care acestea să îl poată citi.</p>
+<p>Decalajul se va închide treptat. Întrebarea pentru oricine construiește în acest spațiu este cât timp este dispus să aștepte și dacă soluția de compromis — certificate PDF ale datelor deja existente pe card — reprezintă fricțiunea acceptabilă pentru produsul său.</p>
+<hr>
+<p><em>Scriem despre CEI — capabilitățile sale, provocările de integrare și contextul reglementar din jurul său. Dacă un subiect de aici este relevant pentru ce construiești, <a href="mailto:hello@eidkit.ro" target="_blank" rel="noopener noreferrer">scrie-ne</a>.</em></p>]]></content>
+        <author>
+            <name>Cătălin Toma</name>
+            <uri>https://linkedin.com/company/eidkit</uri>
+        </author>
+        <category label="cei" term="cei"/>
+        <category label="kyc" term="kyc"/>
+        <category label="identitate" term="identitate"/>
+        <category label="romania" term="romania"/>
+        <category label="nfc" term="nfc"/>
+        <category label="domiciliu" term="domiciliu"/>
+    </entry>
+</feed>
