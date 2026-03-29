@@ -6,7 +6,7 @@ date: 2026-03-28
 tags: [electronic-signature, law-214-2024, cei, eidas, romania]
 description: >
   Romania's Law 214/2024 entered into force in October 2024 and reshaped the legal framework for electronic signatures. The new ID card gives you a legally valid signature — but not in every context. Here's what the law actually says, where it works, and where the gap between law and infrastructure still bites.
-image: /img/blog/law-214-og.png
+image: /img/blog/en/law-214-og-en.png
 keywords:
   - Romania electronic signature law 2024
   - Law 214/2024 Romania

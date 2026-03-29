@@ -6,7 +6,7 @@ date: 2026-03-27
 tags: [cei, kyc, identity, romania, nfc, domicile]
 description: >
   Romania's new electronic identity card no longer prints your home address. The address is on the chip — but most banks, notaries, and institutions can't read it. Here's what's happening and what it means for the software being built around it.
-image: /img/blog/address-problem-og.png
+image: /img/blog/en/address-problem-og-en.png
 keywords:
   - carte electronica de identitate adresa domiciliu
   - CEI adresa lipsa banca
