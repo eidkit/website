@@ -16,7 +16,7 @@ keywords:
   - semnatura electronica buletin electronic
 ---
 
-*Acesta este al doilea articol din seria noastră despre carta electronică de identitate. Primul acoperă [problema adresei care strică fluxurile KYC](/blog/problema-adresei-carte-electronica-identitate).*
+*Acesta este al doilea articol din seria noastră despre carta electronică de identitate. Primul acoperă [problema adresei care strică fluxurile KYC](/blog/problema-adresei-carte-electronica-identitate). Al treilea intră în detaliile tehnice: [ce înseamnă să integrezi CEI prin NFC](/blog/integrarea-cei-nfc-android).*
 
 Pe 8 octombrie 2024 a intrat în vigoare [Legea nr. 214/2024](https://legislatie.just.ro/Public/DetaliiDocument/285178) privind utilizarea semnăturii electronice — cel mai important act normativ din acest domeniu din România din 2001 încoace. A abrogat vechea lege a semnăturii electronice, a clarificat cadrul juridic pentru toate cele trei tipuri de semnături și a dat, pentru prima dată, o bază legală clară semnăturii de pe noua carte electronică de identitate.
 

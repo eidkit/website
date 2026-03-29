@@ -16,7 +16,7 @@ keywords:
   - CEI signature ANAF SPV
 ---
 
-*This is the second article in our series on Romania's electronic identity card. The first covers [the address problem that's quietly breaking KYC flows](/blog/romanian-id-card-address-problem).*
+*This is the second article in our series on Romania's electronic identity card. The first covers [the address problem that's quietly breaking KYC flows](/blog/romanian-id-card-address-problem). The third goes into the technical details: [what it actually takes to integrate the CEI over NFC](/blog/integrating-romanian-id-card-nfc-android).*
 
 On 8 October 2024, Romania's [Law 214/2024](https://legislatie.just.ro/Public/DetaliiDocument/285178) on the use of electronic signatures entered into force — the most significant piece of legislation in this domain since the country first regulated electronic signatures in 2001. It repealed the old law, clarified the legal framework for all three signature types recognised under European eIDAS regulation, and for the first time gave a clear legal basis to the signature embedded in the new electronic identity card.
 
