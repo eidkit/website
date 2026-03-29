@@ -27,6 +27,13 @@ const config: Config = {
     },
   },
 
+  plugins: [
+    [
+      '@docusaurus/plugin-google-gtag',
+      { trackingID: 'G-0590LWR94E', anonymizeIP: true },
+    ],
+  ],
+
   presets: [
     [
       'classic',
