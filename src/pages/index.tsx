@@ -1,3 +1,4 @@
+import Head from '@docusaurus/Head';
 import Link from '@docusaurus/Link';
 import Translate, { translate } from '@docusaurus/Translate';
 import useBaseUrl from '@docusaurus/useBaseUrl';
@@ -130,7 +131,13 @@ function Features(): ReactNode {
 export default function Home(): ReactNode {
   const { siteConfig } = useDocusaurusContext();
   return (
-    <Layout title={siteConfig.title} description={siteConfig.tagline}>
+    <Layout
+      title="Infrastructură pentru Cartea de Identitate Electronică Românească"
+      description={siteConfig.tagline}
+    >
+      <Head>
+        <meta name="keywords" content="carte electronica identitate, CEI SDK, NFC identitate Romania, KYC Romania, semnatura electronica CEI, integrare buletin electronic, eIDAS Romania, Android iOS SDK identitate" />
+      </Head>
       <Hero />
       <main>
         <Features />
