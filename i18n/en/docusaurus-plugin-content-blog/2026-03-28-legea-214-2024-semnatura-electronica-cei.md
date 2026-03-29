@@ -1,5 +1,5 @@
 ---
-slug: romania-electronic-signature-law-2024-cei
+slug: legea-214-2024-semnatura-electronica-cei
 title: "Romania's 2024 Electronic Signature Law, Explained. What Your ID Card Can Sign — and What It Can't."
 authors: [catalin]
 date: 2026-03-28
@@ -16,7 +16,7 @@ keywords:
   - CEI signature ANAF SPV
 ---
 
-*This is the second article in our series on Romania's electronic identity card. The first covers [the address problem that's quietly breaking KYC flows](/blog/romanian-id-card-address-problem). The third goes into the technical details: [what it actually takes to integrate the CEI over NFC](/blog/integrating-romanian-id-card-nfc-android).*
+*This is the second article in our series on Romania's electronic identity card. The first covers [the address problem that's quietly breaking KYC flows](/blog/problema-adresei-carte-electronica-identitate). The third goes into the technical details: [what it actually takes to integrate the CEI over NFC](/blog/integrarea-cei-nfc-android).*
 
 On 8 October 2024, Romania's [Law 214/2024](https://legislatie.just.ro/Public/DetaliiDocument/285178) on the use of electronic signatures entered into force — the most significant piece of legislation in this domain since the country first regulated electronic signatures in 2001. It repealed the old law, clarified the legal framework for all three signature types recognised under European eIDAS regulation, and for the first time gave a clear legal basis to the signature embedded in the new electronic identity card.
 

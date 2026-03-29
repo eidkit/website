@@ -1,5 +1,5 @@
 ---
-slug: integrating-romanian-id-card-nfc-android
+slug: integrarea-cei-nfc-android
 title: "What It Actually Takes to Integrate the Romanian ID Card Over NFC"
 authors: [catalin]
 date: 2026-03-29
@@ -16,7 +16,7 @@ keywords:
   - CEI EDATA applet Android
 ---
 
-*This is the third article in our series on Romania's electronic identity card. The previous articles cover [the address problem that's quietly breaking KYC flows](/blog/romanian-id-card-address-problem) and [what your electronic ID card can and can't sign](/blog/romania-electronic-signature-law-2024-cei).*
+*This is the third article in our series on Romania's electronic identity card. The previous articles cover [the address problem that's quietly breaking KYC flows](/blog/problema-adresei-carte-electronica-identitate) and [what your electronic ID card can and can't sign](/blog/legea-214-2024-semnatura-electronica-cei).*
 
 If you have integrated an electronic passport or another chip-based identity document before, you will enter this project with a reasonable set of assumptions. Most of them are partially wrong for the Romanian CEI.
 

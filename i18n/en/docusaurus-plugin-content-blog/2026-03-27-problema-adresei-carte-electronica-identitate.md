@@ -1,5 +1,5 @@
 ---
-slug: romanian-id-card-address-problem
+slug: problema-adresei-carte-electronica-identitate
 title: "Your New Romanian ID Card Has Your Address. Your Bank Doesn't Know How to Read It."
 authors: [catalin]
 date: 2026-03-27
@@ -16,7 +16,7 @@ keywords:
   - buletin electronic adresa domiciliu
 ---
 
-*This is the first article in our series on Romania's electronic identity card. The second covers [what the 2024 electronic signature law means for the CEI](/blog/romania-electronic-signature-law-2024-cei).*
+*This is the first article in our series on Romania's electronic identity card. The second covers [what the 2024 electronic signature law means for the CEI](/blog/legea-214-2024-semnatura-electronica-cei).*
 
 Something quietly changed when Romania rolled out its new electronic identity card — the *Carte Electronică de Identitate*, or CEI. The home address disappeared from the physical card. No more printed street, number, city, county on the back. That information is now stored exclusively on the chip inside the card, readable only via NFC or a card reader.
 
