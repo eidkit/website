@@ -68,43 +68,56 @@ function useFeatures(): FeatureCard[] {
 
 function Hero(): ReactNode {
   const logoUrl = useBaseUrl('/img/logo-white.svg');
+  const demoVideoUrl = useBaseUrl('/img/demo.mp4');
   return (
     <header className="hero--eidkit">
-      <div className="container">
-        <div className="hero__logo">
-          <img src={logoUrl} alt="EidKit" height={48} />
+      <div className="container hero__container">
+        <div className="hero__content">
+          <div className="hero__logo">
+            <img src={logoUrl} alt="EidKit" height={48} />
+          </div>
+          <h1 className="hero__title">
+            <Translate id="homepage.hero.title">
+              Infrastructură pentru Cartea de Identitate Electronică Românească
+            </Translate>
+          </h1>
+          <p className="hero__subtitle">
+            <Translate id="homepage.hero.subtitle">
+              Verifică identitatea, semnează documente și autentifică utilizatori printr-o
+              singură atingere a cărții de identitate pe telefonul tău.
+            </Translate>
+          </p>
+          <div>
+            <Link className="button button--lg button--hero-primary" to="/docs/overview">
+              <Translate id="homepage.hero.cta.docs">Citește documentația</Translate>
+            </Link>
+            <Link
+              className="button button--lg button--hero-secondary"
+              href="mailto:sales@eidkit.ro"
+            >
+              <Translate id="homepage.hero.cta.contact">Contactează-ne</Translate>
+            </Link>
+          </div>
+          <div className="platform-badges">
+            <span className="platform-badge">
+              <AndroidIcon size={22} />
+              Android · Kotlin
+            </span>
+            <span className="platform-badge">
+              <AppleIcon size={22} />
+              iOS · Swift
+            </span>
+          </div>
         </div>
-        <h1 className="hero__title">
-          <Translate id="homepage.hero.title">
-            Infrastructură pentru Cartea de Identitate Electronică Românească
-          </Translate>
-        </h1>
-        <p className="hero__subtitle">
-          <Translate id="homepage.hero.subtitle">
-            Verifică identitatea, semnează documente și autentifică utilizatori printr-o
-            singură atingere a cărții de identitate pe telefonul tău.
-          </Translate>
-        </p>
-        <div>
-          <Link className="button button--lg button--hero-primary" to="/docs/overview">
-            <Translate id="homepage.hero.cta.docs">Citește documentația</Translate>
-          </Link>
-          <Link
-            className="button button--lg button--hero-secondary"
-            href="mailto:sales@eidkit.ro"
-          >
-            <Translate id="homepage.hero.cta.contact">Contactează-ne</Translate>
-          </Link>
-        </div>
-        <div className="platform-badges">
-          <span className="platform-badge">
-            <AndroidIcon size={22} />
-            Android · Kotlin
-          </span>
-          <span className="platform-badge">
-            <AppleIcon size={22} />
-            iOS · Swift
-          </span>
+        <div className="hero__demo">
+          <video
+            src={demoVideoUrl}
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="hero__demo-video"
+          />
         </div>
       </div>
     </header>
