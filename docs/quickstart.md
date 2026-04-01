@@ -67,10 +67,42 @@ EidKit este disponibil în prezent prin **acces timpuriu** — un token de licen
 <Tabs groupId="platform">
 <TabItem value="android" label="Android (Kotlin)">
 
+Adaugă în `AndroidManifest.xml` permisiunea NFC, filtrul de intent și filtrul de tehnologie:
+
+```xml
+<!-- AndroidManifest.xml -->
+<uses-permission android:name="android.permission.NFC" />
+
+<application ...>
+    <activity
+        android:name=".MainActivity"
+        android:launchMode="singleTop">  <!-- obligatoriu pentru onNewIntent -->
+
+        <intent-filter>
+            <action android:name="android.nfc.action.TECH_DISCOVERED" />
+        </intent-filter>
+        <meta-data
+            android:name="android.nfc.action.TECH_DISCOVERED"
+            android:resource="@xml/nfc_tech_filter" />
+    </activity>
+</application>
+```
+
+Creează fișierul `res/xml/nfc_tech_filter.xml`:
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <tech-list>
+        <tech>android.nfc.tech.IsoDep</tech>
+    </tech-list>
+</resources>
+```
+
 Atașează `NfcManager` la Activity-ul tău pentru a primi evenimentele de tap:
 
 ```kotlin
-class MyActivity : ComponentActivity() {
+class MainActivity : ComponentActivity() {
     private val nfcManager = EidKit.nfcManager()
 
     override fun onResume() {
@@ -107,7 +139,7 @@ SDK-ul afișează automat panoul NFC de sistem la fiecare sesiune — nu este ne
 <Tabs groupId="platform">
 <TabItem value="android" label="Android (Kotlin)">
 
-Apelează `EidKit.configure()` o singură dată în `Application.onCreate()`:
+Creează o clasă `Application` și înregistreaz-o în manifest:
 
 ```kotlin
 class MyApp : Application() {
@@ -118,6 +150,29 @@ class MyApp : Application() {
         })
     }
 }
+```
+
+```xml
+<!-- AndroidManifest.xml -->
+<application android:name=".MyApp" ...>
+```
+
+Definește `EIDKIT_LICENSE_TOKEN` în `app/build.gradle.kts` ca câmp `BuildConfig`:
+
+```kotlin
+// app/build.gradle.kts
+android {
+    buildFeatures { buildConfig = true }
+    defaultConfig {
+        buildConfigField("String", "EIDKIT_LICENSE_TOKEN", "\"${project.findProperty("EIDKIT_LICENSE_TOKEN") ?: ""}\"")
+    }
+}
+```
+
+Adaugă tokenul în `local.properties` (nu îl comite niciodată în git):
+
+```
+EIDKIT_LICENSE_TOKEN=tokenul-tău-aici
 ```
 
 </TabItem>
@@ -150,6 +205,8 @@ Fără un `licenseToken` valid, SDK-ul rulează în **mod demo** — datele citi
 
 <Tabs groupId="platform">
 <TabItem value="android" label="Android (Kotlin)">
+
+`onNewIntent` este apelat când un card NFC este detectat. Necesită `android:launchMode="singleTop"` pe Activity (configurat la pasul 2).
 
 ```kotlin
 override fun onNewIntent(intent: Intent) {

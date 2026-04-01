@@ -67,10 +67,42 @@ EidKit is currently in **early access** — a license token is required for prod
 <Tabs groupId="platform">
 <TabItem value="android" label="Android (Kotlin)">
 
+Add the NFC permission, intent filter, and tech filter to `AndroidManifest.xml`:
+
+```xml
+<!-- AndroidManifest.xml -->
+<uses-permission android:name="android.permission.NFC" />
+
+<application ...>
+    <activity
+        android:name=".MainActivity"
+        android:launchMode="singleTop">  <!-- required for onNewIntent -->
+
+        <intent-filter>
+            <action android:name="android.nfc.action.TECH_DISCOVERED" />
+        </intent-filter>
+        <meta-data
+            android:name="android.nfc.action.TECH_DISCOVERED"
+            android:resource="@xml/nfc_tech_filter" />
+    </activity>
+</application>
+```
+
+Create `res/xml/nfc_tech_filter.xml`:
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <tech-list>
+        <tech>android.nfc.tech.IsoDep</tech>
+    </tech-list>
+</resources>
+```
+
 Attach `NfcManager` to your Activity to receive card tap events:
 
 ```kotlin
-class MyActivity : ComponentActivity() {
+class MainActivity : ComponentActivity() {
     private val nfcManager = EidKit.nfcManager()
 
     override fun onResume() {
@@ -107,7 +139,7 @@ The SDK presents the system NFC sheet automatically at each session — no addit
 <Tabs groupId="platform">
 <TabItem value="android" label="Android (Kotlin)">
 
-Call `EidKit.configure()` once in `Application.onCreate()`:
+Create an `Application` class and register it in the manifest:
 
 ```kotlin
 class MyApp : Application() {
@@ -118,6 +150,29 @@ class MyApp : Application() {
         })
     }
 }
+```
+
+```xml
+<!-- AndroidManifest.xml -->
+<application android:name=".MyApp" ...>
+```
+
+Define `EIDKIT_LICENSE_TOKEN` in `app/build.gradle.kts` as a `BuildConfig` field:
+
+```kotlin
+// app/build.gradle.kts
+android {
+    buildFeatures { buildConfig = true }
+    defaultConfig {
+        buildConfigField("String", "EIDKIT_LICENSE_TOKEN", "\"${project.findProperty("EIDKIT_LICENSE_TOKEN") ?: ""}\"")
+    }
+}
+```
+
+Add your token to `local.properties` (never commit this file):
+
+```
+EIDKIT_LICENSE_TOKEN=your-token-here
 ```
 
 </TabItem>
@@ -150,6 +205,8 @@ Without a valid `licenseToken`, the SDK runs in **demo mode** — data read from
 
 <Tabs groupId="platform">
 <TabItem value="android" label="Android (Kotlin)">
+
+`onNewIntent` is called when an NFC card is detected. Requires `android:launchMode="singleTop"` on the Activity (configured in step 2).
 
 ```kotlin
 override fun onNewIntent(intent: Intent) {
