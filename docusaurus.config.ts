@@ -106,6 +106,10 @@ const config: Config = {
               label: 'GitHub',
               href: 'https://github.com/eidkit',
             },
+            {
+              label: 'Politică de confidențialitate',
+              to: '/privacy',
+            },
           ],
         },
       ],
