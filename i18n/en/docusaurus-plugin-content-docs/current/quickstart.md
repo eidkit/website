@@ -6,6 +6,20 @@ sidebar_position: 2
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import CodeBlock from '@theme/CodeBlock';
+import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
+
+export const AndroidInstall = () => {
+  const {siteConfig} = useDocusaurusContext();
+  const v = siteConfig.customFields.androidVersion;
+  return <CodeBlock language="kotlin">{`// app/build.gradle.kts\ndependencies {\n    implementation("ro.eidkit:sdk-android:${v}")\n}`}</CodeBlock>;
+};
+
+export const IosInstall = () => {
+  const {siteConfig} = useDocusaurusContext();
+  const v = siteConfig.customFields.iosVersion;
+  return <CodeBlock language="swift">{`// Package.swift\ndependencies: [\n    .package(url: "https://github.com/eidkit/eidkit-ios-releases", from: "${v}"),\n],\ntargets: [\n    .target(name: "MyApp", dependencies: ["EidKit"]),\n]`}</CodeBlock>;
+};
 
 # Quickstart
 
@@ -35,25 +49,12 @@ Get EidKit running in a mobile app in minutes.
 <Tabs groupId="platform">
 <TabItem value="android" label="Android (Kotlin)">
 
-```kotlin
-// app/build.gradle.kts
-dependencies {
-    implementation("ro.eidkit:sdk-android:0.1.0")
-}
-```
+<AndroidInstall />
 
 </TabItem>
 <TabItem value="ios" label="iOS (Swift)">
 
-```swift
-// Package.swift
-dependencies: [
-    .package(url: "https://github.com/eidkit/eidkit-ios-releases", from: "0.1.0"),
-],
-targets: [
-    .target(name: "MyApp", dependencies: ["EidKit"]),
-]
-```
+<IosInstall />
 
 </TabItem>
 </Tabs>

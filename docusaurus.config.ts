@@ -3,6 +3,10 @@ import type { Config } from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 
 const config: Config = {
+  customFields: {
+    iosVersion: '0.1.1',
+    androidVersion: '0.1.3',
+  },
   title: 'EidKit',
   tagline: 'Infrastructură pentru Cartea de Identitate Electronică Românească',
   favicon: 'img/favicon.svg',
