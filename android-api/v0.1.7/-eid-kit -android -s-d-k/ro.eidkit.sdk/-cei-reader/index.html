@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html class="no-js">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>CeiReader</title>
+    <link href="../../../images/logo-icon.svg" rel="icon" type="image/svg">
+    <script>var pathToRoot = "../../../";</script>
+    <script>document.documentElement.classList.replace("no-js","js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
+<script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async="async"></script>
+<link href="../../../styles/style.css" rel="Stylesheet">
+<link href="../../../styles/main.css" rel="Stylesheet">
+<link href="../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../../styles/font-jb-sans-auto.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../scripts/clipboard.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/navigation-loader.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/platform-content-handler.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/main.js" defer="defer"></script>
+<script type="text/javascript" src="../../../scripts/prism.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/symbol-parameters-wrapper_deferred.js" defer="defer"></script>
+</head>
+<body>
+    <div class="root">
+<nav class="navigation" id="navigation-wrapper">
+    <div class="navigation--inner">
+        <div class="navigation-title">
+            <button class="menu-toggle" id="menu-toggle" type="button">toggle menu</button>
+            <div class="library-name">
+                    <a class="library-name--link" href="../../../index.html">
+                            EidKit Android SDK
+                    </a>
+            </div>
+            <div class="library-version">
+            </div>
+        </div>
+        <div class="filter-section" id="filter-section">
+                <button class="platform-tag platform-selector jvm-like" data-active="" data-filter=":sdk:dokkaHtml/release">androidJvm</button>
+        </div>
+    </div>
+    <div class="navigation-controls">
+        <button class="navigation-controls--btn navigation-controls--theme" id="theme-toggle-button" type="button">switch theme</button>
+        <div class="navigation-controls--btn navigation-controls--search" id="searchBar" role="button">search in API</div>
+    </div>
+</nav>
+        <div id="container">
+            <div class="sidebar" id="leftColumn">
+                <div class="sidebar--inner" id="sideMenu"></div>
+            </div>
+            <div id="main">
+<div class="main-content" data-page-type="classlike" id="content" pageIds="EidKit Android SDK::ro.eidkit.sdk/CeiReader///PointingToDeclaration//165651098">
+  <div class="breadcrumbs"><a href="../../../index.html">EidKit Android SDK</a><span class="delimiter">/</span><a href="../index.html">ro.eidkit.sdk</a><span class="delimiter">/</span><span class="current">CeiReader</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span>Cei</span><wbr></wbr><span><span>Reader</span></span></h1>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">class </span><a href="index.html">CeiReader</a></div><p class="paragraph">Builder for a KYC read session against a Romanian CEI card.</p><p class="paragraph">Obtain an instance from <a href="../-eid-kit/reader.html">EidKit.reader</a>. Configure the desired operations using the builder methods, then call <a href="read.html">read</a> with the <a href="https://developer.android.com/reference/kotlin/android/nfc/tech/IsoDep.html">IsoDep</a> tag received from <a href="../../ro.eidkit.sdk.nfc/-nfc-manager/index.html">ro.eidkit.sdk.nfc.NfcManager</a>.</p><p class="paragraph"><strong>Passive authentication always runs</strong> — <a href="../../ro.eidkit.sdk.model/-read-result/passive-auth.html">ReadResult.passiveAuth</a> is always populated. Photo and signature image are opt-in because they are slow (~7s and ~1.5s respectively).</p><h2 class="">Example</h2><div class="sample-container"><pre><code class="block lang-kotlin" theme="idea">override fun onNewIntent(intent: Intent) {<br>    super.onNewIntent(intent)<br>    val isoDep = nfcManager.handleIntent(intent) ?: return<br>    lifecycleScope.launch {<br>        val result = EidKit.reader()<br>            .withPhoto(true)<br>            .withPersonalData(pin = userEnteredPin)<br>            .withActiveAuth(true)<br>            .read(isoDep)<br>        // result.passiveAuth is always set<br>        // result.identity is set because withPersonalData was called<br>        // result.claim is set when passiveAuth is Valid and identity is present<br>    }<br>}</code></pre><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="FUNCTION">
+        <h2 class="">Functions</h2>
+        <div class="table"><a data-name="-1857714308%2FFunctions%2F165651098" anchor-label="read" id="-1857714308%2FFunctions%2F165651098" data-filterable-set=":sdk:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":sdk:dokkaHtml/release" data-filterable-set=":sdk:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="read.html"><span><span>read</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1857714308%2FFunctions%2F165651098"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="read.html"><span class="token function">read</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">isoDep<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/android/nfc/tech/IsoDep.html">IsoDep</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../ro.eidkit.sdk.model/-read-result/index.html">ReadResult</a></div><div class="brief "><p class="paragraph">Execute the read session on the given <a href="https://developer.android.com/reference/kotlin/android/nfc/tech/IsoDep.html">IsoDep</a> tag.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1849853258%2FFunctions%2F165651098" anchor-label="readFlow" id="1849853258%2FFunctions%2F165651098" data-filterable-set=":sdk:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":sdk:dokkaHtml/release" data-filterable-set=":sdk:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="read-flow.html"><span>read</span><wbr></wbr><span><span>Flow</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1849853258%2FFunctions%2F165651098"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">fun </span><a href="read-flow.html"><span class="token function">readFlow</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">isoDep<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/android/nfc/tech/IsoDep.html">IsoDep</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><span data-unresolved-link="kotlinx.coroutines.flow/Flow///PointingToDeclaration/">Flow</span><span class="token operator">&lt;</span><a href="../../ro.eidkit.sdk.model/-read-event/index.html">ReadEvent</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Execute the read session and emit <a href="../../ro.eidkit.sdk.model/-read-event/index.html">ReadEvent</a> progress events as the session advances.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="339748141%2FFunctions%2F165651098" anchor-label="withActiveAuth" id="339748141%2FFunctions%2F165651098" data-filterable-set=":sdk:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":sdk:dokkaHtml/release" data-filterable-set=":sdk:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="with-active-auth.html"><span>with</span><wbr></wbr><span>Active</span><wbr></wbr><span><span>Auth</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="339748141%2FFunctions%2F165651098"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">fun </span><a href="with-active-auth.html"><span class="token function">withActiveAuth</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">enabled<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator"> = </span><span class="token boolean">true</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">CeiReader</a></div><div class="brief "><p class="paragraph">Request active authentication — verifies the chip is genuine and has not been cloned. Requires <a href="with-personal-data.html">withPersonalData</a> to also be called (shares the same PACE session).</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-584976488%2FFunctions%2F165651098" anchor-label="withPersonalData" id="-584976488%2FFunctions%2F165651098" data-filterable-set=":sdk:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":sdk:dokkaHtml/release" data-filterable-set=":sdk:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="with-personal-data.html"><span>with</span><wbr></wbr><span>Personal</span><wbr></wbr><span><span>Data</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-584976488%2FFunctions%2F165651098"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">fun </span><a href="with-personal-data.html"><span class="token function">withPersonalData</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">pin<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">CeiReader</a></div><div class="brief "><p class="paragraph">Request personal data from the EDATA applet (name, CNP, address, document info). Requires the card holder's 4-digit auth PIN.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-797225033%2FFunctions%2F165651098" anchor-label="withPhoto" id="-797225033%2FFunctions%2F165651098" data-filterable-set=":sdk:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":sdk:dokkaHtml/release" data-filterable-set=":sdk:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="with-photo.html"><span>with</span><wbr></wbr><span><span>Photo</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-797225033%2FFunctions%2F165651098"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">fun </span><a href="with-photo.html"><span class="token function">withPhoto</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">enabled<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator"> = </span><span class="token boolean">true</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">CeiReader</a></div><div class="brief "><p class="paragraph">Request the face photo (DG2, ~24KB JPEG). Adds approximately 7 seconds to the session. Disabled by default.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1432815272%2FFunctions%2F165651098" anchor-label="withSignatureImage" id="-1432815272%2FFunctions%2F165651098" data-filterable-set=":sdk:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":sdk:dokkaHtml/release" data-filterable-set=":sdk:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="with-signature-image.html"><span>with</span><wbr></wbr><span>Signature</span><wbr></wbr><span><span>Image</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1432815272%2FFunctions%2F165651098"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">fun </span><a href="with-signature-image.html"><span class="token function">withSignatureImage</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">enabled<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator"> = </span><span class="token boolean">true</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">CeiReader</a></div><div class="brief "><p class="paragraph">Request the handwritten signature image (DG7, ~2.6KB JPEG). Adds approximately 1.5 seconds to the session. Disabled by default.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      <div class="footer">
+        <span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2026 Copyright</span><span
+                class="pull-right"><span>Generated by </span><a
+                href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
+      </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
