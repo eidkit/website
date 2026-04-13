@@ -4,8 +4,8 @@ import type * as Preset from '@docusaurus/preset-classic';
 
 const config: Config = {
   customFields: {
-    iosVersion: '0.1.1',
-    androidVersion: '0.1.3',
+    iosVersion: '0.1.9',
+    androidVersion: '0.1.7',
   },
   title: 'EidKit',
   tagline: 'Infrastructură pentru Cartea de Identitate Electronică Românească',

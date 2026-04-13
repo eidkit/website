@@ -59,10 +59,6 @@ Get EidKit running in a mobile app in minutes.
 </TabItem>
 </Tabs>
 
-:::info Early access
-EidKit is currently in **early access** — a license token is required for production use. Email us at [hello@eidkit.ro](mailto:hello@eidkit.ro) to get access.
-:::
-
 ## 2. NFC setup
 
 <Tabs groupId="platform">
@@ -121,13 +117,28 @@ class MainActivity : ComponentActivity() {
 </TabItem>
 <TabItem value="ios" label="iOS (Swift)">
 
-Add the **Near Field Communication Tag Reading** capability in Xcode (Target → Signing & Capabilities).
+Add the **Near Field Communication Tag Reading** capability in Xcode (Target → Signing & Capabilities) and make sure both **TAG** and **PACE** formats are enabled.
 
-Also add the `NFCReaderUsageDescription` key to `Info.plist`:
+Add to `YourApp.entitlements`:
+
+```xml
+<key>com.apple.developer.nfc.readersession.formats</key>
+<array>
+    <string>TAG</string>
+    <string>PACE</string>
+</array>
+```
+
+Add to `Info.plist` the usage description and the CEI AID identifiers:
 
 ```xml
 <key>NFCReaderUsageDescription</key>
 <string>EidKit reads your identity card via NFC.</string>
+
+<key>com.apple.developer.nfc.readersession.iso7816.select-identifiers</key>
+<array>
+    <string>A0000002471001</string>
+</array>
 ```
 
 The SDK presents the system NFC sheet automatically at each session — no additional UI setup needed.
@@ -146,9 +157,7 @@ Create an `Application` class and register it in the manifest:
 class MyApp : Application() {
     override fun onCreate() {
         super.onCreate()
-        EidKit.configure(this, EidKitConfig {
-            licenseToken = BuildConfig.EIDKIT_LICENSE_TOKEN
-        })
+        EidKit.configure(this, EidKitConfig {})
     }
 }
 ```
@@ -158,36 +167,16 @@ class MyApp : Application() {
 <application android:name=".MyApp" ...>
 ```
 
-Define `EIDKIT_LICENSE_TOKEN` in `app/build.gradle.kts` as a `BuildConfig` field:
-
-```kotlin
-// app/build.gradle.kts
-android {
-    buildFeatures { buildConfig = true }
-    defaultConfig {
-        buildConfigField("String", "EIDKIT_LICENSE_TOKEN", "\"${project.findProperty("EIDKIT_LICENSE_TOKEN") ?: ""}\"")
-    }
-}
-```
-
-Add your token to `local.properties` (never commit this file):
-
-```
-EIDKIT_LICENSE_TOKEN=your-token-here
-```
-
 </TabItem>
 <TabItem value="ios" label="iOS (Swift)">
 
-Call `EidKit.configure()` once at app startup:
+Call `EidKitSdk.configure()` once at app startup:
 
 ```swift
 @main
 struct MyApp: App {
     init() {
-        EidKit.configure(EidKitConfig(
-            licenseToken: "your-token"
-        ))
+        try? EidKitSdk.configure()
     }
     var body: some Scene {
         WindowGroup { ContentView() }
@@ -199,7 +188,7 @@ struct MyApp: App {
 </Tabs>
 
 :::note Demo mode
-Without a valid `licenseToken`, the SDK runs in **demo mode** — data read from the card is automatically masked. Ideal for development and testing without exposing real personal data.
+The SDK runs in **demo mode** by default — data read from the card is automatically masked. Ideal for development and testing without exposing real personal data. A `licenseToken` is reserved for future licensing enforcement — you can configure it early and your integration will not need to change.
 :::
 
 ## 4. Read a card
@@ -235,7 +224,7 @@ override fun onNewIntent(intent: Intent) {
 import EidKit
 
 func readCard() async throws {
-    let result = try await EidKit.reader(can: userEnteredCan)
+    let result = try await EidKitSdk.reader(can: userEnteredCan)
         .withPersonalData(pin: userEnteredPin)
         .withActiveAuth()
         .read()

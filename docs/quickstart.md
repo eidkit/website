@@ -59,10 +59,6 @@ Integrează EidKit într-o aplicație mobilă în câteva minute.
 </TabItem>
 </Tabs>
 
-:::info Acces timpuriu
-EidKit este disponibil în prezent prin **acces timpuriu** — un token de licență este necesar pentru utilizare în producție. Scrie-ne la [hello@eidkit.ro](mailto:hello@eidkit.ro) pentru acces.
-:::
-
 ## 2. Configurare NFC
 
 <Tabs groupId="platform">
@@ -121,13 +117,28 @@ class MainActivity : ComponentActivity() {
 </TabItem>
 <TabItem value="ios" label="iOS (Swift)">
 
-Adaugă capabilitatea **Near Field Communication Tag Reading** în Xcode (Target → Signing & Capabilities).
+Adaugă capabilitatea **Near Field Communication Tag Reading** în Xcode (Target → Signing & Capabilities) și asigură-te că sunt bifate formatele **TAG** și **PACE**.
 
-Adaugă și cheia `NFCReaderUsageDescription` în `Info.plist`:
+Adaugă în `YourApp.entitlements`:
+
+```xml
+<key>com.apple.developer.nfc.readersession.formats</key>
+<array>
+    <string>TAG</string>
+    <string>PACE</string>
+</array>
+```
+
+Adaugă în `Info.plist` descrierea utilizării și identificatorii AID ai CEI:
 
 ```xml
 <key>NFCReaderUsageDescription</key>
 <string>EidKit citește cartea ta de identitate prin NFC.</string>
+
+<key>com.apple.developer.nfc.readersession.iso7816.select-identifiers</key>
+<array>
+    <string>A0000002471001</string>
+</array>
 ```
 
 SDK-ul afișează automat panoul NFC de sistem la fiecare sesiune — nu este necesară altă configurare UI.
@@ -146,9 +157,7 @@ Creează o clasă `Application` și înregistreaz-o în manifest:
 class MyApp : Application() {
     override fun onCreate() {
         super.onCreate()
-        EidKit.configure(this, EidKitConfig {
-            licenseToken = BuildConfig.EIDKIT_LICENSE_TOKEN
-        })
+        EidKit.configure(this, EidKitConfig {})
     }
 }
 ```
@@ -158,36 +167,16 @@ class MyApp : Application() {
 <application android:name=".MyApp" ...>
 ```
 
-Definește `EIDKIT_LICENSE_TOKEN` în `app/build.gradle.kts` ca câmp `BuildConfig`:
-
-```kotlin
-// app/build.gradle.kts
-android {
-    buildFeatures { buildConfig = true }
-    defaultConfig {
-        buildConfigField("String", "EIDKIT_LICENSE_TOKEN", "\"${project.findProperty("EIDKIT_LICENSE_TOKEN") ?: ""}\"")
-    }
-}
-```
-
-Adaugă tokenul în `local.properties` (nu îl comite niciodată în git):
-
-```
-EIDKIT_LICENSE_TOKEN=tokenul-tău-aici
-```
-
 </TabItem>
 <TabItem value="ios" label="iOS (Swift)">
 
-Apelează `EidKit.configure()` o singură dată la pornirea aplicației:
+Apelează `EidKitSdk.configure()` o singură dată la pornirea aplicației:
 
 ```swift
 @main
 struct MyApp: App {
     init() {
-        EidKit.configure(EidKitConfig(
-            licenseToken: "your-token"
-        ))
+        try? EidKitSdk.configure()
     }
     var body: some Scene {
         WindowGroup { ContentView() }
@@ -199,7 +188,7 @@ struct MyApp: App {
 </Tabs>
 
 :::note Mod demo
-Fără un `licenseToken` valid, SDK-ul rulează în **mod demo** — datele citite de pe card sunt anonimizate automat. Ideal pentru dezvoltare și testare fără a expune date reale.
+SDK-ul rulează implicit în **mod demo** — datele citite de pe card sunt anonimizate automat. Ideal pentru dezvoltare și testare fără a expune date reale. Un `licenseToken` este rezervat pentru viitoarea aplicare a licenței — poate fi configurat din timp fără alte modificări.
 :::
 
 ## 4. Citește un card
@@ -235,7 +224,7 @@ override fun onNewIntent(intent: Intent) {
 import EidKit
 
 func citesteCard() async throws {
-    let result = try await EidKit.reader(can: canIntrodusDeutilizator)
+    let result = try await EidKitSdk.reader(can: canIntrodusDeutilizator)
         .withPersonalData(pin: pinIntrodusDeutilizator)
         .withActiveAuth()
         .read()
