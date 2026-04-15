@@ -1,66 +1,66 @@
 {
   "homepage.hero.title": {
-    "message": "Infrastructure for the Romanian Electronic Identity Card",
+    "message": "Infrastructură pentru Cartea de Identitate Electronică Românească",
     "description": "Landing page hero title"
   },
   "homepage.hero.subtitle": {
-    "message": "Verify identity, sign documents, and authenticate users with a single tap of the identity card on your phone.",
+    "message": "Verifică identitatea, semnează documente și autentifică utilizatori printr-o singură atingere a cărții de identitate pe telefonul tău.",
     "description": "Landing page hero subtitle"
   },
   "homepage.hero.cta.docs": {
-    "message": "Read the Docs",
+    "message": "Citește documentația",
     "description": "Hero primary CTA button"
   },
   "homepage.hero.cta.contact": {
-    "message": "Contact Us",
+    "message": "Contactează-ne",
     "description": "Hero secondary CTA button"
   },
   "homepage.feature.kyc.title": {
-    "message": "KYC — Read Card Data",
+    "message": "KYC — Citire date card",
     "description": "Feature card title"
   },
   "homepage.feature.kyc.description": {
-    "message": "Read identity fields (name, CNP, date of birth), face photo, handwritten signature image, and full address from the EDATA applet — all in one NFC tap.",
+    "message": "Citește câmpuri de identitate (nume, CNP, dată de naștere), fotografie față, imaginea semnăturii olografe și adresa completă din applet-ul EDATA — totul într-o singură atingere NFC.",
     "description": "Feature card description"
   },
   "homepage.feature.signing.title": {
-    "message": "Document Signing",
+    "message": "Semnare documente",
     "description": "Feature card title"
   },
   "homepage.feature.signing.description": {
-    "message": "Produce a qualified ECDSA-SHA384 signature using the nonRepudiation key on the card chip. Embed directly into a PAdES/eIDAS PDF or send to your signing service.",
+    "message": "Produce o semnătură calificată ECDSA-SHA384 folosind cheia de non-repudiere de pe cipul cardului. Integrează direct într-un PDF PAdES/eIDAS sau trimite la serviciul tău de semnare.",
     "description": "Feature card description"
   },
   "homepage.feature.activeauth.title": {
-    "message": "Active Authentication",
+    "message": "Autentificare activă",
     "description": "Feature card title"
   },
   "homepage.feature.activeauth.description": {
-    "message": "Challenge-response verification that the chip is genuine and has not been cloned. Returns raw cryptographic proof material your backend can independently verify.",
+    "message": "Verificare challenge-response că cipul este autentic și nu a fost clonat. Returnează material criptografic pentru verificare independentă în backend.",
     "description": "Feature card description"
   },
   "homepage.store.appstore.aria": {
-    "message": "Download on the App Store",
+    "message": "Descarcă din App Store",
     "description": "Aria label for App Store badge"
   },
   "homepage.store.appstore.sub": {
-    "message": "Download on the",
+    "message": "Descarcă din",
     "description": "App Store badge small line"
   },
   "homepage.store.googleplay.sub": {
-    "message": "Get it on",
+    "message": "Disponibil pe",
     "description": "Google Play badge small line"
   },
   "homepage.store.googleplay.pill": {
-    "message": "Early access",
+    "message": "Acces timpuriu",
     "description": "Pill label on Google Play badge when in closed testing"
   },
   "homepage.store.googleplay.early_access": {
-    "message": "Android in closed testing — ",
+    "message": "Android în closed testing — ",
     "description": "Text before the contact link for Google Play early access"
   },
   "homepage.store.googleplay.cta": {
-    "message": "contact us for access.",
+    "message": "contactează-ne pentru acces.",
     "description": "Link text for Google Play early access"
   }
 }

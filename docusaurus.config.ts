@@ -6,6 +6,7 @@ const config: Config = {
   customFields: {
     iosVersion: '0.1.9',
     androidVersion: '0.1.7',
+    appStoreUrl: 'https://apps.apple.com/us/app/eidkit-app/id6761855403',
   },
   title: 'EidKit',
   tagline: 'Infrastructură pentru Cartea de Identitate Electronică Românească',

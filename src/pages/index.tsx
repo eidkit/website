@@ -67,6 +67,8 @@ function useFeatures(): FeatureCard[] {
 }
 
 function Hero(): ReactNode {
+  const { siteConfig } = useDocusaurusContext();
+  const { appStoreUrl } = siteConfig.customFields as { appStoreUrl: string };
   const logoUrl = useBaseUrl('/img/logo-white.svg');
   const demoVideoUrl = useBaseUrl('/img/demo.mp4');
   return (
@@ -93,21 +95,46 @@ function Hero(): ReactNode {
             </Link>
             <Link
               className="button button--lg button--hero-secondary"
-              href="mailto:sales@eidkit.ro"
+              href="mailto:hello@eidkit.ro"
             >
               <Translate id="homepage.hero.cta.contact">Contactează-ne</Translate>
             </Link>
           </div>
-          <div className="platform-badges">
-            <span className="platform-badge">
-              <AndroidIcon size={22} />
-              Android · Kotlin
-            </span>
-            <span className="platform-badge">
-              <AppleIcon size={22} />
-              iOS · Swift
+          <div className="store-badges">
+            <Link
+              className="store-badge"
+              href={appStoreUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={translate({ id: 'homepage.store.appstore.aria', message: 'Descarcă din App Store' })}
+            >
+              <AppleIcon size={26} />
+              <span className="store-badge__text">
+                <span className="store-badge__sub">
+                  <Translate id="homepage.store.appstore.sub">Download on the</Translate>
+                </span>
+                <span className="store-badge__name">App Store</span>
+              </span>
+            </Link>
+            <span className="store-badge store-badge--disabled">
+              <AndroidIcon size={26} />
+              <span className="store-badge__text">
+                <span className="store-badge__sub">
+                  <Translate id="homepage.store.googleplay.sub">Get it on</Translate>
+                </span>
+                <span className="store-badge__name">Google Play</span>
+              </span>
+              <span className="store-badge__pill">
+                <Translate id="homepage.store.googleplay.pill">Early access</Translate>
+              </span>
             </span>
           </div>
+          <p className="store-early-access">
+            {translate({ id: 'homepage.store.googleplay.early_access', message: 'Android în closed testing — ' })}
+            <Link href="mailto:hello@eidkit.ro?subject=Google%20Play%20Early%20Access">
+              {translate({ id: 'homepage.store.googleplay.cta', message: 'contactează-ne pentru acces.' })}
+            </Link>
+          </p>
         </div>
         <div className="hero__demo">
           <video
