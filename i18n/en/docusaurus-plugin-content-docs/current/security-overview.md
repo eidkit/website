@@ -130,8 +130,10 @@ All protocols are published, standardized, and used in electronic authentication
 
 | | |
 |---|---|
-| **Android source code** | [github.com/eidkit/eidkit-android](https://github.com/eidkit/eidkit-android) (public) |
+| **Android source code** | Available on request — hello@eidkit.ro |
+| **Android demo source code** | https://github.com/eidkit/eidkit-android-demo |
 | **iOS source code** | Available on request — hello@eidkit.ro |
+| **iOS demo source code** | https://github.com/eidkit/eidkit-iOS-demo |
 | **Maven Central** | `ro.eidkit:sdk-android` |
 | **App Store (iOS)** | [EidKit on the App Store](https://apps.apple.com/us/app/eidkit-app/id6761855403) — approved by Apple |
 | **Google Play (Android)** | Available on Google Play — approved by Google |

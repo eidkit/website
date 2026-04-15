@@ -17,7 +17,6 @@ const sidebars: SidebarsConfig = {
     {
       type: 'doc',
       id: 'security-overview',
-      label: 'Securitate',
     },
     {
       type: 'category',

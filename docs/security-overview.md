@@ -130,8 +130,10 @@ Toate protocoalele sunt publicate, standardizate și utilizate în sistemele de 
 
 | | |
 |---|---|
-| **Cod sursă Android** | [github.com/eidkit/eidkit-android](https://github.com/eidkit/eidkit-android) (public) |
+| **Cod sursă Android** | Disponibil la cerere — hello@eidkit.ro |
+| **Cod sursă Android Demo** | https://github.com/eidkit/eidkit-android-demo |
 | **Cod sursă iOS** | Disponibil la cerere — hello@eidkit.ro |
+| **Cod sursă iOS Demo** | https://github.com/eidkit/eidkit-iOS-demo |
 | **Maven Central** | `ro.eidkit:sdk-android` |
 | **App Store (iOS)** | [EidKit pe App Store](https://apps.apple.com/us/app/eidkit-app/id6761855403) — aprobat de Apple |
 | **Google Play (Android)** | Disponibil pe Google Play — aprobat de Google |
