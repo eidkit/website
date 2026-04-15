@@ -15,6 +15,11 @@ const sidebars: SidebarsConfig = {
       items: ['features/kyc', 'features/signing', 'features/active-auth'],
     },
     {
+      type: 'doc',
+      id: 'security-overview',
+      label: 'Securitate',
+    },
+    {
       type: 'category',
       label: 'API Reference',
       collapsed: false,
