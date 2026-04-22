@@ -1,5 +1,5 @@
 ---
-slug: eidas-2-2027-deadline-romanian-companies
+slug: eidas-2-termenul-2027-companii-romania
 title: "2027 Is Closer Than It Looks. What eIDAS 2.0 Means for Companies in Romania."
 authors: [catalin]
 date: 2026-04-21
