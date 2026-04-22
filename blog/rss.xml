@@ -4,10 +4,65 @@
         <title>EidKit Blog</title>
         <link>https://eidkit.ro/blog</link>
         <description>EidKit Blog</description>
-        <lastBuildDate>Sun, 29 Mar 2026 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Tue, 21 Apr 2026 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>ro</language>
+        <item>
+            <title><![CDATA[2027 este mai aproape decât pare. Ce înseamnă eIDAS 2.0 pentru companiile din România.]]></title>
+            <link>https://eidkit.ro/blog/eidas-2-termenul-2027-companii-romania</link>
+            <guid>https://eidkit.ro/blog/eidas-2-termenul-2027-companii-romania</guid>
+            <pubDate>Tue, 21 Apr 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[Până la finalul lui 2027, băncile, fintech-urile, companiile de asigurări și operatorii de telecomunicații din România vor fi obligați legal să accepte EUDI Wallet pentru autentificarea utilizatorilor. 2026 este anul de pregătire. Iată ce înseamnă asta concret.
+]]></description>
+            <content:encoded><![CDATA[<p>Pe 4 decembrie 2024, Comisia Europeană a publicat primele acte de implementare ale Regulamentului (UE) 2024/1183 — eIDAS 2.0. Douăzeci de zile mai târziu, acestea au intrat în vigoare. De atunci, a început numărătoarea inversă.</p>
+<p>Termenele sunt legale, nu aspiraționale. Până la finalul lui 2026, fiecare stat membru trebuie să pună la dispoziția cetățenilor cel puțin un portofel de identitate digitală — EUDI Wallet — certificat la nivel european. Până la finalul lui 2027, companiile private din sectoarele reglementate sunt obligate să îl accepte. Iar sectoarele care intră sub această obligație includ, explicit, băncile, furnizorii de servicii de plată, companiile de asigurări și operatorii de telecomunicații.</p>
+<p>Dacă lucrezi în oricare dintre aceste domenii în România, 2026 este anul în care trebuie să înțelegi ce implică această tranziție — nu 2027.</p>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="ce-este-eudi-wallet-și-ce-legătură-are-cu-buletinul-electronic">Ce este EUDI Wallet și ce legătură are cu buletinul electronic<a href="https://eidkit.ro/blog/eidas-2-termenul-2027-companii-romania#ce-este-eudi-wallet-%C8%99i-ce-leg%C4%83tur%C4%83-are-cu-buletinul-electronic" class="hash-link" aria-label="Direct link to Ce este EUDI Wallet și ce legătură are cu buletinul electronic" title="Direct link to Ce este EUDI Wallet și ce legătură are cu buletinul electronic">​</a></h2>
+<p>EUDI Wallet este o aplicație mobilă standardizată la nivel european în care cetățenii pot stoca și prezenta credențiale de identitate verificate — actul de identitate, permisul de conducere, diplome, calificări profesionale și alte atribute. Utilizatorul controlează ce date partajează și cu cine, prin divulgare selectivă: poți dovedi că ai peste 18 ani fără să arăți data nașterii exactă, sau poți confirma că ești rezident al unui stat membru fără să dai adresa completă.</p>
+<p>Legătura cu CEI este directă și intenționată. Cătălin Giulescu, directorul DGEP, a declarat public că <a href="https://validsoftware.ro/portofelul-digital-european-eudi-wallet-ce-este-cand-vine-si-ce-trebuie-sa-faca-firmele-si-institutiile-din-romania/" target="_blank" rel="noopener noreferrer">cartea electronică de identitate este „un intermediar" în procesul de digitalizare</a> — platforma pe care se construiește EUDI Wallet în România. Cipul CEI, cu certificatele sale digitale emise de MAI, este mecanismul principal de înrolare în portofel. Fără CEI, nu există EUDI Wallet românesc.</p>
+<p>România participă deja în proiectul-pilot european EUDIW-PACT coordonat de Ministerul de Interne din Franța, alături de alte 24 de state membre. Pe 17-18 martie 2026, la București au avut loc teste de interoperabilitate transfrontalieră în mediu live — schimb de credențiale funcțional între state membre diferite.</p>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="termenele-clar">Termenele, clar<a href="https://eidkit.ro/blog/eidas-2-termenul-2027-companii-romania#termenele-clar" class="hash-link" aria-label="Direct link to Termenele, clar" title="Direct link to Termenele, clar">​</a></h2>
+<table><thead><tr><th>Termen</th><th>Obligație</th></tr></thead><tbody><tr><td><strong>24 dec. 2024</strong></td><td>Primele acte de implementare intră în vigoare — ceasul pornește</td></tr><tr><td><strong>31 dec. 2026</strong></td><td>Fiecare stat membru pune la dispoziție cel puțin un EUDI Wallet certificat</td></tr><tr><td><strong>31 dec. 2026</strong></td><td>Organismele publice și semi-publice sunt obligate să îl accepte</td></tr><tr><td><strong>31 dec. 2027</strong></td><td><strong>Companiile private din sectoarele reglementate sunt obligate să îl accepte</strong></td></tr></tbody></table>
+<p>Articolul 5f(2) din Regulament este direct: companiile private care sunt deja obligate prin lege să folosească autentificare puternică a utilizatorilor — Strong Customer Authentication — trebuie să accepte EUDI Wallet la cererea utilizatorului, în cel mult 36 de luni de la intrarea în vigoare a actelor de implementare. Baza legală pentru SCA în serviciile financiare este PSD2. Dacă ești bancă sau fintech care procesează plăți, obligația este certă.</p>
+<p>Penalitățile pentru neconformare ajung la <strong>5 milioane EUR sau 1% din cifra de afaceri globală</strong>, oricare este mai mare.</p>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="de-ce-2026-este-anul-în-care-trebuie-să-acționezi-nu-2027">De ce 2026 este anul în care trebuie să acționezi, nu 2027<a href="https://eidkit.ro/blog/eidas-2-termenul-2027-companii-romania#de-ce-2026-este-anul-%C3%AEn-care-trebuie-s%C4%83-ac%C8%9Bionezi-nu-2027" class="hash-link" aria-label="Direct link to De ce 2026 este anul în care trebuie să acționezi, nu 2027" title="Direct link to De ce 2026 este anul în care trebuie să acționezi, nu 2027">​</a></h2>
+<p>Există o capcană comună în modul în care companiile citesc termenele reglementare: văd data de 2027 și planifică pentru 2027. Problema este că o integrare de nivel enterprise nu se finalizează în câteva săptămâni.</p>
+<p>Experții în implementare estimează că o integrare completă, de la decizie la producție, necesită între 9 și 18 luni pentru o organizație de dimensiuni medii-mari. O bancă cu sisteme legacy, procese de procurement, cerințe de audit intern și cicluri de release bine-definite va fi la capătul superior al acestui interval, nu la cel inferior.</p>
+<p>Companiile care încep în 2027 vor intra în producție în 2028 — după termenul obligatoriu. Companiile care încep în 2026 vor fi gata la timp și vor fi câștigat un avantaj competitiv: vor putea să ofere clienților autentificarea prin EUDI Wallet înainte ca aceasta să devină standard.</p>
+<p>Chambers &amp; Partners, în analiza lor pe piața fintech din România, confirmă explicit: <a href="https://chambers.com/content/item/7008" target="_blank" rel="noopener noreferrer">„în practică, 2026 este un an de pregătire"</a> pentru a putea accepta wallet-ul și adapta onboardingul până în 2027.</p>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="ce-trebuie-să-pregătești-concret">Ce trebuie să pregătești concret<a href="https://eidkit.ro/blog/eidas-2-termenul-2027-companii-romania#ce-trebuie-s%C4%83-preg%C4%83te%C8%99ti-concret" class="hash-link" aria-label="Direct link to Ce trebuie să pregătești concret" title="Direct link to Ce trebuie să pregătești concret">​</a></h2>
+<p><strong>1. Maparea fluxurilor de identitate</strong></p>
+<p>Primul pas nu este tehnic — este de business. Orice companie care intră sub incidența obligației trebuie să identifice toate punctele din produsele și serviciile sale unde are loc o autentificare puternică sau o verificare de identitate: onboarding KYC, autentificare la tranzacții semnificative, semnare de contracte, acces la date sensibile. Aceste puncte sunt cele care trebuie să accepte credențiale EUDI Wallet.</p>
+<p><strong>2. Înregistrarea ca Relying Party</strong></p>
+<p>Companiile care vor să accepte EUDI Wallet trebuie să se înregistreze ca <em>relying party</em> la autoritatea națională competentă. Fără înregistrare, nu poți solicita credențiale din portofelele utilizatorilor. Procesul de înregistrare nu este instant — include identificarea entității juridice, specificarea atributelor pe care intenționezi să le accesezi și motivele de business pentru care ai nevoie de ele.</p>
+<p><strong>3. Integrarea tehnică</strong></p>
+<p>Standardele tehnice pentru interacțiunea cu EUDI Wallet — OpenID4VP pentru prezentarea credențialelor, OpenID4VCI pentru emiterea lor, SD-JWT pentru divulgare selectivă — sunt stabilite prin actele de implementare. Integrarea presupune implementarea acestor protocoale în sistemele existente, nu o înlocuire a acestora.</p>
+<p><strong>4. Redesignul fluxurilor KYC</strong></p>
+<p>Regulamentul impune minimizarea datelor — poți solicita doar atributele necesare pentru tranzacția respectivă. Dacă ai acum un flux KYC care colectează toate datele disponibile, va trebui să îl redesignezi pentru a cere selectiv doar ce este necesar pentru fiecare context. Aceasta este o schimbare de arhitectură, nu doar de UI.</p>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="situația-din-românia-fundație-solidă-incertitudine-operațională">Situația din România: fundație solidă, incertitudine operațională<a href="https://eidkit.ro/blog/eidas-2-termenul-2027-companii-romania#situa%C8%9Bia-din-rom%C3%A2nia-funda%C8%9Bie-solid%C4%83-incertitudine-opera%C8%9Bional%C4%83" class="hash-link" aria-label="Direct link to Situația din România: fundație solidă, incertitudine operațională" title="Direct link to Situația din România: fundație solidă, incertitudine operațională">​</a></h2>
+<p>România nu pleacă de la zero. CEI este deja în rollout național, cu peste 1,5 milioane de carduri emise și un target de 5 milioane până la mijlocul lui 2026. ROeID există ca aplicație de SSO guvernamental. Testele de interoperabilitate EUDI Wallet au avut loc deja pe sol românesc.</p>
+<p>Ceea ce lipsește este claritatea operațională pentru sectorul privat. Un raport recent al <a href="https://www.accace.com/eidas-2-in-romania/" target="_blank" rel="noopener noreferrer">Accace</a> constată că, deși alinierea juridică există prin Legea 214/2024, multe companii nu au claritate pe cerințele practice pe termen scurt. Conștientizarea problemei este limitată în afara sectoarelor puternic reglementate.</p>
+<p>Există și o nuanță onestă de adăugat: la nivel european, unele state membre <a href="https://www.biometricupdate.com/202512/will-the-eudi-wallet-be-ready-in-2026-experts-say-probably-not" target="_blank" rel="noopener noreferrer">s-ar putea să nu respecte termenul din 2026</a> pentru lansarea wallet-ului, din cauza complexității tehnice și a standardelor care se finalizează în paralel. Dar termenul de 2027 pentru sectorul privat este independent de viteza de lansare a wallet-ului — obligația de acceptare există indiferent de momentul exact al disponibilității. Și în România, CEI este deja disponibilă și funcțională ca fundație.</p>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="legătura-cu-infrastructura-de-identitate-de-astăzi">Legătura cu infrastructura de identitate de astăzi<a href="https://eidkit.ro/blog/eidas-2-termenul-2027-companii-romania#leg%C4%83tura-cu-infrastructura-de-identitate-de-ast%C4%83zi" class="hash-link" aria-label="Direct link to Legătura cu infrastructura de identitate de astăzi" title="Direct link to Legătura cu infrastructura de identitate de astăzi">​</a></h2>
+<p>Există o continuitate directă între ce e disponibil acum și ce va fi obligatoriu în 2027. EUDI Wallet va fi populat, în România, cu date din CEI. Fluxurile de KYC bazate pe NFC care citesc cipul CEI astăzi sunt arhitectural compatibile cu ce va presupune acceptarea credențialelor EUDI Wallet mâine — același nivel de asigurare, aceeași bază de date de identitate, aceleași certificate MAI în lanțul de verificare.</p>
+<p>Companiile care integrează astăzi citirea CEI prin NFC pentru onboarding și verificare de identitate nu construiesc o soluție temporară. Construiesc infrastructura de identitate pe care vor trebui să o aibă în 2027 — cu un an sau doi avans față de obligația legală.</p>
+<hr>
+<p><em>Scriem despre CEI — capabilitățile sale, provocările de integrare și contextul reglementar din jurul său. Dacă un subiect de aici este relevant pentru ce construiești, <a href="mailto:hello@eidkit.ro" target="_blank" rel="noopener noreferrer">scrie-ne</a>.</em></p>]]></content:encoded>
+            <category>eidas</category>
+            <category>eudi-wallet</category>
+            <category>kyc</category>
+            <category>regulament</category>
+            <category>romania</category>
+            <category>banci</category>
+            <category>fintech</category>
+        </item>
         <item>
             <title><![CDATA[Ce înseamnă să integrezi CEI prin NFC. Un ghid pentru ingineri.]]></title>
             <link>https://eidkit.ro/blog/integrarea-cei-nfc-android</link>
