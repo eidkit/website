@@ -1,20 +1,49 @@
 {
   "homepage.hero.title": {
-    "message": "Infrastructure for the Romanian Electronic Identity Card",
+    "message": "CEI Authentication and Reading for Apps and Institutions",
     "description": "Landing page hero title"
   },
   "homepage.hero.subtitle": {
-    "message": "Verify identity, sign documents, and authenticate users with a single tap of the identity card on your phone.",
+    "message": "Add \"Login with Romanian ID card\" to your website, or integrate the SDK directly into your mobile app. MAI-verified data, no passwords, no forms.",
     "description": "Landing page hero subtitle"
   },
-  "homepage.hero.cta.docs": {
-    "message": "Read the Docs",
+  "homepage.hero.cta.sso": {
+    "message": "SSO Authentication",
     "description": "Hero primary CTA button"
+  },
+  "homepage.hero.cta.docs": {
+    "message": "Integrate the SDK",
+    "description": "Hero secondary CTA button — SDK docs"
   },
   "homepage.hero.cta.contact": {
     "message": "Contact Us",
-    "description": "Hero secondary CTA button"
+    "description": "Hero contact CTA button"
   },
+  "sso.page.title": { "message": "SSO — Login with Romanian ID card", "description": "SSO page title" },
+  "sso.page.description": { "message": "Add Romanian Electronic Identity Card authentication to your website. Standard OIDC, no passwords, MAI-verified data.", "description": "SSO page meta description" },
+  "sso.hero.title": { "message": "Login with your Romanian ID card", "description": "SSO hero title" },
+  "sso.hero.subtitle": { "message": "A single tap of your ID card replaces registration and login — no password, no form, with MAI-verified data.", "description": "SSO hero subtitle" },
+  "sso.citizen.title": { "message": "How it works for your clients", "description": "SSO citizen section title" },
+  "sso.citizen.subtitle": { "message": "Your users authenticate on your website with their ID card — no password, no form.", "description": "SSO citizen section subtitle" },
+  "sso.step1.title": { "message": "Scan the QR code", "description": "SSO step 1 title" },
+  "sso.step1.description": { "message": "The website shows a QR code. Open EidKit on your phone and scan it.", "description": "SSO step 1 description" },
+  "sso.step2.title": { "message": "Enter CAN and PIN", "description": "SSO step 2 title" },
+  "sso.step2.description": { "message": "Enter the CAN (6 digits on the front of the card) and the 4-digit PIN set at MAI.", "description": "SSO step 2 description" },
+  "sso.step3.title": { "message": "Tap the card", "description": "SSO step 3 title" },
+  "sso.step3.description": { "message": "Hold your ID card to the back of your phone. Your identity is cryptographically verified — you're authenticated.", "description": "SSO step 3 description" },
+  "sso.citizen.privacy": { "message": "Shared data (name, date of birth, address) comes directly from the ID card chip, verified by MAI — not entered manually by you. Your CNP is never shared with the website unless explicitly requested.", "description": "SSO privacy note" },
+  "sso.citizen.clients_label": { "message": "Websites that accept ID card authentication:", "description": "SSO clients list label" },
+  "sso.developer.title": { "message": "Add ID card login to your platform", "description": "SSO developer section title" },
+  "sso.developer.subtitle": { "message": "EidKit SSO works like any other OIDC provider — same flow as Google Sign-In or Apple Sign-In. Your users authenticate by tapping their card, you receive MAI-verified data.", "description": "SSO developer section subtitle" },
+  "sso.developer.value1.title": { "message": "One tap = new account or login", "description": "SSO value prop 1 title" },
+  "sso.developer.value1.body": { "message": "There is no difference between registration and login. The first card tap creates the account automatically — no form, no email, no password.", "description": "SSO value prop 1 body" },
+  "sso.developer.value2.title": { "message": "Verified data, not self-reported", "description": "SSO value prop 2 title" },
+  "sso.developer.value2.body": { "message": "Name, date of birth, and address come directly from the ID card chip, cryptographically verified by MAI. You don't depend on what the user types.", "description": "SSO value prop 2 body" },
+  "sso.developer.value3.title": { "message": "Standard OIDC integration", "description": "SSO value prop 3 title" },
+  "sso.developer.value3.body": { "message": "Client ID, Client Secret, redirect URI — exactly like any other provider. If you've ever integrated Google or GitHub OAuth, you already know everything you need.", "description": "SSO value prop 3 body" },
+  "sso.developer.cta.text": { "message": "Contact us for access and we'll configure your first OIDC client.", "description": "SSO developer CTA text" },
+  "sso.developer.cta.button": { "message": "Contact us for access", "description": "SSO developer CTA button" },
+  "sso.developer.cta.docs": { "message": "Integration docs", "description": "SSO developer docs link" },
   "homepage.feature.kyc.title": {
     "message": "KYC — Read Card Data",
     "description": "Feature card title"

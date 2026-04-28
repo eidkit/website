@@ -1,20 +1,49 @@
 {
   "homepage.hero.title": {
-    "message": "Infrastructură pentru Cartea de Identitate Electronică Românească",
+    "message": "Autentificare și citire CEI pentru aplicații și instituții",
     "description": "Landing page hero title"
   },
   "homepage.hero.subtitle": {
-    "message": "Verifică identitatea, semnează documente și autentifică utilizatori printr-o singură atingere a cărții de identitate pe telefonul tău.",
+    "message": "Adauga Login cu buletinul electronic pe site-ul tau sau integreaza SDK-ul direct in aplicatia mobila. Date verificate de MAI, fara parole, fara formulare.",
     "description": "Landing page hero subtitle"
   },
-  "homepage.hero.cta.docs": {
-    "message": "Citește documentația",
+  "homepage.hero.cta.sso": {
+    "message": "Autentificare SSO",
     "description": "Hero primary CTA button"
+  },
+  "homepage.hero.cta.docs": {
+    "message": "Integrează SDK-ul",
+    "description": "Hero secondary CTA button — SDK docs"
   },
   "homepage.hero.cta.contact": {
     "message": "Contactează-ne",
-    "description": "Hero secondary CTA button"
+    "description": "Hero contact CTA button"
   },
+  "sso.page.title": { "message": "SSO — Autentificare cu buletinul electronic", "description": "SSO page title" },
+  "sso.page.description": { "message": "Adaugă autentificarea cu Cartea de Identitate Electronică românească pe site-ul tău. Standard OIDC, fără parole, date verificate de MAI.", "description": "SSO page meta description" },
+  "sso.hero.title": { "message": "Autentificare cu buletinul electronic", "description": "SSO hero title" },
+  "sso.hero.subtitle": { "message": "Un tap cu cartea de identitate înlocuiește înregistrarea și autentificarea — fără parolă, fără formular, cu date verificate de MAI.", "description": "SSO hero subtitle" },
+  "sso.citizen.title": { "message": "Cum funcționează pentru clienții tăi", "description": "SSO citizen section title" },
+  "sso.citizen.subtitle": { "message": "Utilizatorii tăi se autentifică pe site-ul tău cu buletinul electronic — fără parolă, fără formular.", "description": "SSO citizen section subtitle" },
+  "sso.step1.title": { "message": "Scanează codul QR", "description": "SSO step 1 title" },
+  "sso.step1.description": { "message": "Site-ul afișează un cod QR. Deschizi aplicația EidKit pe telefon și îl scanezi.", "description": "SSO step 1 description" },
+  "sso.step2.title": { "message": "Introdu CAN și PIN", "description": "SSO step 2 title" },
+  "sso.step2.description": { "message": "Introduci CAN-ul (6 cifre de pe față cardului) și PIN-ul de 4 cifre setat la MAI.", "description": "SSO step 2 description" },
+  "sso.step3.title": { "message": "Atinge cardul", "description": "SSO step 3 title" },
+  "sso.step3.description": { "message": "Apropii cartea de identitate de spatele telefonului. Identitatea este verificată criptografic — ești autentificat.", "description": "SSO step 3 description" },
+  "sso.citizen.privacy": { "message": "Datele partajate (nume, dată de naștere, adresă) provin direct din cipul cărții de identitate, verificate de MAI — nu sunt introduse manual de tine. CNP-ul nu este niciodată transmis site-ului dacă nu este solicitat explicit.", "description": "SSO privacy note" },
+  "sso.citizen.clients_label": { "message": "Site-uri care acceptă autentificarea cu buletin:", "description": "SSO clients list label" },
+  "sso.developer.title": { "message": "Adaugă autentificarea cu buletin pe platforma ta", "description": "SSO developer section title" },
+  "sso.developer.subtitle": { "message": "EidKit SSO funcționează ca orice alt provider OIDC — același flux ca Google Sign-In sau Apple Sign-In. Utilizatorii tăi se autentifică prin atingerea cardului, tu primești date verificate de MAI.", "description": "SSO developer section subtitle" },
+  "sso.developer.value1.title": { "message": "Un tap = cont nou sau autentificare", "description": "SSO value prop 1 title" },
+  "sso.developer.value1.body": { "message": "Nu există diferență între înregistrare și login. Prima atingere a cardului creează contul automat — fără formular, fără email, fără parolă.", "description": "SSO value prop 1 body" },
+  "sso.developer.value2.title": { "message": "Date verificate, nu auto-declarate", "description": "SSO value prop 2 title" },
+  "sso.developer.value2.body": { "message": "Numele, data nașterii și adresa vin direct din cipul cărții de identitate, verificate criptografic de MAI. Nu depinzi de ce introduce utilizatorul.", "description": "SSO value prop 2 body" },
+  "sso.developer.value3.title": { "message": "Integrare standard OIDC", "description": "SSO value prop 3 title" },
+  "sso.developer.value3.body": { "message": "Client ID, Client Secret, redirect URI — exact ca orice alt provider. Dacă ai integrat vreodată Google sau GitHub OAuth, știi deja tot ce ai nevoie.", "description": "SSO value prop 3 body" },
+  "sso.developer.cta.text": { "message": "Contactează-ne pentru acces și îți configurăm primul client OIDC.", "description": "SSO developer CTA text" },
+  "sso.developer.cta.button": { "message": "Contactează-ne pentru acces", "description": "SSO developer CTA button" },
+  "sso.developer.cta.docs": { "message": "Documentație integrare", "description": "SSO developer docs link" },
   "homepage.feature.kyc.title": {
     "message": "KYC — Citire date card",
     "description": "Feature card title"

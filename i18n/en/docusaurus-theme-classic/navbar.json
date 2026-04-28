@@ -1,7 +1,11 @@
 {
-  "item.label.Docs": {
-    "message": "Docs",
-    "description": "Navbar item with label Docs"
+  "item.label.SSO": {
+    "message": "SSO",
+    "description": "Navbar item with label SSO"
+  },
+  "item.label.Dezvoltatori": {
+    "message": "Developers",
+    "description": "Navbar item with label Dezvoltatori"
   },
   "item.label.GitHub": {
     "message": "GitHub",

@@ -69,10 +69,15 @@ const config: Config = {
       },
       items: [
         {
+          to: '/sso',
+          label: 'SSO',
+          position: 'left',
+        },
+        {
           type: 'docSidebar',
           sidebarId: 'docsSidebar',
           position: 'left',
-          label: 'Docs',
+          label: 'Dezvoltatori',
         },
         {
           to: '/blog',
@@ -96,6 +101,7 @@ const config: Config = {
         {
           title: 'Docs',
           items: [
+            { label: 'SSO', to: '/sso' },
             { label: 'Overview', to: '/docs/overview' },
             { label: 'Ghid rapid', to: '/docs/quickstart' },
           ],

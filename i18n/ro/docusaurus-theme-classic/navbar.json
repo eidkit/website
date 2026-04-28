@@ -1,7 +1,11 @@
 {
-  "item.label.Docs": {
-    "message": "Documentație",
-    "description": "Navbar item with label Docs"
+  "item.label.SSO": {
+    "message": "SSO",
+    "description": "Navbar item with label SSO"
+  },
+  "item.label.Dezvoltatori": {
+    "message": "Dezvoltatori",
+    "description": "Navbar item with label Dezvoltatori"
   },
   "item.label.GitHub": {
     "message": "GitHub",

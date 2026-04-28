@@ -80,24 +80,21 @@ function Hero(): ReactNode {
           </div>
           <h1 className="hero__title">
             <Translate id="homepage.hero.title">
-              Infrastructură pentru Cartea de Identitate Electronică Românească
+              Autentificare și citire CEI pentru aplicații și instituții
             </Translate>
           </h1>
           <p className="hero__subtitle">
             <Translate id="homepage.hero.subtitle">
-              Verifică identitatea, semnează documente și autentifică utilizatori printr-o
-              singură atingere a cărții de identitate pe telefonul tău.
+              Adaugă „Login cu buletinul electronic" pe site-ul tău sau integrează SDK-ul direct
+              în aplicația mobilă. Date verificate de MAI, fără parole, fără formulare.
             </Translate>
           </p>
           <div>
-            <Link className="button button--lg button--hero-primary" to="/docs/overview">
-              <Translate id="homepage.hero.cta.docs">Citește documentația</Translate>
+            <Link className="button button--lg button--hero-primary" to="/sso">
+              <Translate id="homepage.hero.cta.sso">Autentificare SSO</Translate>
             </Link>
-            <Link
-              className="button button--lg button--hero-secondary"
-              href="mailto:hello@eidkit.ro"
-            >
-              <Translate id="homepage.hero.cta.contact">Contactează-ne</Translate>
+            <Link className="button button--lg button--hero-secondary" to="/docs/overview">
+              <Translate id="homepage.hero.cta.docs">Integrează SDK-ul</Translate>
             </Link>
           </div>
           <div className="store-badges">

@@ -1,4 +1,8 @@
 {
+  "link.item.label.SSO": {
+    "message": "SSO — Login cu CEI",
+    "description": "Footer link label"
+  },
   "link.item.label.Overview": {
     "message": "Prezentare generală",
     "description": "Footer link label"

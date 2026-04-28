@@ -10,6 +10,12 @@ const sidebars: SidebarsConfig = {
     'quickstart',
     {
       type: 'category',
+      label: 'SSO',
+      collapsed: false,
+      items: ['sso/integration'],
+    },
+    {
+      type: 'category',
       label: 'Features',
       collapsed: false,
       items: ['features/kyc', 'features/signing', 'features/active-auth'],
