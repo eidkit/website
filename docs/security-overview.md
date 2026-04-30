@@ -41,11 +41,13 @@ Toate operațiunile criptografice au loc exclusiv pe cipul cardului și pe dispo
 - **Nu conține module de analiză, publicitate sau tracking**
 - **Nu inițiază nicio conexiune de rețea** din proprie inițiativă
 
-Fluxul de date este exclusiv local:
+Fluxul de date este exclusiv local pentru KYC și semnare:
 
 ```
 Cip CEI ──NFC──▶ EidKit SDK ──▶ Aplicația integratoare
 ```
+
+**Excepție — fluxul SSO:** Aplicațiile care folosesc EidKit SSO trimit dovada criptografică (hash-uri, semnătura cipului, certificatele) către serverul EidKit (`idp.eidkit.ro`) pentru verificare server-side. Datele personale în clar (nume, adresă) sunt transmise numai dacă scope-ul solicitat le include și numai după ce toate verificările criptografice au trecut. Nicio conexiune de rețea nu se face din SDK — aplicația integratoare este cea care gestionează POST-ul.
 
 ---
 
@@ -123,6 +125,41 @@ Toate protocoalele sunt publicate, standardizate și utilizate în sistemele de 
 - **PIN-urile nu sunt stocate** — folosite exclusiv în memorie pe durata sesiunii, eliminate imediat după
 - **Cipul blochează accesul** hardware după numărul limitat de încercări greșite de PIN — independent de SDK
 - **Autentificarea pasivă rulează întotdeauna** — SDK-ul nu returnează date dacă verificarea față de certificatul MAI eșuează
+
+---
+
+## Securitatea EidKit SSO — model „zero trust"
+
+EidKit SSO este un identity provider OIDC care nu emite niciun token dacă nu poate dovedi criptografic că:
+
+1. **Cardul a fost emis de statul român** — Certificatul DSC din EF.SOD este verificat față de CSCA MAI (rădăcina PKI a Ministerului Afacerilor Interne).
+2. **Datele de identitate nu au fost modificate** — SHA-256 al bytes-urilor DG1 (care conține CNP-ul) trebuie să corespundă cu hash-ul înregistrat și semnat în SOD de MAI.
+3. **Cardul fizic a fost prezent** — Cipul semnează un challenge de 48 de bytes generat server-side (ECDSA-SHA384 cu cheia CE81), folosind true NONEwithECDSA. Challenge-ul este unic per sesiune — semnătura nu poate fi refolosită (anti-replay).
+4. **PIN-ul a fost utilizat** — Autentificarea activă pe cipul CEI necesită verificarea PIN-ului de autentificare (4 cifre) înainte ca CE81 să poată semna. O semnătură AA validă implică că posesorul cunoaște PIN-ul cardului fizic.
+5. **Cheia cipului a fost emisă de MAI** — Certificatul CE81 este verificat față de MAI GenPKI Sub-CA. O cheie rogue nu poate fi substituită.
+6. **CNP-ul este extras server-side** — Serverul nu acceptă CNP-ul din payload-ul aplicației. Îl extrage din bytes-urile DG1 după ce integritatea lor a fost verificată față de SOD.
+
+Spre deosebire de sisteme de autentificare bazate pe parolă sau pe documente scanate, EidKit SSO nu poate fi compromis prin:
+- **Phishing** — challenge-ul server-side este unic per sesiune; o sesiune captată nu poate fi refolosită
+- **Falsificare date** — orice modificare a datelor de identitate invalidează hash-ul din SOD
+- **Card clonat** — cipul deține o cheie privată hardware care nu poate fi extrasă; clonarea este imposibilă fizic
+- **Prezentare de screenshot / PDF** — semnătura cipului necesită hardware real, nu o imagine
+
+```
+Browser                    Telefon (EidKit)              Server (idp.eidkit.ro)
+  │                              │                              │
+  │── /authorize ───────────────────────────────────────────▶ │
+  │◀── QR (session + nonce) ────────────────────────────────── │
+  │                              │◀── QR scanat                │
+  │                              │── citire card (NFC)         │
+  │                              │   PACE + verifyPin + AA     │
+  │                              │── POST /session/complete ──▶│
+  │                              │   (dovadă criptografică)    │── verifică 6 condiții
+  │                              │                             │── emite auth code
+  │◀── polling: code ───────────────────────────────────────── │
+  │── POST /token (code) ──────────────────────────────────▶  │
+  │◀── ID token (JWT RS256) ──────────────────────────────── │
+```
 
 ---
 

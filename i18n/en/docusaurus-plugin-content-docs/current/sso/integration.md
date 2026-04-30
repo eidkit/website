@@ -10,9 +10,9 @@ EidKit SSO is a standard OIDC identity provider. You integrate it exactly like G
 ## What you get
 
 - **Client ID** and **Client Secret** — issued by EidKit
-- **Issuer URL**: `https://auth.eidkit.ro/realms/eidkit`
-- OIDC autodiscovery at `/.well-known/openid-configuration`
-- MAI-verified data — not self-reported by the user
+- **Issuer URL**: `https://idp.eidkit.ro`
+- OIDC autodiscovery at `https://idp.eidkit.ro/.well-known/openid-configuration`
+- Cryptographically verified data from MAI — not self-reported by the user
 
 Contact [hello@eidkit.ro](mailto:hello@eidkit.ro) to configure your client.
 
@@ -26,6 +26,7 @@ Contact [hello@eidkit.ro](mailto:hello@eidkit.ro) to configure your client.
 | `profile` | `name`, `given_name`, `family_name`, `birthdate` |
 | `address` | `address.formatted` — MAI-verified address, not self-declared |
 | `cei:document` | Number, series, expiry date, issuing authority |
+| `cei:cnp` | CNP extracted server-side from verified DG1 — not from the app payload |
 | `cei:picture` | Face photo (JPEG base64, ~33KB) |
 | `cei:signature` | Handwritten signature image (JPEG base64, ~3.5KB) |
 
@@ -62,10 +63,10 @@ await session.create({ userId: user.id });
 
 ## JWT verification without network calls
 
-After initial setup, token signatures can be verified locally using Keycloak's public JWKS — no call to EidKit per request:
+After initial setup, token signatures can be verified locally using the public JWKS — no call to EidKit per request:
 
 ```
-GET https://auth.eidkit.ro/realms/eidkit/protocol/openid-connect/certs
+GET https://idp.eidkit.ro/.well-known/jwks.json
 ```
 
 Cache the public keys and verify the JWT signature locally on every request.
@@ -84,7 +85,7 @@ Cache the public keys and verify the JWT signature locally on every request.
   "address": {
     "formatted": "Str. Exemplu Nr. 1, Timișoara, Timiș"
   },
-  "iss": "https://auth.eidkit.ro/realms/eidkit",
+  "iss": "https://idp.eidkit.ro",
   "aud": "your-client-id"
 }
 ```
@@ -98,3 +99,21 @@ EidKit issues an ID token once — there are no refresh tokens in the standard c
 :::info Tokens
 Use the **ID token** — it contains everything you need. The access token has no EidKit API to use it against.
 :::
+
+---
+
+## Security guarantees
+
+Unlike a traditional OIDC provider that issues tokens on the basis of a password, EidKit SSO will not issue any token unless all of the following verifications pass:
+
+| Check | What it proves |
+|---|---|
+| DSC chain → MAI CSCA | The identity card was issued by the Romanian state |
+| DG1 hash from SOD | The identity data (including CNP) has not been modified since MAI signed it |
+| Chip ECDSA signature | The physical card was present — cannot be forged without the chip |
+| Server-side challenge | The signature is fresh — cannot be replayed |
+| CE81 chain → MAI GenPKI Sub-CA | The chip's authentication key was issued by MAI |
+
+**PIN proof:** Active Authentication on the CEI chip requires verification of the 4-digit auth PIN before CE81 can sign the challenge. A valid AA signature implies the user knows the PIN of the physical card.
+
+The server extracts the CNP directly from verified DG1 bytes — it does not accept the CNP from the app payload.

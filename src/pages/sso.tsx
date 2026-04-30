@@ -130,10 +130,18 @@ function DeveloperSection(): ReactNode {
           </div>
           <div className="sso-value-item">
             <div className="sso-value-item__title">
-              <Translate id="sso.developer.value3.title">Integrare standard OIDC</Translate>
+              <Translate id="sso.developer.value3.title">Zero trust — card fizic + PIN obligatorii</Translate>
             </div>
             <p>
-              <Translate id="sso.developer.value3.body">Client ID, Client Secret, redirect URI — exact ca orice alt provider. Dacă ai integrat vreodată Google sau GitHub OAuth, știi deja tot ce ai nevoie.</Translate>
+              <Translate id="sso.developer.value3.body">Serverul nu emite niciun token fără dovadă criptografică că utilizatorul deține cardul fizic și cunoaște PIN-ul. Nicio parolă capturată, niciun screenshot, nicio clonare nu pot trece verificarea.</Translate>
+            </p>
+          </div>
+          <div className="sso-value-item">
+            <div className="sso-value-item__title">
+              <Translate id="sso.developer.value4.title">Integrare standard OIDC</Translate>
+            </div>
+            <p>
+              <Translate id="sso.developer.value4.body">Client ID, Client Secret, redirect URI — exact ca orice alt provider. Dacă ai integrat vreodată Google sau GitHub OAuth, știi deja tot ce ai nevoie.</Translate>
             </p>
           </div>
         </div>

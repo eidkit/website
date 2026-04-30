@@ -15,6 +15,10 @@
     "message": "hello@eidkit.ro",
     "description": "Footer link label"
   },
+  "link.item.label.Politică de confidențialitate": {
+    "message": "Privacy Policy",
+    "description": "Footer link label"
+  },
   "link.item.label.GitHub": {
     "message": "GitHub",
     "description": "Footer link label"

@@ -41,11 +41,13 @@ All cryptographic operations happen exclusively on the card chip and on the user
 - **Does not include analytics, advertising, or tracking modules**
 - **Does not initiate any network connection** on its own
 
-Data flows exclusively on-device:
+Data flows exclusively on-device for KYC and signing:
 
 ```
 CEI chip ──NFC──▶ EidKit SDK ──▶ Integrating app
 ```
+
+**Exception — SSO flow:** Applications using EidKit SSO send cryptographic proof (hashes, chip signature, certificates) to the EidKit server (`idp.eidkit.ro`) for server-side verification. Personal data in plain text (name, address) is transmitted only if the requested scopes include it and only after all cryptographic checks pass. No network connection is made from the SDK itself — the integrating app handles the POST.
 
 ---
 
@@ -123,6 +125,41 @@ All protocols are published, standardized, and used in electronic authentication
 - **PINs are never stored** — used exclusively in memory during the session and discarded immediately after
 - **The chip enforces hardware lockout** after a limited number of wrong PIN attempts — independent of the SDK
 - **Passive Authentication always runs** — the SDK does not return any data if verification against the MAI certificate fails
+
+---
+
+## EidKit SSO Security — Zero Trust Model
+
+EidKit SSO is an OIDC identity provider that issues no token unless it can cryptographically prove that:
+
+1. **The card was issued by the Romanian state** — The DSC certificate from EF.SOD is verified against the MAI CSCA (the PKI root of the Ministry of Internal Affairs).
+2. **The identity data has not been modified** — SHA-256 of the DG1 bytes (which contains the CNP) must match the hash recorded and signed in the SOD by MAI.
+3. **The physical card was present** — The chip signs a 48-byte server-generated challenge (ECDSA-SHA384 with the CE81 key), using true NONEwithECDSA. The challenge is unique per session — the signature cannot be replayed.
+4. **The PIN was used** — Active Authentication on the CEI chip requires the 4-digit auth PIN to be verified on-chip before CE81 can sign. A valid AA signature implies the holder knows the PIN of the physical card.
+5. **The chip key was issued by MAI** — The CE81 certificate is verified against the MAI GenPKI Sub-CA. A rogue key cannot be substituted.
+6. **The CNP is extracted server-side** — The server does not accept the CNP from the app payload. It extracts it from the DG1 bytes after their integrity has been verified against the SOD.
+
+Unlike password-based or document-scan authentication systems, EidKit SSO cannot be compromised by:
+- **Phishing** — the server-side challenge is unique per session; a captured session cannot be reused
+- **Data forgery** — any modification to identity data invalidates the SOD hash
+- **Cloned card** — the chip holds a hardware private key that cannot be extracted; physical cloning is impossible
+- **Screenshot / PDF replay** — the chip signature requires real hardware, not an image
+
+```
+Browser                  Phone (EidKit app)            Server (idp.eidkit.ro)
+  │                              │                              │
+  │── /authorize ───────────────────────────────────────────▶ │
+  │◀── QR (session + nonce) ────────────────────────────────── │
+  │                              │◀── QR scanned               │
+  │                              │── card read (NFC)           │
+  │                              │   PACE + verifyPin + AA     │
+  │                              │── POST /session/complete ──▶│
+  │                              │   (cryptographic proof)     │── verifies 6 conditions
+  │                              │                             │── issues auth code
+  │◀── polling: code ───────────────────────────────────────── │
+  │── POST /token (code) ──────────────────────────────────▶  │
+  │◀── ID token (JWT RS256) ──────────────────────────────── │
+```
 
 ---
 

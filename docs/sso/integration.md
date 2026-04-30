@@ -10,9 +10,9 @@ EidKit SSO este un identity provider OIDC standard. Îl integrezi exact ca Googl
 ## Ce primești
 
 - **Client ID** și **Client Secret** — emise de EidKit
-- **Issuer URL**: `https://auth.eidkit.ro/realms/eidkit`
-- Autodiscovery OIDC la `/.well-known/openid-configuration`
-- Date verificate de MAI — nu auto-declarate de utilizator
+- **Issuer URL**: `https://idp.eidkit.ro`
+- Autodiscovery OIDC la `https://idp.eidkit.ro/.well-known/openid-configuration`
+- Date verificate criptografic de MAI — nu auto-declarate de utilizator
 
 Contactează [hello@eidkit.ro](mailto:hello@eidkit.ro) pentru a-ți configura clientul.
 
@@ -26,6 +26,7 @@ Contactează [hello@eidkit.ro](mailto:hello@eidkit.ro) pentru a-ți configura cl
 | `profile` | `name`, `given_name`, `family_name`, `birthdate` |
 | `address` | `address.formatted` — adresă verificată MAI, nu auto-declarată |
 | `cei:document` | Număr, serie, dată expirare, autoritate emitentă |
+| `cei:cnp` | CNP extras server-side din DG1 verificat — nu din payload-ul aplicației |
 | `cei:picture` | Fotografie față (JPEG base64, ~33KB) |
 | `cei:signature` | Imagine semnătură olografă (JPEG base64, ~3.5KB) |
 
@@ -62,10 +63,10 @@ await session.create({ userId: user.id });
 
 ## Verificare JWT fără apeluri de rețea
 
-După setup inițial, semnăturile token-urilor pot fi verificate local folosind JWKS-ul public Keycloak — fără niciun apel către EidKit per request:
+După setup inițial, semnăturile token-urilor pot fi verificate local folosind JWKS-ul public — fără niciun apel către EidKit per request:
 
 ```
-GET https://auth.eidkit.ro/realms/eidkit/protocol/openid-connect/certs
+GET https://idp.eidkit.ro/.well-known/jwks.json
 ```
 
 Cachează cheile publice și verifică semnătura JWT local la fiecare request.
@@ -84,7 +85,7 @@ Cachează cheile publice și verifică semnătura JWT local la fiecare request.
   "address": {
     "formatted": "Str. Exemplu Nr. 1, Timișoara, Timiș"
   },
-  "iss": "https://auth.eidkit.ro/realms/eidkit",
+  "iss": "https://idp.eidkit.ro",
   "aud": "client-id-ul-tau"
 }
 ```
@@ -98,3 +99,21 @@ EidKit emite un ID token o singură dată — nu există refresh tokens în conf
 :::info Token-uri
 Folosește **ID token-ul** — conține tot ce ai nevoie. Access token-ul nu are un API EidKit împotriva căruia să-l folosești.
 :::
+
+---
+
+## Garanții de securitate
+
+Spre deosebire de un provider OIDC clasic care emite token-uri pe baza unei parole, EidKit SSO nu emite niciun token dacă oricare din verificările de mai jos eșuează:
+
+| Verificare | Ce garantează |
+|---|---|
+| Lanț DSC → CSCA MAI | Cartea de identitate a fost emisă de statul român |
+| Hash DG1 din SOD | Identitatea (inclusiv CNP-ul) nu a fost modificată după semnarea de MAI |
+| Semnătură ECDSA a cipului | Cardul fizic a fost prezent — nu se poate falsifica fără cip |
+| Challenge server-side | Semnătura este proaspătă — nu poate fi refolosită (anti-replay) |
+| Lanț CE81 → MAI GenPKI Sub-CA | Cheia de autentificare a cipului a fost emisă de MAI |
+
+**Proba de PIN:** Autentificarea activă pe cipul CEI necesită verificarea PIN-ului de autentificare (4 cifre) înainte ca cheia CE81 să poată semna challenge-ul. Semnătura AA în token implică că utilizatorul cunoaște PIN-ul cardului fizic.
+
+Serverul extrage CNP-ul direct din bytes-urile DG1 verificate — nu îl acceptă din payload-ul aplicației.
