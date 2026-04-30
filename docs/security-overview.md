@@ -29,6 +29,7 @@ Toate operațiunile criptografice au loc exclusiv pe cipul cardului și pe dispo
 | **Autentificare pasivă** | Verifică că datele au fost emise de MAI și nu au fost modificate (ICAO 9303) |
 | **Citire date de identitate** | Nume, CNP, dată de naștere, adresă, fotografie, semnătură olografă — necesită PIN |
 | **Autentificare activă** | Challenge-response că cipul este autentic și nu a fost clonat |
+| **Chip Authentication** | ECDH cu cheia statică din DG14 (BSI TR-03110) — leagă identitatea MAI-semnată de cipul fizic; opt-in, fără PIN; obligatoriu pentru SSO |
 | **Semnare documente** | Semnătură calificată ECDSA-SHA384 cu cheia de non-repudiere — necesită PIN semnătură |
 
 ---
@@ -110,6 +111,7 @@ Toate operațiunile criptografice folosesc biblioteci open-source consacrate, au
 | **PACE** (ISO 11770-4 / ICAO 9303 Partea 11) | Sesiune NFC securizată cu cipul CEI |
 | **Autentificare pasivă** (ICAO 9303 Partea 11) | Integritatea datelor față de certificatul MAI (CSCA) |
 | **Autentificare activă** (ICAO 9303 Partea 11) | Dovadă că cipul este autentic, nu clonat |
+| **Chip Authentication** (BSI TR-03110 CA) | Legătură criptografică între identitatea MAI-semnată și cipul fizic prin ECDH (brainpoolP256r1) |
 | **ECDSA-SHA384** | Semnătură digitală cu cheia de non-repudiere |
 | **X.509 / CSCA** | Validare lanț de certificate până la rădăcina MAI |
 | **PAdES / eIDAS** (Regulamentul UE 910/2014) | Format semnătură electronică calificată pentru PDF |
@@ -138,12 +140,15 @@ EidKit SSO este un identity provider OIDC care nu emite niciun token dacă nu po
 4. **PIN-ul a fost utilizat** — Autentificarea activă pe cipul CEI necesită verificarea PIN-ului de autentificare (4 cifre) înainte ca CE81 să poată semna. O semnătură AA validă implică că posesorul cunoaște PIN-ul cardului fizic.
 5. **Cheia cipului a fost emisă de MAI** — Certificatul CE81 este verificat față de MAI GenPKI Sub-CA. O cheie rogue nu poate fi substituită.
 6. **CNP-ul este extras server-side** — Serverul nu acceptă CNP-ul din payload-ul aplicației. Îl extrage din bytes-urile DG1 după ce integritatea lor a fost verificată față de SOD.
+7. **DG14 este semnat de MAI** — SHA-256 al bytes-urilor DG14 (care conține cheia publică a cipului, Q_chip) trebuie să corespundă cu hash-ul înregistrat în SOD de MAI. Aceasta leagă cheia de autentificare a cipului de aceeași semnătură care acoperă identitatea.
+8. **Legătura cip↔identitate este verificată criptografic** — Serverul efectuează un schimb ECDH (BSI TR-03110 Chip Authentication) cu Q_chip din DG14 semnat de MAI. Numai cipul care deține cheia privată d_chip poate produce un secret partajat corect. Aceasta închide atacul de separare: un atacator care citește datele ICAO ale victimei (CAN vizibil) nu poate combina SOD-ul victimei cu propriul cip pentru CE81.
 
 Spre deosebire de sisteme de autentificare bazate pe parolă sau pe documente scanate, EidKit SSO nu poate fi compromis prin:
 - **Phishing** — challenge-ul server-side este unic per sesiune; o sesiune captată nu poate fi refolosită
 - **Falsificare date** — orice modificare a datelor de identitate invalidează hash-ul din SOD
 - **Card clonat** — cipul deține o cheie privată hardware care nu poate fi extrasă; clonarea este imposibilă fizic
 - **Prezentare de screenshot / PDF** — semnătura cipului necesită hardware real, nu o imagine
+- **Separarea dovezilor (SOD de la un cip, AA de la altul)** — legătura CA verifică că cipul care a semnat challenge-ul CE81 deține exact cheia Q_chip din identitatea MAI-semnată
 
 ```
 Browser                    Telefon (EidKit)              Server (idp.eidkit.ro)
@@ -152,9 +157,9 @@ Browser                    Telefon (EidKit)              Server (idp.eidkit.ro)
   │◀── QR (session + nonce) ────────────────────────────────── │
   │                              │◀── QR scanat                │
   │                              │── citire card (NFC)         │
-  │                              │   PACE + verifyPin + AA     │
+  │                              │   PACE + CA + verifyPin + AA│
   │                              │── POST /session/complete ──▶│
-  │                              │   (dovadă criptografică)    │── verifică 6 condiții
+  │                              │   (dovadă criptografică)    │── verifică 8 condiții
   │                              │                             │── emite auth code
   │◀── polling: code ───────────────────────────────────────── │
   │── POST /token (code) ──────────────────────────────────▶  │

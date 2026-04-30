@@ -29,6 +29,7 @@ All cryptographic operations happen exclusively on the card chip and on the user
 | **Passive Authentication** | Verifies data was issued by the Romanian Ministry of Internal Affairs (MAI) and has not been tampered with (ICAO 9303) |
 | **Identity data reading** | Name, CNP, date of birth, address, photo, handwritten signature — requires authentication PIN |
 | **Active Authentication** | Challenge-response proof that the chip is genuine and not cloned |
+| **Chip Authentication** | ECDH against the static DG14 key (BSI TR-03110) — cryptographically binds the MAI-signed identity to the physical chip; opt-in, no PIN required; mandatory for SSO |
 | **Document signing** | Qualified ECDSA-SHA384 signature using the card's non-repudiation key — requires signing PIN |
 
 ---
@@ -110,6 +111,7 @@ All cryptographic operations use well-established, internationally audited open-
 | **PACE** (ISO 11770-4 / ICAO 9303 Part 11) | Secure NFC session with the CEI chip |
 | **Passive Authentication** (ICAO 9303 Part 11) | Data integrity verification against the MAI certificate (CSCA) |
 | **Active Authentication** (ICAO 9303 Part 11) | Proof that the chip is genuine, not cloned |
+| **Chip Authentication** (BSI TR-03110 CA) | Cryptographic binding between MAI-signed identity and the physical chip via ECDH (brainpoolP256r1) |
 | **ECDSA-SHA384** | Digital signature using the card's non-repudiation key |
 | **X.509 / CSCA** | Certificate chain validation up to the MAI root certificate |
 | **PAdES / eIDAS** (EU Regulation 910/2014) | Qualified electronic signature format for PDF documents |
@@ -138,12 +140,15 @@ EidKit SSO is an OIDC identity provider that issues no token unless it can crypt
 4. **The PIN was used** — Active Authentication on the CEI chip requires the 4-digit auth PIN to be verified on-chip before CE81 can sign. A valid AA signature implies the holder knows the PIN of the physical card.
 5. **The chip key was issued by MAI** — The CE81 certificate is verified against the MAI GenPKI Sub-CA. A rogue key cannot be substituted.
 6. **The CNP is extracted server-side** — The server does not accept the CNP from the app payload. It extracts it from the DG1 bytes after their integrity has been verified against the SOD.
+7. **DG14 is signed by MAI** — SHA-256 of the DG14 bytes (which contains the chip's public key, Q_chip) must match the hash recorded in the SOD by MAI. This binds the chip authentication key to the same signature that covers the identity data.
+8. **Chip-to-identity binding is cryptographically verified** — The server performs an ECDH key agreement (BSI TR-03110 Chip Authentication) using Q_chip from the MAI-signed DG14. Only the chip holding private key d_chip can produce the correct shared secret. This closes the split-proof attack: an attacker who reads a victim's ICAO data (CAN visible on card back) cannot combine the victim's SOD with their own chip for CE81.
 
 Unlike password-based or document-scan authentication systems, EidKit SSO cannot be compromised by:
 - **Phishing** — the server-side challenge is unique per session; a captured session cannot be reused
 - **Data forgery** — any modification to identity data invalidates the SOD hash
 - **Cloned card** — the chip holds a hardware private key that cannot be extracted; physical cloning is impossible
 - **Screenshot / PDF replay** — the chip signature requires real hardware, not an image
+- **Split-proof attack (SOD from one chip, AA from another)** — the CA binding verifies the chip that signed the CE81 challenge holds exactly the Q_chip key from the MAI-signed identity
 
 ```
 Browser                  Phone (EidKit app)            Server (idp.eidkit.ro)
@@ -152,9 +157,9 @@ Browser                  Phone (EidKit app)            Server (idp.eidkit.ro)
   │◀── QR (session + nonce) ────────────────────────────────── │
   │                              │◀── QR scanned               │
   │                              │── card read (NFC)           │
-  │                              │   PACE + verifyPin + AA     │
+  │                              │   PACE + CA + verifyPin + AA│
   │                              │── POST /session/complete ──▶│
-  │                              │   (cryptographic proof)     │── verifies 6 conditions
+  │                              │   (cryptographic proof)     │── verifies 8 conditions
   │                              │                             │── issues auth code
   │◀── polling: code ───────────────────────────────────────── │
   │── POST /token (code) ──────────────────────────────────▶  │

@@ -110,9 +110,11 @@ Unlike a traditional OIDC provider that issues tokens on the basis of a password
 |---|---|
 | DSC chain → MAI CSCA | The identity card was issued by the Romanian state |
 | DG1 hash from SOD | The identity data (including CNP) has not been modified since MAI signed it |
+| DG14 hash from SOD | The chip's public key (Q_chip) was signed by MAI — cannot be substituted |
 | Chip ECDSA signature | The physical card was present — cannot be forged without the chip |
 | Server-side challenge | The signature is fresh — cannot be replayed |
 | CE81 chain → MAI GenPKI Sub-CA | The chip's authentication key was issued by MAI |
+| CA binding (ECDH, BSI TR-03110) | The chip that signed CE81 holds exactly the Q_chip key from the identity — split-proof attack is impossible |
 
 **PIN proof:** Active Authentication on the CEI chip requires verification of the 4-digit auth PIN before CE81 can sign the challenge. A valid AA signature implies the user knows the PIN of the physical card.
 

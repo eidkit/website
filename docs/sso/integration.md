@@ -110,9 +110,11 @@ Spre deosebire de un provider OIDC clasic care emite token-uri pe baza unei paro
 |---|---|
 | Lanț DSC → CSCA MAI | Cartea de identitate a fost emisă de statul român |
 | Hash DG1 din SOD | Identitatea (inclusiv CNP-ul) nu a fost modificată după semnarea de MAI |
+| Hash DG14 din SOD | Cheia publică a cipului (Q_chip) a fost semnată de MAI — nu poate fi substituită |
 | Semnătură ECDSA a cipului | Cardul fizic a fost prezent — nu se poate falsifica fără cip |
 | Challenge server-side | Semnătura este proaspătă — nu poate fi refolosită (anti-replay) |
 | Lanț CE81 → MAI GenPKI Sub-CA | Cheia de autentificare a cipului a fost emisă de MAI |
+| Legătură CA (ECDH, BSI TR-03110) | Cipul care a semnat CE81 deține exact cheia Q_chip din identitate — atacul de separare a dovezilor este imposibil |
 
 **Proba de PIN:** Autentificarea activă pe cipul CEI necesită verificarea PIN-ului de autentificare (4 cifre) înainte ca cheia CE81 să poată semna challenge-ul. Semnătura AA în token implică că utilizatorul cunoaște PIN-ul cardului fizic.
 
