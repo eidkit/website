@@ -18,7 +18,7 @@ const sidebars: SidebarsConfig = {
       type: 'category',
       label: 'Features',
       collapsed: false,
-      items: ['features/kyc', 'features/signing', 'features/active-auth'],
+      items: ['features/kyc', 'features/signing', 'features/active-auth', 'features/chip-auth'],
     },
     {
       type: 'doc',
