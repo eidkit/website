@@ -138,18 +138,6 @@
   box-shadow: 0 0 14px rgba(255, 255, 255, 0.15);
 }
 
-.store-badge--disabled {
-  opacity: 0.5;
-  cursor: default;
-  border-color: rgba(255, 255, 255, 0.3);
-}
-
-.store-badge--disabled:hover {
-  background: rgba(0, 0, 0, 0.45);
-  border-color: rgba(255, 255, 255, 0.3);
-  box-shadow: none;
-}
-
 .store-badge__text {
   display: flex;
   flex-direction: column;
@@ -169,42 +157,9 @@
   font-weight: 700;
 }
 
-.store-badge__pill {
-  position: absolute;
-  top: -8px;
-  right: -8px;
-  background: var(--ifm-color-primary-light);
-  color: #fff;
-  font-size: 0.6rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  padding: 0.15rem 0.4rem;
-  border-radius: 999px;
-}
-
-.store-early-access {
-  margin-top: 0.6rem;
-  font-size: 0.85rem;
-  color: rgba(255, 255, 255, 0.6);
-}
-
-.store-early-access a {
-  color: rgba(255, 255, 255, 0.85);
-  text-decoration: underline;
-}
-
-.store-early-access a:hover {
-  color: #fff;
-}
-
 @media (max-width: 768px) {
   .store-badges {
     justify-content: center;
-  }
-
-  .store-early-access {
-    text-align: center;
   }
 }
 

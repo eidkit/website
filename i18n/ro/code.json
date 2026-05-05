@@ -82,16 +82,8 @@
     "message": "Disponibil pe",
     "description": "Google Play badge small line"
   },
-  "homepage.store.googleplay.pill": {
-    "message": "Acces timpuriu",
-    "description": "Pill label on Google Play badge when in closed testing"
-  },
-  "homepage.store.googleplay.early_access": {
-    "message": "Android în closed testing — ",
-    "description": "Text before the contact link for Google Play early access"
-  },
-  "homepage.store.googleplay.cta": {
-    "message": "contactează-ne pentru acces.",
-    "description": "Link text for Google Play early access"
+  "homepage.store.googleplay.aria": {
+    "message": "Descarcă din Google Play",
+    "description": "Aria label for Google Play badge"
   }
 }

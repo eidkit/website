@@ -7,6 +7,7 @@ const config: Config = {
     iosVersion: '0.1.9',
     androidVersion: '0.1.7',
     appStoreUrl: 'https://apps.apple.com/us/app/eidkit-app/id6761855403',
+    playStoreUrl: 'https://play.google.com/store/apps/details?id=ro.eidkit.app',
   },
   title: 'EidKit',
   tagline: 'Infrastructură pentru Cartea de Identitate Electronică Românească',
