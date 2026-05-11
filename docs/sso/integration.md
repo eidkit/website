@@ -22,7 +22,7 @@ Credențialele se obțin instant prin [Portalul Dezvoltatori](https://dashboard.
 4. Copiază `client_id` și `client_secret` — secretul este afișat o singură dată
 
 :::info Ai nevoie de buletin electronic
-Autentificarea cu CEI este necesară atât pentru înregistrarea în portal, cât și pentru testarea integrației tale. Dacă nu ai încă un buletin electronic, contactează [hello@eidkit.ro](mailto:hello@eidkit.ro).
+Autentificarea cu CEI este necesară atât pentru înregistrarea în portal, cât și pentru testarea integrării tale. Dacă nu ai încă un buletin electronic, contactează [hello@eidkit.ro](mailto:hello@eidkit.ro).
 :::
 
 ## Ce primești

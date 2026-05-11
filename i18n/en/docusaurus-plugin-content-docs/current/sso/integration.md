@@ -7,14 +7,30 @@ sidebar_position: 1
 
 EidKit SSO is a standard OIDC identity provider. You integrate it exactly like Google Sign-In or Apple Sign-In — a Client ID, a Client Secret, a redirect URI.
 
+## Getting credentials
+
+Credentials are issued instantly via the [Developer Portal](https://dashboard.eidkit.ro) — no forms, no email.
+
+**What you need:**
+- A Romanian electronic identity card (CEI) with NFC chip
+- The [EidKit](https://eidkit.ro) app installed on your phone
+
+**Steps:**
+1. Go to [dashboard.eidkit.ro](https://dashboard.eidkit.ro)
+2. Click **"Înregistrează aplicația cu buletinul electronic"**
+3. Scan the QR code with the EidKit app and tap your card
+4. Copy your `client_id` and `client_secret` — the secret is shown only once
+
+:::info Electronic ID card required
+CEI authentication is required both to register in the portal and to test your integration. If you don't have an electronic ID card yet, contact [hello@eidkit.ro](mailto:hello@eidkit.ro).
+:::
+
 ## What you get
 
-- **Client ID** and **Client Secret** — issued by EidKit
+- **Client ID** and **Client Secret** — generated instantly
 - **Issuer URL**: `https://idp.eidkit.ro`
 - OIDC autodiscovery at `https://idp.eidkit.ro/.well-known/openid-configuration`
 - Cryptographically verified data from MAI — not self-reported by the user
-
-Contact [hello@eidkit.ro](mailto:hello@eidkit.ro) to configure your client.
 
 ---
 
