@@ -1,9 +1,10 @@
 import Link from '@docusaurus/Link';
 import Translate, { translate } from '@docusaurus/Translate';
 import useBaseUrl from '@docusaurus/useBaseUrl';
+import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
 import { QrCode, Smartphone, CreditCard, ShieldCheck, ArrowRight } from 'lucide-react';
-import type { ReactNode } from 'react';
+import { type ReactNode, useEffect, useRef, useState } from 'react';
 
 function BrowserFrame({ src }: { src: string }): ReactNode {
   return (
@@ -20,6 +21,74 @@ function BrowserFrame({ src }: { src: string }): ReactNode {
         muted
         playsInline
         className="browser-frame__video"
+      />
+    </div>
+  );
+}
+
+function useCountUp(target: number, duration = 1500) {
+  const [value, setValue] = useState(0);
+  const rafRef = useRef<number | null>(null);
+  useEffect(() => {
+    if (target === 0) return;
+    const start = performance.now();
+    const tick = (now: number) => {
+      const progress = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      setValue(Math.round(eased * target));
+      if (progress < 1) rafRef.current = requestAnimationFrame(tick);
+    };
+    rafRef.current = requestAnimationFrame(tick);
+    return () => { if (rafRef.current) cancelAnimationFrame(rafRef.current); };
+  }, [target, duration]);
+  return value;
+}
+
+function StatItem({ target, label }: { target: number; label: string }) {
+  const value = useCountUp(target);
+  return (
+    <div className="sso-stats__item">
+      <span className="sso-stats__number">{value.toLocaleString('ro-RO')}</span>
+      <span className="sso-stats__label">{label}</span>
+    </div>
+  );
+}
+
+function StatsBar(): ReactNode {
+  const { siteConfig } = useDocusaurusContext();
+  const idpUrl = (siteConfig.customFields?.idpUrl as string) || 'https://idp.eidkit.ro';
+  const [stats, setStats] = useState<{ clients: number; verifications: number } | null>(null);
+  const [visible, setVisible] = useState(false);
+  const ref = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    fetch(`${idpUrl}/api/stats`)
+      .then(r => r.json())
+      .then(setStats)
+      .catch(() => {});
+  }, []);
+
+  useEffect(() => {
+    if (!ref.current || !stats) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) { setVisible(true); observer.disconnect(); } },
+      { threshold: 0.3 },
+    );
+    observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, [stats]);
+
+  if (!stats) return null;
+
+  return (
+    <div className="sso-stats" ref={ref}>
+      <StatItem
+        target={visible ? stats.clients : 0}
+        label={translate({ id: 'sso.stats.clients', message: 'aplicații integrate' })}
+      />
+      <StatItem
+        target={visible ? stats.verifications : 0}
+        label={translate({ id: 'sso.stats.verifications', message: 'autentificări' })}
       />
     </div>
   );
@@ -191,6 +260,9 @@ export default function SsoPage(): ReactNode {
           <div className="sso-hero__demo">
             <BrowserFrame src={pocVideoUrl} />
           </div>
+        </div>
+        <div className="container">
+          <StatsBar />
         </div>
       </header>
       <main>

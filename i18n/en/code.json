@@ -23,6 +23,8 @@
   "sso.page.description": { "message": "Add Romanian Electronic Identity Card authentication to your website. Standard OIDC, no passwords, MAI-verified data.", "description": "SSO page meta description" },
   "sso.hero.title": { "message": "Login with your Romanian ID card", "description": "SSO hero title" },
   "sso.hero.subtitle": { "message": "A single tap of your ID card replaces registration and login — no password, no form, with MAI-verified data.", "description": "SSO hero subtitle" },
+  "sso.stats.clients": { "message": "integrated apps", "description": "SSO stats clients label" },
+  "sso.stats.verifications": { "message": "authentications", "description": "SSO stats verifications label" },
   "sso.citizen.title": { "message": "How it works for your clients", "description": "SSO citizen section title" },
   "sso.citizen.subtitle": { "message": "Your users authenticate on your website with their ID card — no password, no form.", "description": "SSO citizen section subtitle" },
   "sso.step1.title": { "message": "Scan the QR code", "description": "SSO step 1 title" },

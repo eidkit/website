@@ -3,3 +3,4 @@ node_modules/
 build/
 static/ios-api/
 static/android-api/
+.env.development

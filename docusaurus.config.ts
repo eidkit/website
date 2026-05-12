@@ -1,6 +1,15 @@
 import { themes as prismThemes } from 'prism-react-renderer';
 import type { Config } from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
+import * as fs from 'fs';
+// Load .env.development (or .env.production) if present
+const envFile = `.env.${process.env.NODE_ENV || 'development'}`;
+if (fs.existsSync(envFile)) {
+  for (const line of fs.readFileSync(envFile, 'utf8').split('\n')) {
+    const match = line.match(/^([^#=]+)=(.*)$/);
+    if (match) process.env[match[1].trim()] = match[2].trim();
+  }
+}
 
 const config: Config = {
   customFields: {
@@ -8,6 +17,7 @@ const config: Config = {
     androidVersion: '0.1.7',
     appStoreUrl: 'https://apps.apple.com/us/app/eidkit-app/id6761855403',
     playStoreUrl: 'https://play.google.com/store/apps/details?id=ro.eidkit.app',
+    idpUrl: process.env.DOCUSAURUS_IDP_URL || 'https://idp.eidkit.ro',
   },
   title: 'EidKit',
   tagline: 'Infrastructură pentru Cartea de Identitate Electronică Românească',
