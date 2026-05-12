@@ -178,7 +178,7 @@ Browser                    Telefon (EidKit)              Server (idp.eidkit.ro)
 | **Cod sursă iOS Demo** | https://github.com/eidkit/eidkit-iOS-demo |
 | **Maven Central** | `ro.eidkit:sdk-android` |
 | **App Store (iOS)** | [EidKit pe App Store](https://apps.apple.com/us/app/eidkit-app/id6761855403) — aprobat de Apple |
-| **Google Play (Android)** | Disponibil pe Google Play — aprobat de Google |
+| **Google Play (Android)** | [EidKit pe Google Play](https://play.google.com/store/apps/details?id=ro.eidkit.app) — aprobat de Google |
 
 Ambele aplicații au trecut procesul de revizuire Apple App Store și Google Play, care include scanare automată de malware și revizuire manuală.
 
