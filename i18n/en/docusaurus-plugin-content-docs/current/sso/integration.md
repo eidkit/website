@@ -46,7 +46,7 @@ CEI authentication is required both to register in the portal and to test your i
 | `cei:picture` | Face photo (JPEG base64, ~33KB) |
 | `cei:signature` | Handwritten signature image (JPEG base64, ~3.5KB) |
 
-Most clients only need `openid profile`. Images are opt-in for specific use cases (e.g. insurance, HR).
+The `openid` and `profile` scopes require no PIN. The `address` scope requires the authentication PIN — the user enters it in the EidKit app before tapping their card. Images are opt-in for specific use cases (e.g. insurance, HR).
 
 ---
 
@@ -130,8 +130,12 @@ Unlike a traditional OIDC provider that issues tokens on the basis of a password
 | Chip ECDSA signature | The physical card was present — cannot be forged without the chip |
 | Server-side challenge | The signature is fresh — cannot be replayed |
 | CE81 chain → MAI GenPKI Sub-CA | The chip's authentication key was issued by MAI |
-| CA binding (ECDH, BSI TR-03110) | The chip that signed CE81 holds exactly the Q_chip key from the identity — split-proof attack is impossible |
+| CA binding (ECDH, BSI TR-03110) | The chip that signed CE81 holds exactly the Q_chip key from the identity — split-proof attack with a **different name** is impossible |
 
 **PIN proof:** Active Authentication on the CEI chip requires verification of the 4-digit auth PIN before CE81 can sign the challenge. A valid AA signature implies the user knows the PIN of the physical card.
 
 The server extracts the CNP directly from verified DG1 bytes — it does not accept the CNP from the app payload.
+
+:::note Threat model note
+The residual same-name split-proof attack requires physical access to the victim's card, knowledge of their CAN, and the same legal name. Every authentication permanently logs the CE81 serial number (hashed with a server secret) — MAI holds the SERIALNUMBER→CNP mapping, enabling forensic identification of any attacker. This is a detectable insider threat, not a scalable attack vector.
+:::

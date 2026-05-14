@@ -202,7 +202,7 @@ function DeveloperSection(): ReactNode {
               <Translate id="sso.developer.value3.title">Zero trust — card fizic + PIN obligatorii</Translate>
             </div>
             <p>
-              <Translate id="sso.developer.value3.body">Serverul nu emite niciun token fără dovadă criptografică că utilizatorul deține cardul fizic și cunoaște PIN-ul. Legătura criptografică între identitate și cip (Chip Authentication, BSI TR-03110) face imposibil atacul de separare a dovezilor. Nicio parolă capturată, niciun screenshot, nicio clonare nu pot trece verificarea.</Translate>
+              <Translate id="sso.developer.value3.body">Serverul nu emite niciun token fără dovadă criptografică că utilizatorul deține cardul fizic și cunoaște PIN-ul. Legătura criptografică între identitate și cip (Chip Authentication, BSI TR-03110) face extrem de dificil și detectabil atacul de separare a dovezilor — orice tentativă lasă o urmă forensică permanentă. Nicio parolă capturată, niciun screenshot, nicio clonare nu pot trece verificarea.</Translate>
             </p>
           </div>
           <div className="sso-value-item">

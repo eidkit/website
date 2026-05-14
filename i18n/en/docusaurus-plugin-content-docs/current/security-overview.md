@@ -9,7 +9,7 @@ import TabItem from '@theme/TabItem';
 
 # EidKit — Security Overview
 
-**Version:** 1.0 · **Date:** April 2026 · **Contact:** hello@eidkit.ro
+**Version:** 1.1 · **Date:** May 2026 · **Contact:** hello@eidkit.ro
 
 ---
 
@@ -141,14 +141,14 @@ EidKit SSO is an OIDC identity provider that issues no token unless it can crypt
 5. **The chip key was issued by MAI** — The CE81 certificate is verified against the MAI GenPKI Sub-CA. A rogue key cannot be substituted.
 6. **The CNP is extracted server-side** — The server does not accept the CNP from the app payload. It extracts it from the DG1 bytes after their integrity has been verified against the SOD.
 7. **DG14 is signed by MAI** — SHA-256 of the DG14 bytes (which contains the chip's public key, Q_chip) must match the hash recorded in the SOD by MAI. This binds the chip authentication key to the same signature that covers the identity data.
-8. **Chip-to-identity binding is cryptographically verified** — The server performs an ECDH key agreement (BSI TR-03110 Chip Authentication) using Q_chip from the MAI-signed DG14. Only the chip holding private key d_chip can produce the correct shared secret. This closes the split-proof attack: an attacker who reads a victim's ICAO data (CAN visible on card back) cannot combine the victim's SOD with their own chip for CE81.
+8. **Chip-to-identity binding is cryptographically verified** — At `POST /v2/session/ca-prepare` (card still on phone), the server generates a terminal keypair `(d_terminal, Q_terminal)` and stores `d_terminal` and DG14 in the session. The app relays `Q_terminal` to the chip via GENERAL AUTHENTICATE. At `POST /v2/session/complete`, the server independently recomputes `Z = ECDH(d_terminal, Q_chip_from_stored_DG14)`. `d_terminal` never leaves the server — an attacker controlling the app cannot produce a valid Z without a real chip. This closes the forged-app attack and the split-proof attack for attackers with a **different name** (combined with the CE81 subject vs DG1 name cross-check).
 
 Unlike password-based or document-scan authentication systems, EidKit SSO cannot be compromised by:
 - **Phishing** — the server-side challenge is unique per session; a captured session cannot be reused
 - **Data forgery** — any modification to identity data invalidates the SOD hash
 - **Cloned card** — the chip holds a hardware private key that cannot be extracted; physical cloning is impossible
 - **Screenshot / PDF replay** — the chip signature requires real hardware, not an image
-- **Split-proof attack (SOD from one chip, AA from another)** — the CA binding verifies the chip that signed the CE81 challenge holds exactly the Q_chip key from the MAI-signed identity
+- **Split-proof attack (different name)** — CA binding + CE81 vs DG1 name cross-check make it impossible to combine a victim's ICAO data with your own chip. **Same-name residual:** requires physical access to the victim's card + same legal name + accepting detection risk (CE81 serial number is permanently logged hashed with a server secret; MAI holds the SERIALNUMBER→CNP mapping). This is a detectable insider threat, not a scalable attack vector.
 
 ```
 Browser                  Phone (EidKit app)            Server (idp.eidkit.ro)
@@ -157,9 +157,16 @@ Browser                  Phone (EidKit app)            Server (idp.eidkit.ro)
   │◀── QR (session + nonce) ────────────────────────────────── │
   │                              │◀── QR scanned               │
   │                              │── card read (NFC)           │
-  │                              │   PACE + CA + verifyPin + AA│
-  │                              │── POST /session/complete ──▶│
+  │                              │   PACE + read DG14          │
+  │                              │── POST /v2/session/ca-prepare ──▶│
+  │                              │   (rawDg14, card on phone)  │── generates d_terminal
+  │                              │◀── caTerminalPublicKey ─────│── stores d_terminal + DG14
+  │                              │── GENERAL AUTHENTICATE      │
+  │                              │   (relay Q_terminal to chip)│
+  │                              │   verifyPin + AA            │
+  │                              │── POST /v2/session/complete ──▶│
   │                              │   (cryptographic proof)     │── verifies 8 conditions
+  │                              │                             │── recomputes Z independently
   │                              │                             │── issues auth code
   │◀── polling: code ───────────────────────────────────────── │
   │── POST /token (code) ──────────────────────────────────▶  │

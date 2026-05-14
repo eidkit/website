@@ -53,22 +53,17 @@ Chip Authentication (CA, standardised in BSI TR-03110) solves exactly this probl
 
 The card contains in DG14 a public key `Q_chip` — specific to this chip, covered by the SOD hash signed by MAI. Chip Authentication performs an ECDH exchange between an ephemeral terminal key and `Q_chip`. Only the chip that holds the corresponding private key `d_chip` can produce the correct shared secret.
 
-The server recomputes the exchange and compares:
+The server generates the terminal keypair server-side (`d_terminal` never leaves the server), sends `Q_terminal` to the app, which relays it to the chip via GENERAL AUTHENTICATE. The server then independently recomputes:
 
-```javascript
-// Server-side verification (Node.js)
-const ecdh = crypto.createECDH('brainpoolP256r1');
-ecdh.setPrivateKey(Buffer.from(caEphemeralPrivateKey, 'base64'));
-const recomputed = ecdh.computeSecret(qChipFromDg14);
-
-if (!recomputed.slice(0, 32).equals(Buffer.from(caSharedSecretX, 'base64'))) {
-    throw new Error('CA binding mismatch — split-proof attack detected');
-}
+```
+Z = ECDH(d_terminal, Q_chip_from_stored_DG14)
 ```
 
-If the comparison fails, someone presented the victim's MAI-signed data with their own chip. The attack is detected.
+If the comparison fails, someone presented the victim's MAI-signed data with their own chip. The attack is detected. An attacker controlling the app cannot produce a valid Z without a real chip — `d_terminal` was never sent to the app.
 
 If it passes, the data from the card and the chip that responded to the challenge are cryptographically bound — because `Q_chip` is signed by MAI in the SOD, and the ECDH confirms that the physical chip holds the corresponding private key.
+
+This binding closes the attack for attackers with a **different name**. A highly constrained residual exists for attackers who share the same legal name as the victim — requiring physical card access and accepting forensic detection risk (every authentication permanently logs the CE81 serial number, and MAI holds the mapping to the CNP).
 
 ---
 

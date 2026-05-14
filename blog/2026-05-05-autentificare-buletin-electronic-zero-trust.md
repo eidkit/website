@@ -52,22 +52,17 @@ Chip Authentication (CA, standardizată în BSI TR-03110) rezolvă exact aceast�
 
 Cardul conține în DG14 o cheie publică `Q_chip` — specifică acestui cip, acoperită de hash-ul SOD semnat de MAI. Chip Authentication efectuează un schimb ECDH între o cheie efemeră a terminalului și `Q_chip`. Numai cipul care deține cheia privată corespunzătoare `d_chip` poate produce secretul partajat corect.
 
-Serverul recomputează schimbul și compară:
+Serverul generează perechea de chei terminale server-side (`d_terminal` nu părăsește niciodată serverul), trimite `Q_terminal` aplicației, care îl relayează cipului via GENERAL AUTHENTICATE. Serverul recomputează apoi independent:
 
-```javascript
-// Verificare server-side (Node.js)
-const ecdh = crypto.createECDH('brainpoolP256r1');
-ecdh.setPrivateKey(Buffer.from(caEphemeralPrivateKey, 'base64'));
-const recomputed = ecdh.computeSecret(qChipFromDg14);
-
-if (!recomputed.slice(0, 32).equals(Buffer.from(caSharedSecretX, 'base64'))) {
-    throw new Error('CA binding mismatch — split-proof attack detected');
-}
+```
+Z = ECDH(d_terminal, Q_chip_din_DG14_stocat)
 ```
 
-Dacă comparația eșuează, cineva a prezentat date MAI-semnate ale victimei cu propriul cip. Atacul este detectat.
+Dacă comparația eșuează, cineva a prezentat date MAI-semnate ale victimei cu propriul cip. Atacul este detectat. Un atacator care controlează aplicația nu poate produce un Z valid fără un cip real — `d_terminal` nu a fost niciodată trimis aplicației.
 
 Dacă trece, datele din card și cipul care a răspuns la challenge sunt criptografic legate — pentru că `Q_chip` este semnat de MAI în SOD, iar ECDH-ul confirmă că cipul fizic deține cheia privată corespunzătoare.
+
+Această legătură închide atacul pentru atacatorii cu **nume diferit**. Există un rezidual extrem de specializat pentru atacatorii cu același nume legal ca victima — care necesită acces fizic la card și acceptarea riscului de detecție forensică (fiecare autentificare înregistrează permanent numărul de serie CE81, iar MAI deține maparea spre CNP).
 
 ---
 

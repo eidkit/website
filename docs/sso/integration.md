@@ -46,7 +46,7 @@ Autentificarea cu CEI este necesară atât pentru înregistrarea în portal, câ
 | `cei:picture` | Fotografie față (JPEG base64, ~33KB) |
 | `cei:signature` | Imagine semnătură olografă (JPEG base64, ~3.5KB) |
 
-Majoritatea clienților au nevoie doar de `openid profile`. Imaginile sunt opt-in pentru cazuri specifice (ex. asigurări, HR).
+Scopurile `openid` și `profile` nu necesită PIN. Scopul `address` necesită PIN-ul de autentificare — utilizatorul îl introduce în aplicația EidKit înainte de atingerea cardului. Imaginile sunt opt-in pentru cazuri specifice (ex. asigurări, HR).
 
 ---
 
@@ -130,8 +130,12 @@ Spre deosebire de un provider OIDC clasic care emite token-uri pe baza unei paro
 | Semnătură ECDSA a cipului | Cardul fizic a fost prezent — nu se poate falsifica fără cip |
 | Challenge server-side | Semnătura este proaspătă — nu poate fi refolosită (anti-replay) |
 | Lanț CE81 → MAI GenPKI Sub-CA | Cheia de autentificare a cipului a fost emisă de MAI |
-| Legătură CA (ECDH, BSI TR-03110) | Cipul care a semnat CE81 deține exact cheia Q_chip din identitate — atacul de separare a dovezilor este imposibil |
+| Legătură CA (ECDH, BSI TR-03110) | Cipul care a semnat CE81 deține exact cheia Q_chip din identitate — atacul de separare a dovezilor **cu nume diferit** este imposibil |
 
 **Proba de PIN:** Autentificarea activă pe cipul CEI necesită verificarea PIN-ului de autentificare (4 cifre) înainte ca cheia CE81 să poată semna challenge-ul. Semnătura AA în token implică că utilizatorul cunoaște PIN-ul cardului fizic.
 
 Serverul extrage CNP-ul direct din bytes-urile DG1 verificate — nu îl acceptă din payload-ul aplicației.
+
+:::note Notă model de amenințare
+Atacul rezidual de tip split-proof (același nume) necesită acces fizic la cardul victimei, cunoașterea CAN-ului și același nume legal. Fiecare autentificare înregistrează permanent numărul de serie CE81 (hash cu cheie secretă server) — MAI deține maparea SERIALNUMBER→CNP, permițând identificarea forensică a oricărui atacator. Acesta este un risc intern detectabil, nu un vector de atac scalabil.
+:::

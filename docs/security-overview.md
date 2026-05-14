@@ -9,7 +9,7 @@ import TabItem from '@theme/TabItem';
 
 # EidKit — Prezentare de securitate
 
-**Versiune:** 1.0 · **Data:** aprilie 2026 · **Contact:** hello@eidkit.ro
+**Versiune:** 1.1 · **Data:** mai 2026 · **Contact:** hello@eidkit.ro
 
 ---
 
@@ -141,14 +141,14 @@ EidKit SSO este un identity provider OIDC care nu emite niciun token dacă nu po
 5. **Cheia cipului a fost emisă de MAI** — Certificatul CE81 este verificat față de MAI GenPKI Sub-CA. O cheie rogue nu poate fi substituită.
 6. **CNP-ul este extras server-side** — Serverul nu acceptă CNP-ul din payload-ul aplicației. Îl extrage din bytes-urile DG1 după ce integritatea lor a fost verificată față de SOD.
 7. **DG14 este semnat de MAI** — SHA-256 al bytes-urilor DG14 (care conține cheia publică a cipului, Q_chip) trebuie să corespundă cu hash-ul înregistrat în SOD de MAI. Aceasta leagă cheia de autentificare a cipului de aceeași semnătură care acoperă identitatea.
-8. **Legătura cip↔identitate este verificată criptografic** — Serverul efectuează un schimb ECDH (BSI TR-03110 Chip Authentication) cu Q_chip din DG14 semnat de MAI. Numai cipul care deține cheia privată d_chip poate produce un secret partajat corect. Aceasta închide atacul de separare: un atacator care citește datele ICAO ale victimei (CAN vizibil) nu poate combina SOD-ul victimei cu propriul cip pentru CE81.
+8. **Legătura cip↔identitate este verificată criptografic** — La `POST /v2/session/ca-prepare` (cu cardul în contact), serverul generează o pereche de chei terminale `(d_terminal, Q_terminal)` și stochează `d_terminal` și DG14 în sesiune. Aplicația relayează `Q_terminal` cipului via GENERAL AUTHENTICATE. La `POST /v2/session/complete`, serverul recomputează independent `Z = ECDH(d_terminal, Q_chip_din_DG14_stocat)`. `d_terminal` nu părăsește niciodată serverul — un atacator care controlează aplicația nu poate produce un Z valid fără un cip real. Aceasta închide atacul de tip aplicație falsificată și atacul de separare pentru atacatori cu **nume diferit** (combinat cu verificarea numelui CE81 vs DG1).
 
 Spre deosebire de sisteme de autentificare bazate pe parolă sau pe documente scanate, EidKit SSO nu poate fi compromis prin:
 - **Phishing** — challenge-ul server-side este unic per sesiune; o sesiune captată nu poate fi refolosită
 - **Falsificare date** — orice modificare a datelor de identitate invalidează hash-ul din SOD
 - **Card clonat** — cipul deține o cheie privată hardware care nu poate fi extrasă; clonarea este imposibilă fizic
 - **Prezentare de screenshot / PDF** — semnătura cipului necesită hardware real, nu o imagine
-- **Separarea dovezilor (SOD de la un cip, AA de la altul)** — legătura CA verifică că cipul care a semnat challenge-ul CE81 deține exact cheia Q_chip din identitatea MAI-semnată
+- **Separarea dovezilor cu nume diferit** — legătura CA + verificarea numelui CE81 vs DG1 fac imposibilă combinarea datelor ICAO ale victimei cu propriul cip. **Rezidual cu același nume:** necesită acces fizic la cardul victimei + același nume legal + acceptarea riscului de detecție (numărul de serie CE81 este înregistrat permanent și hashed cu cheie secretă server; MAI deține maparea SERIALNUMBER→CNP). Acesta este un risc intern detectabil, nu un vector de atac scalabil.
 
 ```
 Browser                    Telefon (EidKit)              Server (idp.eidkit.ro)
@@ -157,9 +157,16 @@ Browser                    Telefon (EidKit)              Server (idp.eidkit.ro)
   │◀── QR (session + nonce) ────────────────────────────────── │
   │                              │◀── QR scanat                │
   │                              │── citire card (NFC)         │
-  │                              │   PACE + CA + verifyPin + AA│
-  │                              │── POST /session/complete ──▶│
+  │                              │   PACE + citire DG14        │
+  │                              │── POST /v2/session/ca-prepare ──▶│
+  │                              │   (rawDg14, card pe telefon)│── generează d_terminal
+  │                              │◀── caTerminalPublicKey ─────│── stochează d_terminal + DG14
+  │                              │── GENERAL AUTHENTICATE      │
+  │                              │   (relayează Q_terminal)    │
+  │                              │   verifyPin + AA            │
+  │                              │── POST /v2/session/complete ──▶│
   │                              │   (dovadă criptografică)    │── verifică 8 condiții
+  │                              │                             │── recomputează Z independent
   │                              │                             │── emite auth code
   │◀── polling: code ───────────────────────────────────────── │
   │── POST /token (code) ──────────────────────────────────▶  │
