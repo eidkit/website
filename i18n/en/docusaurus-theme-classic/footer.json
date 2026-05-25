@@ -3,6 +3,10 @@
     "message": "SSO — Login with ID card",
     "description": "Footer link label"
   },
+  "link.item.label.Prețuri": {
+    "message": "Pricing",
+    "description": "Footer link label"
+  },
   "link.item.label.Overview": {
     "message": "Overview",
     "description": "Footer link label"

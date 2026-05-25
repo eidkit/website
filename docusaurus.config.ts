@@ -85,6 +85,11 @@ const config: Config = {
           position: 'left',
         },
         {
+          to: '/pricing',
+          label: 'Prețuri',
+          position: 'left',
+        },
+        {
           type: 'docSidebar',
           sidebarId: 'docsSidebar',
           position: 'left',
@@ -113,6 +118,7 @@ const config: Config = {
           title: 'Docs',
           items: [
             { label: 'SSO', to: '/sso' },
+            { label: 'Prețuri', to: '/pricing' },
             { label: 'Overview', to: '/docs/overview' },
             { label: 'Ghid rapid', to: '/docs/quickstart' },
           ],
