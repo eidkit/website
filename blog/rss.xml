@@ -4,10 +4,88 @@
         <title>EidKit Blog</title>
         <link>https://eidkit.ro/blog</link>
         <description>EidKit Blog</description>
-        <lastBuildDate>Tue, 05 May 2026 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Sat, 30 May 2026 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>ro</language>
+        <item>
+            <title><![CDATA[Verificarea identității în iGaming după CEI: ce se schimbă pentru operatorii ONJN în 2026]]></title>
+            <link>https://eidkit.ro/blog/kyc-igaming-romania-carte-electronica-identitate</link>
+            <guid>https://eidkit.ro/blog/kyc-igaming-romania-carte-electronica-identitate</guid>
+            <pubDate>Sat, 30 May 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[Noua carte electronică de identitate schimbă fundamental fluxul KYC pentru operatorii licențiați ONJN. Adresa nu mai apare pe cardul fizic, video KYC-ul are limite clare, iar cipul oferă ceva ce nicio altă soluție nu poate: identitate verificată criptografic de MAI la fiecare autentificare.
+]]></description>
+            <content:encoded><![CDATA[<p>Piața de jocuri de noroc online din România este una dintre cele mai reglementate din Europa. ONJN a emis peste 50 de licențe de Clasa I, peste 90% din pariuri se plasează prin operatori licențiați, iar amenzile și revocările de licențe din ultimul an arată că reglementatorul urmărește îndeaproape conformitatea.</p>
+<p>Din iulie 2025, fiecare cetățean român care solicită un act de identitate primește o Carte Electronică de Identitate cu cip NFC. Această tranziție schimbă un lucru concret în fluxul KYC al oricărui operator licențiat ONJN — și nu toți operatorii sunt pregătiți.</p>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="ce-s-a-schimbat-concret">Ce s-a schimbat concret<a href="https://eidkit.ro/blog/kyc-igaming-romania-carte-electronica-identitate#ce-s-a-schimbat-concret" class="hash-link" aria-label="Direct link to Ce s-a schimbat concret" title="Direct link to Ce s-a schimbat concret">​</a></h2>
+<p>Vechiul buletin tipărea adresa de domiciliu pe verso. Operatorii puteau fotografia actul, extrage adresa prin OCR și o puteau folosi pentru verificarea de adresă cerută în procesul CDD.</p>
+<p>Noua CEI nu mai tipărește adresa pe față sau pe verso. Adresa există exclusiv pe cipul electronic, în applet-ul EDATA, protejată de un canal criptat și de PIN-ul titularului.</p>
+<p>Consecința practică: <strong>fluxul clasic de „fotografiezi actul, extragem adresa prin OCR" nu mai funcționează pentru niciun utilizator cu CEI.</strong></p>
+<p>Și numărul acestor utilizatori crește în fiecare zi. Guvernul a emis <a href="https://carteadeidentitate.gov.ro/despre/" target="_blank" rel="noopener noreferrer">peste 1,8 milioane de CEI</a> până acum, cu 1,1 milioane de cărți vechi care expiră doar în 2025. Până la sfârșitul anului 2026, majoritatea utilizatorilor activi ai platformelor de iGaming din România vor deține CEI ca unic act de identitate valid.</p>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="problema-bonus-abuse--un-vector-pe-care-cei-îl-închide">Problema bonus abuse — un vector pe care CEI îl închide<a href="https://eidkit.ro/blog/kyc-igaming-romania-carte-electronica-identitate#problema-bonus-abuse--un-vector-pe-care-cei-%C3%AEl-%C3%AEnchide" class="hash-link" aria-label="Direct link to Problema bonus abuse — un vector pe care CEI îl închide" title="Direct link to Problema bonus abuse — un vector pe care CEI îl închide">​</a></h2>
+<p>Unul dintre cele mai costisitoare probleme pentru operatori este multi-accounting-ul: același utilizator creează conturi multiple pentru a profita de bonusuri de bun-venit, oferte de reload și promoții.</p>
+<p>Soluțiile actuale — verificare prin email, număr de telefon, IP — sunt ușor de ocolit. Video KYC-ul adaugă fricțiune, dar cu deepfake-uri disponibile comercial, nu mai oferă garanțiile de acum 3 ani.</p>
+<p>CEI schimbă ecuația la nivel fundamental: <strong>un card fizic, emis de MAI, legat criptografic de o singură identitate.</strong> Nu există două persoane cu același CEI. Nu există CEI virtual sau generat software. Cipul conține o cheie privată stocată hardware care nu poate fi exportată sau clonată.</p>
+<p>Un operator care leagă contul de cipul CEI — nu de CNP, nu de email, ci de cipul fizic — elimină practic multi-accounting-ul pentru toți utilizatorii cu CEI.</p>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="video-kyc-ce-poate-și-ce-nu-poate-face">Video KYC: ce poate și ce nu poate face<a href="https://eidkit.ro/blog/kyc-igaming-romania-carte-electronica-identitate#video-kyc-ce-poate-%C8%99i-ce-nu-poate-face" class="hash-link" aria-label="Direct link to Video KYC: ce poate și ce nu poate face" title="Direct link to Video KYC: ce poate și ce nu poate face">​</a></h2>
+<p>Soluțiile de video KYC actuale (Sumsub, Veriff, Onfido, Didit, Qoobiss) funcționează prin fotografierea documentului și verificarea biometrică a feței. Sunt soluții solide pentru ce fac.</p>
+<p>Dar au limite structurale care nu pot fi rezolvate prin îmbunătățiri de produs:</p>
+<p><strong>Nivelul de asigurare eIDAS.</strong> Video KYC cu OCR pe document foto atinge cel mult nivelul Substantial. Cipul CEI cu autentificare activă (PACE + PA + AA) reprezintă nivelul High — dovadă criptografică că documentul este autentic, că cipul nu este clonat și că utilizatorul deține cardul fizic.</p>
+<p><strong>Adresa de domiciliu.</strong> Video KYC nu poate extrage adresa din CEI deoarece nu citește cipul. Niciun furnizor de video KYC nu poate accesa applet-ul EDATA. Adresa trebuie obținută prin alte mijloace — adeverință separată, acces direct la DGEP (disponibil băncilor, nu oricui), sau cerut utilizatorului să o declare manual.</p>
+<p><strong>Rezistența la deepfake.</strong> Autentificarea cu cipul CEI nu implică nici biometrie, nici video. Utilizatorul introduce CAN-ul tipărit pe card și PIN-ul setat la MAI, apoi atinge cardul de telefon. Nu există suprafață de atac pentru deepfake sau sinteză de imagine.</p>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="ce-cere-onjn-și-unde-se-situează-cei">Ce cere ONJN și unde se situează CEI<a href="https://eidkit.ro/blog/kyc-igaming-romania-carte-electronica-identitate#ce-cere-onjn-%C8%99i-unde-se-situeaz%C4%83-cei" class="hash-link" aria-label="Direct link to Ce cere ONJN și unde se situează CEI" title="Direct link to Ce cere ONJN și unde se situează CEI">​</a></h2>
+<p>Legea 129/2019 și reglementările ONJN impun operatorilor obligații clare de identificare și verificare a identității jucătorilor, inclusiv verificarea adresei de domiciliu.</p>
+<p>Platforma de autoexcludere — pe care ONJN și ICI București o modernizează printr-un protocol semnat în februarie 2026 — va folosi verificare prin card de identitate, nu video KYC. Semnalul reglementatorului este clar: direcția este spre identificare prin document, nu spre selfie și OCR.</p>
+<p>Un operator care integrează autentificarea cu CEI nu face doar un upgrade tehnic. Face un pas înaintea cerințelor ONJN viitoare.</p>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="cum-arată-integrarea-în-practică">Cum arată integrarea în practică<a href="https://eidkit.ro/blog/kyc-igaming-romania-carte-electronica-identitate#cum-arat%C4%83-integrarea-%C3%AEn-practic%C4%83" class="hash-link" aria-label="Direct link to Cum arată integrarea în practică" title="Direct link to Cum arată integrarea în practică">​</a></h2>
+<p>EidKit expune un OIDC SSO standard — același protocol ca „Autentifică-te cu Google", implementat în câteva ore de orice echipă de development.</p>
+<p>Fluxul pentru utilizator:</p>
+<ol>
+<li>Pe site-ul operatorului apare un cod QR</li>
+<li>Utilizatorul deschide aplicația EidKit pe telefon și scanează QR-ul</li>
+<li>Introduce CAN-ul (6 cifre tipărite pe card) și PIN-ul (4 cifre, setat la MAI)</li>
+<li>Atinge cardul de telefon — autentificare completă în sub 15 secunde</li>
+</ol>
+<p>Serverul primește:</p>
+<ul>
+<li>Nume și prenume verificate criptografic de MAI</li>
+<li>CNP verificat criptografic de MAI</li>
+<li>Adresă de domiciliu extrasă din cip (nu auto-declarată)</li>
+<li>Dovadă că cipul este autentic și nu clonat (Active Authentication)</li>
+<li>Dovadă că utilizatorul deține cardul fizic și cunoaște PIN-ul</li>
+</ul>
+<p>Fiecare autentificare ulterioară — nu doar onboarding-ul — produce aceleași garanții. Nu există session hijacking, nu există cont preluat prin resetare de parolă, nu există furt de credențiale.</p>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="costul-per-verificare">Costul per verificare<a href="https://eidkit.ro/blog/kyc-igaming-romania-carte-electronica-identitate#costul-per-verificare" class="hash-link" aria-label="Direct link to Costul per verificare" title="Direct link to Costul per verificare">​</a></h2>
+<p>Soluțiile de video KYC costă între $0.33 (Didit) și $1.85 (Sumsub Compliance) per verificare reușită. Un operator cu 10.000 de înregistrări noi pe lună plătește între $3.300 și $18.500 lunar doar pentru KYC inițial.</p>
+<p>EidKit SSO costă <a href="https://eidkit.ro/pricing" target="_blank" rel="noopener noreferrer">€0.25 per autentificare reușită</a> — cu nivel de asigurare mai ridicat și cu adresa verificată inclusă. Pentru autentificările recurente — logins repetate ale aceluiași utilizator — costul este identic, ceea ce face modelul favorabil operatorilor cu utilizatori activi frecvent.</p>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="calendarul-de-adoptare-cei">Calendarul de adoptare CEI<a href="https://eidkit.ro/blog/kyc-igaming-romania-carte-electronica-identitate#calendarul-de-adoptare-cei" class="hash-link" aria-label="Direct link to Calendarul de adoptare CEI" title="Direct link to Calendarul de adoptare CEI">​</a></h2>
+<p>Câteva repere concrete:</p>
+<ul>
+<li><strong>Iulie 2025</strong>: CEI devine singurul tip de act de identitate eliberat în România</li>
+<li><strong>August 2025</strong>: CEI poate fi solicitată la orice SPCLEP din țară, indiferent de domiciliu</li>
+<li><strong>Sfârșitul anului 2025</strong>: 1,1 milioane de cărți vechi expiră</li>
+<li><strong>Decembrie 2026</strong>: termen eIDAS 2.0 pentru portofelul european de identitate digitală</li>
+<li><strong>2027</strong>: operatorii privați reglementați vor trebui să accepte portofelul EUDI</li>
+</ul>
+<p>Fiecare lună care trece crește procentul de utilizatori ai platformelor de iGaming care dețin CEI ca singurul lor act de identitate valid.</p>
+<hr>
+<p>Dacă ești operator ONJN sau construiești pentru piața de iGaming din România și vrei să discuți cum arată o integrare concretă, <a href="mailto:hello@eidkit.ro?subject=EidKit%20iGaming" target="_blank" rel="noopener noreferrer">scrie-ne</a>. Primele integrări beneficiază de <a href="https://eidkit.ro/pricing" target="_blank" rel="noopener noreferrer">programul pilot</a>.</p>]]></content:encoded>
+            <category>cei</category>
+            <category>kyc</category>
+            <category>igaming</category>
+            <category>onjn</category>
+            <category>identitate</category>
+            <category>romania</category>
+            <category>nfc</category>
+            <category>jocuri-de-noroc</category>
+        </item>
         <item>
             <title><![CDATA[Autentificarea cu buletinul electronic. De ce două verificări corecte pot fi totuși insuficiente.]]></title>
             <link>https://eidkit.ro/blog/autentificare-buletin-electronic-zero-trust</link>
