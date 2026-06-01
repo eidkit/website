@@ -43,10 +43,38 @@ Autentificarea cu CEI este necesară atât pentru înregistrarea în portal, câ
 | `address` | `address.formatted` — adresă verificată MAI, nu auto-declarată |
 | `cei:document` | Număr, serie, dată expirare, autoritate emitentă |
 | `cei:cnp` | CNP extras server-side din DG1 verificat — nu din payload-ul aplicației |
+| `email` | `email`, `email_verified: true` — adresă verificată prin OTP în aplicația EidKit |
 | `cei:picture` | Fotografie față (JPEG base64, ~33KB) |
 | `cei:signature` | Imagine semnătură olografă (JPEG base64, ~3.5KB) |
 
 Scopurile `openid` și `profile` nu necesită PIN. Scopul `address` necesită PIN-ul de autentificare — utilizatorul îl introduce în aplicația EidKit înainte de atingerea cardului. Imaginile sunt opt-in pentru cazuri specifice (ex. asigurări, HR).
+
+---
+
+## Scopul `email`
+
+Dacă soliciți scope-ul `email`, utilizatorul este invitat în aplicația EidKit să introducă adresa de email în timpul autentificării. EidKit trimite un cod OTP de 6 cifre la acea adresă și confirmă primirea înainte de a emite token-ul.
+
+**Comportament la autentificări ulterioare:**
+- Același email → niciun OTP nou — autentificarea continuă automat
+- Email schimbat → nou flux OTP
+
+Utilizatorul poate opta să **rețină adresa** pentru sesiunile viitoare (sare peste prompt) sau o poate șterge oricând din secțiunea **„Date salvate"** a aplicației.
+
+**Important:** adresa de email este declarată și verificată de utilizator — nu este extrasă de pe card.
+
+**Exemplu JWT cu scope-ul `email`:**
+
+```json
+{
+  "sub": "a3f7bc9d...",
+  "name": "CĂTĂLIN TOMA",
+  "email": "catalin@example.com",
+  "email_verified": true,
+  "iss": "https://idp.eidkit.ro",
+  "aud": "client-id-ul-tau"
+}
+```
 
 ---
 

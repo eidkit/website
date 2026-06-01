@@ -5,7 +5,7 @@ description: Politica de confidențialitate pentru aplicația EidKit Demo și se
 
 # Politică de confidențialitate
 
-*Ultima actualizare: 30 aprilie 2026*
+*Ultima actualizare: 1 iunie 2026*
 
 ---
 
@@ -63,13 +63,17 @@ EidKit SSO este un identity provider OIDC care permite autentificarea cu buletin
 | Adresă | Transmis site-ului partener dacă scope-ul `address` este solicitat | Consimțământ explicit |
 | CNP (hash SHA-256) | Generarea unui identificator unic stabil (`sub`) — CNP-ul brut nu este transmis site-ului | Consimțământ explicit |
 | CNP (în clar) | Numai dacă scope-ul `cei:cnp` este solicitat explicit de site | Consimțământ explicit |
+| Adresă de email (verificată prin OTP) | Asocierea identității cu un cont de serviciu partener, la cererea utilizatorului; stocată per serviciu | Consimțământ explicit (utilizatorul introduce adresa și confirmă prin cod OTP) |
 
 ### Ce NU stocăm
 
-- **Nu există bază de date** cu date ale utilizatorilor pe serverele EidKit
+- **Nu stocăm** copii ale datelor de identitate de pe card (nume, CNP, fotografie, adresă) după emiterea token-ului OIDC — acestea tranzitează serverul și sunt incluse în token, dar nu sunt persistate
 - **Sesiunile sunt în memorie**, cu TTL de 5 minute — se șterg automat
 - **Codurile de autorizare** au TTL de 60 de secunde și sunt șterse după prima utilizare
-- **Nu stocăm** copii ale datelor tale de identitate după emiterea token-ului
+
+### Ce stocăm
+
+- **Adresa de email verificată**, dacă un site partener solicită scope-ul `email` — câte o înregistrare per persoană per serviciu. Poți șterge oricând adresele reținute din aplicația EidKit (secțiunea **„Date salvate"**) sau contactând [hello@eidkit.ro](mailto:hello@eidkit.ro).
 
 ### Cui transmitem datele
 
@@ -79,7 +83,9 @@ Site-urile partenere au propriile politici de confidențialitate și sunt respon
 
 ### Drepturile tale (GDPR)
 
-Deoarece nu stocăm date cu caracter personal, cele mai multe drepturi GDPR (acces, rectificare, ștergere) se exercită față de site-ul partener care a primit datele tale, nu față de EidKit. Totuși, poți contacta [hello@eidkit.ro](mailto:hello@eidkit.ro) pentru orice nelămurire.
+Datele de identitate (nume, CNP etc.) nu sunt stocate de EidKit, deci drepturile GDPR aferente (acces, rectificare, ștergere) se exercită față de site-ul partener care a primit datele, nu față de EidKit.
+
+Pentru **adresa de email** stocată de EidKit: o poți șterge direct din aplicația EidKit (secțiunea **„Date salvate"**). Pentru ștergerea de pe server sau orice altă solicitare GDPR, contactează [hello@eidkit.ro](mailto:hello@eidkit.ro).
 
 ---
 

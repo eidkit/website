@@ -43,10 +43,38 @@ CEI authentication is required both to register in the portal and to test your i
 | `address` | `address.formatted` — MAI-verified address, not self-declared |
 | `cei:document` | Number, series, expiry date, issuing authority |
 | `cei:cnp` | CNP extracted server-side from verified DG1 — not from the app payload |
+| `email` | `email`, `email_verified: true` — address verified via OTP in the EidKit app |
 | `cei:picture` | Face photo (JPEG base64, ~33KB) |
 | `cei:signature` | Handwritten signature image (JPEG base64, ~3.5KB) |
 
 The `openid` and `profile` scopes require no PIN. The `address` scope requires the authentication PIN — the user enters it in the EidKit app before tapping their card. Images are opt-in for specific use cases (e.g. insurance, HR).
+
+---
+
+## The `email` scope
+
+When you request the `email` scope, the user is prompted in the EidKit app to enter their email address during authentication. EidKit sends a 6-digit OTP to that address and confirms receipt before issuing the token.
+
+**Behaviour on subsequent logins:**
+- Same email → no new OTP — authentication continues automatically
+- Changed email → new OTP flow
+
+The user can opt to **remember the address** for future logins (skips the prompt) or delete it at any time from the **"Saved Data"** section of the app.
+
+**Important:** the email address is user-declared and OTP-verified — it is not extracted from the card.
+
+**Example JWT with the `email` scope:**
+
+```json
+{
+  "sub": "a3f7bc9d...",
+  "name": "CĂTĂLIN TOMA",
+  "email": "catalin@example.com",
+  "email_verified": true,
+  "iss": "https://idp.eidkit.ro",
+  "aud": "your-client-id"
+}
+```
 
 ---
 

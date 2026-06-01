@@ -5,7 +5,7 @@ description: Privacy policy for the EidKit Demo app and EidKit SSO service
 
 # Privacy Policy
 
-*Last updated: April 30, 2026*
+*Last updated: June 1, 2026*
 
 ---
 
@@ -63,13 +63,17 @@ EidKit SSO is an OIDC identity provider that enables authentication with the Rom
 | Address | Passed to the partner website if the `address` scope is requested | Explicit consent |
 | CNP (SHA-256 hash) | Generating a stable unique identifier (`sub`) — the raw CNP is not shared with the website | Explicit consent |
 | CNP (in plain text) | Only if the `cei:cnp` scope is explicitly requested by the website | Explicit consent |
+| Email address (OTP-verified) | Linking your identity to a partner service account, at your request; stored per service | Explicit consent (you enter the address and confirm with a 6-digit OTP) |
 
 ### What we do NOT store
 
-- **There is no database** of user data on EidKit servers
+- **We do not retain** copies of identity card data (name, CNP, photo, address) after the OIDC token has been issued — this data passes through the server and is included in the token, but is not persisted
 - **Sessions are in-memory**, with a 5-minute TTL — deleted automatically
 - **Authorization codes** have a 60-second TTL and are deleted after first use
-- **We do not retain** copies of your identity data after the token has been issued
+
+### What we do store
+
+- **Your verified email address**, if a partner site requests the `email` scope — one record per person per service. You can delete stored email addresses at any time from the EidKit app (**"Saved Data"** section) or by contacting [hello@eidkit.ro](mailto:hello@eidkit.ro).
 
 ### Who we share data with
 
@@ -79,7 +83,9 @@ Partner websites have their own privacy policies and are responsible for how the
 
 ### Your rights (GDPR)
 
-Because we do not store personal data, most GDPR rights (access, rectification, erasure) should be exercised with the partner website that received your data, not with EidKit. However, you can contact [hello@eidkit.ro](mailto:hello@eidkit.ro) with any questions.
+Identity data (name, CNP, etc.) is not stored by EidKit, so the corresponding GDPR rights (access, rectification, erasure) should be exercised with the partner website that received the data, not with EidKit.
+
+For **email addresses** stored by EidKit: you can delete them directly from the EidKit app (**"Saved Data"** section). For server-side deletion or any other GDPR request, contact [hello@eidkit.ro](mailto:hello@eidkit.ro).
 
 ---
 
