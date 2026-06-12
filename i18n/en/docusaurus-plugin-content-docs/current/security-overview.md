@@ -9,7 +9,7 @@ import TabItem from '@theme/TabItem';
 
 # EidKit — Security Overview
 
-**Version:** 1.1 · **Date:** May 2026 · **Contact:** hello@eidkit.ro
+**Version:** 1.2 · **Date:** June 2026 · **Contact:** hello@eidkit.ro
 
 ---
 
@@ -141,7 +141,8 @@ EidKit SSO is an OIDC identity provider that issues no token unless it can crypt
 5. **The chip key was issued by MAI** — The CE81 certificate is verified against the MAI GenPKI Sub-CA. A rogue key cannot be substituted.
 6. **The CNP is extracted server-side** — The server does not accept the CNP from the app payload. It extracts it from the DG1 bytes after their integrity has been verified against the SOD.
 7. **DG14 is signed by MAI** — SHA-256 of the DG14 bytes (which contains the chip's public key, Q_chip) must match the hash recorded in the SOD by MAI. This binds the chip authentication key to the same signature that covers the identity data.
-8. **Chip-to-identity binding is cryptographically verified** — At `POST /v2/session/ca-prepare` (card still on phone), the server generates a terminal keypair `(d_terminal, Q_terminal)` and stores `d_terminal` and DG14 in the session. The app relays `Q_terminal` to the chip via GENERAL AUTHENTICATE. At `POST /v2/session/complete`, the server independently recomputes `Z = ECDH(d_terminal, Q_chip_from_stored_DG14)`. `d_terminal` never leaves the server — an attacker controlling the app cannot produce a valid Z without a real chip. This closes the forged-app attack and the split-proof attack for attackers with a **different name** (combined with the CE81 subject vs DG1 name cross-check).
+8. **Chip-to-identity binding is cryptographically verified** — The server generates a terminal keypair `(d_terminal, Q_terminal)` and sends GENERAL AUTHENTICATE to the chip directly via the WebSocket relay, while the card is still on the phone. The server independently recomputes `Z = ECDH(d_terminal, Q_chip_from_DG14)` and validates the chip's response. `d_terminal` never leaves the server — an attacker controlling the app cannot produce a valid Z without a real chip. This closes the forged-app attack and the split-proof attack for attackers with a **different name** (combined with the CE81 subject vs DG1 name cross-check).
+9. **Card issuance date is consistent** — The CE81 certificate's `notBefore` (MAI GenPKI PKI) must correspond to the issuance date derived from the SOD-verified DG1 (expiry − 10 years). Any discrepancy — indicative of a swapped chip or tampered data — blocks authentication.
 
 Unlike password-based or document-scan authentication systems, EidKit SSO cannot be compromised by:
 - **Phishing** — the server-side challenge is unique per session; a captured session cannot be reused
@@ -156,17 +157,16 @@ Browser                  Phone (EidKit app)            Server (idp.eidkit.ro)
   │── /authorize ───────────────────────────────────────────▶ │
   │◀── QR (session + nonce) ────────────────────────────────── │
   │                              │◀── QR scanned               │
-  │                              │── card read (NFC)           │
-  │                              │   PACE + read DG14          │
-  │                              │── POST /v2/session/ca-prepare ──▶│
-  │                              │   (rawDg14, card on phone)  │── generates d_terminal
-  │                              │◀── caTerminalPublicKey ─────│── stores d_terminal + DG14
-  │                              │── GENERAL AUTHENTICATE      │
-  │                              │   (relay Q_terminal to chip)│
-  │                              │   verifyPin + AA            │
-  │                              │── POST /v2/session/complete ──▶│
-  │                              │   (cryptographic proof)     │── verifies 8 conditions
-  │                              │                             │── recomputes Z independently
+  │                              │── WebSocket /v3/nfc-relay ──▶│
+  │                              │── PACE with chip (NFC)      │
+  │                              │   sends Ksenc/Ksmac/SSC ───▶│
+  │                              │◀──────── APDU relay ────────▶│── reads DG1, DG14
+  │                              │                              │── DSC chain, DG1 hash
+  │                              │◀──────── APDU relay ────────▶│── CA: GENERAL AUTHENTICATE
+  │                              │                              │── verifies Z = ECDH(d_terminal, Q_chip)
+  │                              │── PACE session 2 + PIN ─────▶│
+  │                              │◀──────── APDU relay ────────▶│── Active Authentication (CE81)
+  │                              │                              │── verifies 9 conditions
   │                              │                             │── issues auth code
   │◀── polling: code ───────────────────────────────────────── │
   │── POST /token (code) ──────────────────────────────────▶  │

@@ -9,7 +9,7 @@ import TabItem from '@theme/TabItem';
 
 # EidKit — Prezentare de securitate
 
-**Versiune:** 1.1 · **Data:** mai 2026 · **Contact:** hello@eidkit.ro
+**Versiune:** 1.2 · **Data:** iunie 2026 · **Contact:** hello@eidkit.ro
 
 ---
 
@@ -141,7 +141,8 @@ EidKit SSO este un identity provider OIDC care nu emite niciun token dacă nu po
 5. **Cheia cipului a fost emisă de MAI** — Certificatul CE81 este verificat față de MAI GenPKI Sub-CA. O cheie rogue nu poate fi substituită.
 6. **CNP-ul este extras server-side** — Serverul nu acceptă CNP-ul din payload-ul aplicației. Îl extrage din bytes-urile DG1 după ce integritatea lor a fost verificată față de SOD.
 7. **DG14 este semnat de MAI** — SHA-256 al bytes-urilor DG14 (care conține cheia publică a cipului, Q_chip) trebuie să corespundă cu hash-ul înregistrat în SOD de MAI. Aceasta leagă cheia de autentificare a cipului de aceeași semnătură care acoperă identitatea.
-8. **Legătura cip↔identitate este verificată criptografic** — La `POST /v2/session/ca-prepare` (cu cardul în contact), serverul generează o pereche de chei terminale `(d_terminal, Q_terminal)` și stochează `d_terminal` și DG14 în sesiune. Aplicația relayează `Q_terminal` cipului via GENERAL AUTHENTICATE. La `POST /v2/session/complete`, serverul recomputează independent `Z = ECDH(d_terminal, Q_chip_din_DG14_stocat)`. `d_terminal` nu părăsește niciodată serverul — un atacator care controlează aplicația nu poate produce un Z valid fără un cip real. Aceasta închide atacul de tip aplicație falsificată și atacul de separare pentru atacatori cu **nume diferit** (combinat cu verificarea numelui CE81 vs DG1).
+8. **Legătura cip↔identitate este verificată criptografic** — Serverul generează o pereche de chei terminale `(d_terminal, Q_terminal)` și trimite comanda GENERAL AUTHENTICATE cipului prin relayul WebSocket, cu cardul încă în contact cu telefonul. Serverul recomputează independent `Z = ECDH(d_terminal, Q_chip_din_DG14)` și validează răspunsul cipului. `d_terminal` nu părăsește niciodată serverul — un atacator care controlează aplicația nu poate produce un Z valid fără un cip real. Aceasta închide atacul de tip aplicație falsificată și atacul de separare pentru atacatori cu **nume diferit** (combinat cu verificarea numelui CE81 vs DG1).
+9. **Data emiterii cardului este consistentă** — `notBefore` al certificatului CE81 (PKI MAI GenPKI) trebuie să corespundă cu data emiterii dedusă din DG1 verificat de SOD (expiry − 10 ani). Orice neconcordanță — indicatoare ale unui cip înlocuit sau al unor date falsificate — blochează autentificarea.
 
 Spre deosebire de sisteme de autentificare bazate pe parolă sau pe documente scanate, EidKit SSO nu poate fi compromis prin:
 - **Phishing** — challenge-ul server-side este unic per sesiune; o sesiune captată nu poate fi refolosită
@@ -156,18 +157,17 @@ Browser                    Telefon (EidKit)              Server (idp.eidkit.ro)
   │── /authorize ───────────────────────────────────────────▶ │
   │◀── QR (session + nonce) ────────────────────────────────── │
   │                              │◀── QR scanat                │
-  │                              │── citire card (NFC)         │
-  │                              │   PACE + citire DG14        │
-  │                              │── POST /v2/session/ca-prepare ──▶│
-  │                              │   (rawDg14, card pe telefon)│── generează d_terminal
-  │                              │◀── caTerminalPublicKey ─────│── stochează d_terminal + DG14
-  │                              │── GENERAL AUTHENTICATE      │
-  │                              │   (relayează Q_terminal)    │
-  │                              │   verifyPin + AA            │
-  │                              │── POST /v2/session/complete ──▶│
-  │                              │   (dovadă criptografică)    │── verifică 8 condiții
-  │                              │                             │── recomputează Z independent
-  │                              │                             │── emite auth code
+  │                              │── WebSocket /v3/nfc-relay ──▶│
+  │                              │── PACE cu cipul (NFC)       │
+  │                              │   trimite Ksenc/Ksmac/SSC ──▶│
+  │                              │◀──────── relay APDU ────────▶│── citire DG1, DG14
+  │                              │                              │── DSC chain, DG1 hash
+  │                              │◀──────── relay APDU ────────▶│── CA: GENERAL AUTHENTICATE
+  │                              │                              │── verifică Z = ECDH(d_terminal, Q_chip)
+  │                              │── PACE sesiunea 2 + PIN ────▶│
+  │                              │◀──────── relay APDU ────────▶│── Autentificare Activă (CE81)
+  │                              │                              │── verifică 9 condiții
+  │                              │                              │── emite auth code
   │◀── polling: code ───────────────────────────────────────── │
   │── POST /token (code) ──────────────────────────────────▶  │
   │◀── ID token (JWT RS256) ──────────────────────────────── │
